@@ -3,8 +3,8 @@ import mmcv
 import numpy as np
 import torch
 
-from mmdet.core import INSTANCE_OFFSET, bbox2roi, multiclass_nms
-from mmdet.core.visualization import imshow_det_bboxes
+from models.mmdetection.mmdet.core import INSTANCE_OFFSET, bbox2roi, multiclass_nms
+from models.mmdetection.mmdet.core.visualization import imshow_det_bboxes
 from ..builder import DETECTORS, build_head
 from ..roi_heads.mask_heads.fcn_mask_head import _do_paste_mask
 from .two_stage import TwoStageDetector
@@ -56,7 +56,7 @@ class TwoStagePanopticSegmentor(TwoStageDetector):
     @property
     def with_panoptic_fusion_head(self):
         return hasattr(self, 'panoptic_fusion_heads') and \
-               self.panoptic_fusion_head is not None
+            self.panoptic_fusion_head is not None
 
     def forward_dummy(self, img):
         """Used for computing network flops.
@@ -121,7 +121,7 @@ class TwoStagePanopticSegmentor(TwoStageDetector):
             masks = []
             for img_shape in img_shapes:
                 out_shape = (0, self.roi_head.bbox_head.num_classes) \
-                            + img_shape[:2]
+                    + img_shape[:2]
                 masks.append(det_bboxes[0].new_zeros(out_shape))
             mask_pred = det_bboxes[0].new_zeros((0, 80, 28, 28))
             mask_results = dict(
