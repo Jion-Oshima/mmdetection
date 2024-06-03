@@ -2,9 +2,9 @@
 import torch
 import torch.nn.functional as F
 
-from mmdet.core.evaluation.panoptic_utils import INSTANCE_OFFSET
-from mmdet.core.mask import mask2bbox
-from mmdet.models.builder import HEADS
+from models.mmdetection.mmdet.core.evaluation.panoptic_utils import INSTANCE_OFFSET
+from models.mmdetection.mmdet.core.mask import mask2bbox
+from models.mmdetection.mmdet.models.builder import HEADS
 from .base_panoptic_fusion_head import BasePanopticFusionHead
 
 
@@ -151,8 +151,8 @@ class MaskFormerFusionHead(BasePanopticFusionHead):
         mask_pred = mask_pred[is_thing]
 
         mask_pred_binary = (mask_pred > 0).float()
-        mask_scores_per_image = (mask_pred.sigmoid() *
-                                 mask_pred_binary).flatten(1).sum(1) / (
+        mask_scores_per_image = (mask_pred.sigmoid()
+                                 * mask_pred_binary).flatten(1).sum(1) / (
                                      mask_pred_binary.flatten(1).sum(1) + 1e-6)
         det_scores = scores_per_image * mask_scores_per_image
         mask_pred_binary = mask_pred_binary.bool()
