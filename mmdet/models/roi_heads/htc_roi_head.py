@@ -3,8 +3,8 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from mmdet.core import (bbox2result, bbox2roi, bbox_mapping, merge_aug_bboxes,
-                        merge_aug_masks, multiclass_nms)
+from models.mmdetection.mmdet.core import (bbox2result, bbox2roi, bbox_mapping, merge_aug_bboxes,
+                                           merge_aug_masks, multiclass_nms)
 from ..builder import HEADS, build_head, build_roi_extractor
 from ..utils.brick_wrappers import adaptive_avg_pool2d
 from .cascade_roi_head import CascadeRoIHead
@@ -447,8 +447,8 @@ class HybridTaskCascadeRoIHead(CascadeRoIHead):
                         for scale_factor in scale_factors
                     ]
                 _bboxes = [
-                    det_bboxes[i][:, :4] *
-                    scale_factors[i] if rescale else det_bboxes[i]
+                    det_bboxes[i][:, :4]
+                    * scale_factors[i] if rescale else det_bboxes[i]
                     for i in range(num_imgs)
                 ]
                 mask_rois = bbox2roi(_bboxes)

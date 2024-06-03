@@ -8,7 +8,7 @@ import numpy as np
 from mmcv.utils import print_log
 from terminaltables import AsciiTable
 
-from mmdet.core import INSTANCE_OFFSET
+from models.mmdetection.mmdet.core import INSTANCE_OFFSET
 from .api_wrappers import COCO, pq_compute_multi_core
 from .builder import DATASETS
 from .coco import CocoDataset
@@ -100,6 +100,8 @@ class COCOPanoptic(COCO):
         """
         anns = []
 
+        # autopep8: off
+
         if hasattr(ids, '__iter__') and hasattr(ids, '__len__'):
             # self.anns is a list of annotation lists instead of
             # a list of annotations
@@ -108,6 +110,8 @@ class COCOPanoptic(COCO):
             return anns
         elif type(ids) == int:
             return self.anns[ids]
+
+        # autopep8: on
 
 
 @DATASETS.register_module()

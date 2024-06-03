@@ -8,9 +8,9 @@ from mmcv.cnn import ConvModule, Scale
 from mmcv.ops import DeformConv2d
 from mmcv.runner import force_fp32
 
-from mmdet.core import (MlvlPointGenerator, bbox_overlaps, build_assigner,
-                        build_prior_generator, build_sampler, multi_apply,
-                        reduce_mean)
+from models.mmdetection.mmdet.core import (MlvlPointGenerator, bbox_overlaps, build_assigner,
+                                           build_prior_generator, build_sampler, multi_apply,
+                                           reduce_mean)
 from ..builder import HEADS, build_loss
 from .atss_head import ATSSHead
 from .fcos_head import FCOSHead
@@ -733,7 +733,7 @@ class VFNetHead(ATSSHead, FCOSHead):
         if self.use_atss:
             points = torch.stack(
                 (x.reshape(-1), y.reshape(-1)), dim=-1) + \
-                     stride * self.anchor_center_offset
+                stride * self.anchor_center_offset
         else:
             points = torch.stack(
                 (x.reshape(-1), y.reshape(-1)), dim=-1) + stride // 2

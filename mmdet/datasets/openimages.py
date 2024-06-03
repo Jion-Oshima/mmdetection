@@ -12,7 +12,7 @@ import torch.distributed as dist
 from mmcv.runner import get_dist_info
 from mmcv.utils import print_log
 
-from mmdet.core import eval_map
+from models.mmdetection.mmdet.core import eval_map
 from .builder import DATASETS
 from .custom import CustomDataset
 
@@ -428,7 +428,7 @@ class OpenImagesDataset(CustomDataset):
         bboxes."""
         for i, ann in enumerate(annotations):
             assert len(ann['labels']) == len(ann['bboxes']) == \
-                   len(ann['gt_is_group_ofs'])
+                len(ann['gt_is_group_ofs'])
             gt_bboxes = []
             gt_is_group_ofs = []
             gt_labels = []
@@ -468,8 +468,8 @@ class OpenImagesDataset(CustomDataset):
         """
         if image_level_annotations is not None:
             assert len(annotations) == \
-                   len(image_level_annotations) == \
-                   len(det_results)
+                len(image_level_annotations) == \
+                len(det_results)
         else:
             assert len(annotations) == len(det_results)
         for i in range(len(det_results)):

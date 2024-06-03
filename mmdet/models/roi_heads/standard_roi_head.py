@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import torch
 
-from mmdet.core import bbox2result, bbox2roi, build_assigner, build_sampler
+from models.mmdetection.mmdet.core import bbox2result, bbox2roi, build_assigner, build_sampler
 from ..builder import HEADS, build_head, build_roi_extractor
 from .base_roi_head import BaseRoIHead
 from .test_mixins import BBoxTestMixin, MaskTestMixin
@@ -180,8 +180,8 @@ class StandardRoIHead(BaseRoIHead, BBoxTestMixin, MaskTestMixin):
 
     def _mask_forward(self, x, rois=None, pos_inds=None, bbox_feats=None):
         """Mask head forward function used in both training and testing."""
-        assert ((rois is not None) ^
-                (pos_inds is not None and bbox_feats is not None))
+        assert ((rois is not None)
+                ^ (pos_inds is not None and bbox_feats is not None))
         if rois is not None:
             mask_feats = self.mask_roi_extractor(
                 x[:self.mask_roi_extractor.num_inputs], rois)

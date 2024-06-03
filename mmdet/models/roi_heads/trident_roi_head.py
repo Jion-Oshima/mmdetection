@@ -2,9 +2,9 @@
 import torch
 from mmcv.ops import batched_nms
 
-from mmdet.core import (bbox2result, bbox2roi, bbox_mapping, merge_aug_bboxes,
-                        multiclass_nms)
-from mmdet.models.roi_heads.standard_roi_head import StandardRoIHead
+from models.mmdetection.mmdet.core import (bbox2result, bbox2roi, bbox_mapping, merge_aug_bboxes,
+                                           multiclass_nms)
+from models.mmdetection.mmdet.models.roi_heads.standard_roi_head import StandardRoIHead
 from ..builder import HEADS
 
 
@@ -66,8 +66,8 @@ class TridentRoIHead(StandardRoIHead):
         det_bboxes, det_labels = [], []
         for i in range(len(img_metas) // num_branch):
             det_result = self.merge_trident_bboxes(
-                torch.cat(det_bboxes_list[i * num_branch:(i + 1) *
-                                          num_branch]),
+                torch.cat(det_bboxes_list[i * num_branch:(i + 1)
+                                          * num_branch]),
                 torch.cat(det_labels_list[i * num_branch:(i + 1) *
                                           num_branch]))
             det_bboxes.append(det_result[0])

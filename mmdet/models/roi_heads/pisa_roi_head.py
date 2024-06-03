@@ -1,5 +1,5 @@
 # Copyright (c) OpenMMLab. All rights reserved.
-from mmdet.core import bbox2roi
+from models.mmdetection.mmdet.core import bbox2roi
 from ..builder import HEADS
 from ..losses.pisa_loss import carl_loss, isr_p
 from .standard_roi_head import StandardRoIHead
@@ -120,8 +120,8 @@ class PISARoIHead(StandardRoIHead):
             for i in range(len(sampling_results)):
                 num_pos = sampling_results[i].pos_inds.size(0)
                 num_neg = sampling_results[i].neg_inds.size(0)
-                label_weights[cur_num_rois + num_pos:cur_num_rois + num_pos +
-                              num_neg] = neg_label_weights[i]
+                label_weights[cur_num_rois + num_pos:cur_num_rois + num_pos
+                              + num_neg] = neg_label_weights[i]
                 cur_num_rois += num_pos + num_neg
 
         cls_score = bbox_results['cls_score']

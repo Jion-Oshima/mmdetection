@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import torch
 
-from mmdet.core import bbox2roi
+from models.mmdetection.mmdet.core import bbox2roi
 from ..builder import HEADS, build_head
 from .standard_roi_head import StandardRoIHead
 
@@ -73,8 +73,8 @@ class MaskScoringRoIHead(StandardRoIHead):
                     for scale_factor in scale_factors
                 ]
             _bboxes = [
-                det_bboxes[i][:, :4] *
-                scale_factors[i] if rescale else det_bboxes[i]
+                det_bboxes[i][:, :4]
+                * scale_factors[i] if rescale else det_bboxes[i]
                 for i in range(num_imgs)
             ]
             mask_rois = bbox2roi(_bboxes)

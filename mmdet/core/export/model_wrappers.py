@@ -5,8 +5,8 @@ import warnings
 import numpy as np
 import torch
 
-from mmdet.core import bbox2result
-from mmdet.models import BaseDetector
+from models.mmdetection.mmdet.core import bbox2result
+from models.mmdetection.mmdet.models import BaseDetector
 
 
 class DeployBaseDetector(BaseDetector):

@@ -10,8 +10,8 @@ from mmcv.ops.carafe import CARAFEPack
 from mmcv.runner import BaseModule, ModuleList, auto_fp16, force_fp32
 from torch.nn.modules.utils import _pair
 
-from mmdet.core import mask_target
-from mmdet.models.builder import HEADS, build_loss
+from models.mmdetection.mmdet.core import mask_target
+from models.mmdetection.mmdet.models.builder import HEADS, build_loss
 
 BYTES_PER_FLOAT = 4
 # TODO: This memory limit may be too much or too little. It would be better to
@@ -272,10 +272,10 @@ class FCNMaskHead(BaseModule):
             # so we need to change the types of img_w and img_h to int.
             # See https://github.com/open-mmlab/mmdetection/pull/5191
             num_chunks = int(
-                np.ceil(N * int(img_h) * int(img_w) * BYTES_PER_FLOAT /
-                        GPU_MEM_LIMIT))
-            assert (num_chunks <=
-                    N), 'Default GPU_MEM_LIMIT is too small; try increasing it'
+                np.ceil(N * int(img_h) * int(img_w) * BYTES_PER_FLOAT
+                        / GPU_MEM_LIMIT))
+            assert (num_chunks
+                    <= N), 'Default GPU_MEM_LIMIT is too small; try increasing it'
         chunks = torch.chunk(torch.arange(N, device=device), num_chunks)
 
         threshold = rcnn_test_cfg.mask_thr_binary

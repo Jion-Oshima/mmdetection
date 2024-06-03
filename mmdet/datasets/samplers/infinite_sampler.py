@@ -6,7 +6,7 @@ import torch
 from mmcv.runner import get_dist_info
 from torch.utils.data.sampler import Sampler
 
-from mmdet.core.utils import sync_random_seed
+from models.mmdetection.mmdet.core.utils import sync_random_seed
 
 
 class InfiniteGroupBatchSampler(Sampler):

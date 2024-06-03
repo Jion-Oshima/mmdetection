@@ -7,8 +7,8 @@ from mmcv.cnn import ConvModule
 from mmcv.ops import DeformConv2d
 from mmcv.runner import BaseModule
 
-from mmdet.core import multi_apply
-from mmdet.core.utils import filter_scores_and_topk
+from models.mmdetection.mmdet.core import multi_apply
+from models.mmdetection.mmdet.core.utils import filter_scores_and_topk
 from ..builder import HEADS
 from .anchor_free_head import AnchorFreeHead
 
@@ -211,8 +211,8 @@ class FoveaHead(AnchorFreeHead):
                            featmap_size_list=None,
                            point_list=None):
 
-        gt_areas = torch.sqrt((gt_bboxes_raw[:, 2] - gt_bboxes_raw[:, 0]) *
-                              (gt_bboxes_raw[:, 3] - gt_bboxes_raw[:, 1]))
+        gt_areas = torch.sqrt((gt_bboxes_raw[:, 2] - gt_bboxes_raw[:, 0])
+                              * (gt_bboxes_raw[:, 3] - gt_bboxes_raw[:, 1]))
         label_list = []
         bbox_target_list = []
         # for each pyramid, find the cls and box target
@@ -226,8 +226,8 @@ class FoveaHead(AnchorFreeHead):
             bbox_targets = gt_bboxes_raw.new(featmap_size[0], featmap_size[1],
                                              4) + 1
             # scale assignment
-            hit_indices = ((gt_areas >= lower_bound) &
-                           (gt_areas <= upper_bound)).nonzero().flatten()
+            hit_indices = ((gt_areas >= lower_bound)
+                           & (gt_areas <= upper_bound)).nonzero().flatten()
             if len(hit_indices) == 0:
                 label_list.append(labels)
                 bbox_target_list.append(torch.log(bbox_targets))

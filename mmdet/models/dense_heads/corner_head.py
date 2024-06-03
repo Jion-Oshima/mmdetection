@@ -8,7 +8,7 @@ from mmcv.cnn import ConvModule, bias_init_with_prob
 from mmcv.ops import CornerPool, batched_nms
 from mmcv.runner import BaseModule, force_fp32
 
-from mmdet.core import multi_apply
+from models.mmdetection.mmdet.core import multi_apply
 from ..builder import HEADS, build_loss
 from ..utils import gaussian_radius, gen_gaussian_target
 from ..utils.gaussian_target import (gather_feat, get_local_maximum,
@@ -476,17 +476,17 @@ class CornerHead(BaseDenseHead, BBoxTestMixin):
                 # Generate centripetal shift
                 if with_centripetal_shift:
                     gt_tl_centripetal_shift[batch_id, 0, top_idx,
-                                            left_idx] = log(scale_center_x -
-                                                            scale_left)
+                                            left_idx] = log(scale_center_x
+                                                            - scale_left)
                     gt_tl_centripetal_shift[batch_id, 1, top_idx,
-                                            left_idx] = log(scale_center_y -
-                                                            scale_top)
+                                            left_idx] = log(scale_center_y
+                                                            - scale_top)
                     gt_br_centripetal_shift[batch_id, 0, bottom_idx,
-                                            right_idx] = log(scale_right -
-                                                             scale_center_x)
+                                            right_idx] = log(scale_right
+                                                             - scale_center_x)
                     gt_br_centripetal_shift[batch_id, 1, bottom_idx,
-                                            right_idx] = log(scale_bottom -
-                                                             scale_center_y)
+                                            right_idx] = log(scale_bottom
+                                                             - scale_center_y)
 
             if with_corner_emb:
                 match.append(corner_match)
@@ -955,16 +955,16 @@ class CornerHead(BaseDenseHead, BBoxTestMixin):
 
             bboxes_center_x = (bboxes[..., 0] + bboxes[..., 2]) / 2
             bboxes_center_y = (bboxes[..., 1] + bboxes[..., 3]) / 2
-            rcentral[..., 0] = bboxes_center_x - mu * (bboxes[..., 2] -
-                                                       bboxes[..., 0]) / 2
-            rcentral[..., 1] = bboxes_center_y - mu * (bboxes[..., 3] -
-                                                       bboxes[..., 1]) / 2
-            rcentral[..., 2] = bboxes_center_x + mu * (bboxes[..., 2] -
-                                                       bboxes[..., 0]) / 2
-            rcentral[..., 3] = bboxes_center_y + mu * (bboxes[..., 3] -
-                                                       bboxes[..., 1]) / 2
-            area_rcentral = ((rcentral[..., 2] - rcentral[..., 0]) *
-                             (rcentral[..., 3] - rcentral[..., 1])).abs()
+            rcentral[..., 0] = bboxes_center_x - mu * (bboxes[..., 2]
+                                                       - bboxes[..., 0]) / 2
+            rcentral[..., 1] = bboxes_center_y - mu * (bboxes[..., 3]
+                                                       - bboxes[..., 1]) / 2
+            rcentral[..., 2] = bboxes_center_x + mu * (bboxes[..., 2]
+                                                       - bboxes[..., 0]) / 2
+            rcentral[..., 3] = bboxes_center_y + mu * (bboxes[..., 3]
+                                                       - bboxes[..., 1]) / 2
+            area_rcentral = ((rcentral[..., 2] - rcentral[..., 0])
+                             * (rcentral[..., 3] - rcentral[..., 1])).abs()
             dists = area_ct_bboxes / area_rcentral
 
             tl_ctx_inds = (ct_bboxes[..., 0] <= rcentral[..., 0]) | (

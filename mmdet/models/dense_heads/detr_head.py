@@ -6,10 +6,10 @@ from mmcv.cnn import Conv2d, Linear, build_activation_layer
 from mmcv.cnn.bricks.transformer import FFN, build_positional_encoding
 from mmcv.runner import force_fp32
 
-from mmdet.core import (bbox_cxcywh_to_xyxy, bbox_xyxy_to_cxcywh,
-                        build_assigner, build_sampler, multi_apply,
-                        reduce_mean)
-from mmdet.models.utils import build_transformer
+from models.mmdetection.mmdet.core import (bbox_cxcywh_to_xyxy, bbox_xyxy_to_cxcywh,
+                                           build_assigner, build_sampler, multi_apply,
+                                           reduce_mean)
+from models.mmdetection.mmdet.models.utils import build_transformer
 from ..builder import HEADS, build_loss
 from .anchor_free_head import AnchorFreeHead
 

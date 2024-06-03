@@ -17,7 +17,7 @@ from mmcv.runner.base_module import BaseModule
 from mmcv.utils import to_2tuple
 from torch.nn.init import normal_
 
-from mmdet.models.utils.builder import TRANSFORMER
+from models.mmdetection.mmdet.models.utils.builder import TRANSFORMER
 
 try:
     from mmcv.ops.multi_scale_deform_attn import MultiScaleDeformableAttention
@@ -112,10 +112,10 @@ class AdaptivePadding(nn.Module):
         stride_h, stride_w = self.stride
         output_h = math.ceil(input_h / stride_h)
         output_w = math.ceil(input_w / stride_w)
-        pad_h = max((output_h - 1) * stride_h +
-                    (kernel_h - 1) * self.dilation[0] + 1 - input_h, 0)
-        pad_w = max((output_w - 1) * stride_w +
-                    (kernel_w - 1) * self.dilation[1] + 1 - input_w, 0)
+        pad_h = max((output_h - 1) * stride_h
+                    + (kernel_h - 1) * self.dilation[0] + 1 - input_h, 0)
+        pad_w = max((output_w - 1) * stride_w
+                    + (kernel_w - 1) * self.dilation[1] + 1 - input_w, 0)
         return pad_h, pad_w
 
     def forward(self, x):
@@ -224,10 +224,10 @@ class PatchEmbed(BaseModule):
                 input_size = (input_h, input_w)
 
             # https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html
-            h_out = (input_size[0] + 2 * padding[0] - dilation[0] *
-                     (kernel_size[0] - 1) - 1) // stride[0] + 1
-            w_out = (input_size[1] + 2 * padding[1] - dilation[1] *
-                     (kernel_size[1] - 1) - 1) // stride[1] + 1
+            h_out = (input_size[0] + 2 * padding[0] - dilation[0]
+                     * (kernel_size[0] - 1) - 1) // stride[0] + 1
+            w_out = (input_size[1] + 2 * padding[1] - dilation[1]
+                     * (kernel_size[1] - 1) - 1) // stride[1] + 1
             self.init_out_size = (h_out, w_out)
         else:
             self.init_input_size = None
@@ -371,12 +371,12 @@ class PatchMerging(BaseModule):
         x = self.sampler(x)
         # if kernel_size=2 and stride=2, x should has shape (B, 4*C, H/2*W/2)
 
-        out_h = (H + 2 * self.sampler.padding[0] - self.sampler.dilation[0] *
-                 (self.sampler.kernel_size[0] - 1) -
-                 1) // self.sampler.stride[0] + 1
-        out_w = (W + 2 * self.sampler.padding[1] - self.sampler.dilation[1] *
-                 (self.sampler.kernel_size[1] - 1) -
-                 1) // self.sampler.stride[1] + 1
+        out_h = (H + 2 * self.sampler.padding[0] - self.sampler.dilation[0]
+                 * (self.sampler.kernel_size[0] - 1)
+                 - 1) // self.sampler.stride[0] + 1
+        out_w = (W + 2 * self.sampler.padding[1] - self.sampler.dilation[1]
+                 * (self.sampler.kernel_size[1] - 1)
+                 - 1) // self.sampler.stride[1] + 1
 
         output_size = (out_h, out_w)
         x = x.transpose(1, 2)  # B, H/2*W/2, 4*C
@@ -810,8 +810,8 @@ class DeformableDetrTransformer(Transformer):
             proposals.append(proposal)
             _cur += (H * W)
         output_proposals = torch.cat(proposals, 1)
-        output_proposals_valid = ((output_proposals > 0.01) &
-                                  (output_proposals < 0.99)).all(
+        output_proposals_valid = ((output_proposals > 0.01)
+                                  & (output_proposals < 0.99)).all(
                                       -1, keepdim=True)
         output_proposals = torch.log(output_proposals / (1 - output_proposals))
         output_proposals = output_proposals.masked_fill(
@@ -1052,8 +1052,8 @@ class DeformableDetrTransformer(Transformer):
 
         inter_references_out = inter_references
         if self.as_two_stage:
-            return inter_states, init_reference_out,\
-                inter_references_out, enc_outputs_class,\
+            return inter_states, init_reference_out, \
+                inter_references_out, enc_outputs_class, \
                 enc_outputs_coord_unact
         return inter_states, init_reference_out, \
             inter_references_out, None, None

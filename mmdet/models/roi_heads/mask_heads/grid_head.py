@@ -6,7 +6,7 @@ import torch.nn.functional as F
 from mmcv.cnn import ConvModule
 from mmcv.runner import BaseModule
 
-from mmdet.models.builder import HEADS, build_loss
+from models.mmdetection.mmdet.models.builder import HEADS, build_loss
 
 
 @HEADS.register_module()
@@ -269,10 +269,10 @@ class GridHead(BaseModule):
                 gridpoint_y = factor_y * pos_gt_bboxes[i, 1] + (
                     1 - factor_y) * pos_gt_bboxes[i, 3]
 
-                cx = int((gridpoint_x - pos_bboxes[i, 0]) / pos_bbox_ws[i] *
-                         map_size)
-                cy = int((gridpoint_y - pos_bboxes[i, 1]) / pos_bbox_hs[i] *
-                         map_size)
+                cx = int((gridpoint_x - pos_bboxes[i, 0]) / pos_bbox_ws[i]
+                         * map_size)
+                cy = int((gridpoint_y - pos_bboxes[i, 1]) / pos_bbox_hs[i]
+                         * map_size)
 
                 for x in range(cx - radius, cx + radius + 1):
                     for y in range(cy - radius, cy + radius + 1):

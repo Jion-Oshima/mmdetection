@@ -4,8 +4,8 @@ import torch.nn as nn
 from mmcv.cnn import ConvModule, Scale
 from mmcv.runner import force_fp32
 
-from mmdet.core import (anchor_inside_flags, build_assigner, build_sampler,
-                        images_to_levels, multi_apply, reduce_mean, unmap)
+from models.mmdetection.mmdet.core import (anchor_inside_flags, build_assigner, build_sampler,
+                                           images_to_levels, multi_apply, reduce_mean, unmap)
 from ..builder import HEADS, build_loss
 from .anchor_head import AnchorHead
 
@@ -282,7 +282,7 @@ class ATSSHead(AnchorHead):
                          device=device)).item()
         num_total_samples = max(num_total_samples, 1.0)
 
-        losses_cls, losses_bbox, loss_centerness,\
+        losses_cls, losses_bbox, loss_centerness, \
             bbox_avg_factor = multi_apply(
                 self.loss_single,
                 anchor_list,
@@ -314,8 +314,8 @@ class ATSSHead(AnchorHead):
         left_right = torch.stack([l_, r_], dim=1)
         top_bottom = torch.stack([t_, b_], dim=1)
         centerness = torch.sqrt(
-            (left_right.min(dim=-1)[0] / left_right.max(dim=-1)[0]) *
-            (top_bottom.min(dim=-1)[0] / top_bottom.max(dim=-1)[0]))
+            (left_right.min(dim=-1)[0] / left_right.max(dim=-1)[0])
+            * (top_bottom.min(dim=-1)[0] / top_bottom.max(dim=-1)[0]))
         assert not torch.isnan(centerness).any()
         return centerness
 

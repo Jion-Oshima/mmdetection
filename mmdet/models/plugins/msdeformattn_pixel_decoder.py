@@ -8,8 +8,8 @@ from mmcv.cnn.bricks.transformer import (build_positional_encoding,
                                          build_transformer_layer_sequence)
 from mmcv.runner import BaseModule, ModuleList
 
-from mmdet.core.anchor import MlvlPointGenerator
-from mmdet.models.utils.transformer import MultiScaleDeformableAttention
+from models.mmdetection.mmdet.core.anchor import MlvlPointGenerator
+from models.mmdetection.mmdet.models.utils.transformer import MultiScaleDeformableAttention
 
 
 @PLUGIN_LAYERS.register_module()

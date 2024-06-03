@@ -6,8 +6,8 @@ import torch.nn.functional as F
 from mmcv.cnn import ConvModule
 from mmcv.runner import BaseModule, ModuleList, force_fp32
 
-from mmdet.core import build_sampler, fast_nms, images_to_levels, multi_apply
-from mmdet.core.utils import select_single_mlvl
+from models.mmdetection.mmdet.core import build_sampler, fast_nms, images_to_levels, multi_apply
+from models.mmdetection.mmdet.core.utils import select_single_mlvl
 from ..builder import HEADS, build_loss
 from .anchor_head import AnchorHead
 
@@ -233,8 +233,8 @@ class YOLACTHead(AnchorHead):
                 num_total_samples=num_total_pos)
         else:
             num_total_samples = (
-                num_total_pos +
-                num_total_neg if self.sampling else num_total_pos)
+                num_total_pos
+                + num_total_neg if self.sampling else num_total_pos)
 
             # anchor number of multi levels
             num_level_anchors = [anchors.size(0) for anchors in anchor_list[0]]
@@ -798,10 +798,10 @@ class YOLACTProtonet(BaseModule):
                     reduction='none') * self.loss_mask_weight
 
                 h, w = cur_img_meta['img_shape'][:2]
-                gt_bboxes_width = (gt_bboxes_for_reweight[:, 2] -
-                                   gt_bboxes_for_reweight[:, 0]) / w
-                gt_bboxes_height = (gt_bboxes_for_reweight[:, 3] -
-                                    gt_bboxes_for_reweight[:, 1]) / h
+                gt_bboxes_width = (gt_bboxes_for_reweight[:, 2]
+                                   - gt_bboxes_for_reweight[:, 0]) / w
+                gt_bboxes_height = (gt_bboxes_for_reweight[:, 3]
+                                    - gt_bboxes_for_reweight[:, 1]) / h
                 loss = loss.mean(dim=(1,
                                       2)) / gt_bboxes_width / gt_bboxes_height
                 loss = torch.sum(loss)
@@ -983,8 +983,8 @@ class YOLACTProtonet(BaseModule):
                     for scale_factor in scale_factors
                 ]
             _bboxes = [
-                det_bboxes[i][:, :4] *
-                scale_factors[i] if rescale else det_bboxes[i][:, :4]
+                det_bboxes[i][:, :4]
+                * scale_factors[i] if rescale else det_bboxes[i][:, :4]
                 for i in range(len(det_bboxes))
             ]
             mask_preds = self.forward(feats[0], det_coeffs, _bboxes, img_metas)

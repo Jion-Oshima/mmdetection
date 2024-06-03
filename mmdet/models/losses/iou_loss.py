@@ -6,7 +6,7 @@ import mmcv
 import torch
 import torch.nn as nn
 
-from mmdet.core import bbox_overlaps
+from models.mmdetection.mmdet.core import bbox_overlaps
 from ..builder import LOSSES
 from .utils import weighted_loss
 
@@ -79,15 +79,15 @@ def bounded_iou_loss(pred, target, beta=0.2, eps=1e-3):
     dy = target_ctry - pred_ctry
 
     loss_dx = 1 - torch.max(
-        (target_w - 2 * dx.abs()) /
-        (target_w + 2 * dx.abs() + eps), torch.zeros_like(dx))
+        (target_w - 2 * dx.abs())
+        / (target_w + 2 * dx.abs() + eps), torch.zeros_like(dx))
     loss_dy = 1 - torch.max(
-        (target_h - 2 * dy.abs()) /
-        (target_h + 2 * dy.abs() + eps), torch.zeros_like(dy))
-    loss_dw = 1 - torch.min(target_w / (pred_w + eps), pred_w /
-                            (target_w + eps))
-    loss_dh = 1 - torch.min(target_h / (pred_h + eps), pred_h /
-                            (target_h + eps))
+        (target_h - 2 * dy.abs())
+        / (target_h + 2 * dy.abs() + eps), torch.zeros_like(dy))
+    loss_dw = 1 - torch.min(target_w / (pred_w + eps), pred_w
+                            / (target_w + eps))
+    loss_dh = 1 - torch.min(target_h / (pred_h + eps), pred_h
+                            / (target_h + eps))
     # view(..., -1) does not work for empty tensor
     loss_comb = torch.stack([loss_dx, loss_dy, loss_dw, loss_dh],
                             dim=-1).flatten(1)

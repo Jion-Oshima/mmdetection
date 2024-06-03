@@ -5,7 +5,7 @@ from mmcv.cnn import (ConvModule, bias_init_with_prob, constant_init, is_norm,
                       normal_init)
 from mmcv.runner import force_fp32
 
-from mmdet.core import anchor_inside_flags, multi_apply, reduce_mean, unmap
+from models.mmdetection.mmdet.core import anchor_inside_flags, multi_apply, reduce_mean, unmap
 from ..builder import HEADS
 from .anchor_head import AnchorHead
 
@@ -128,8 +128,8 @@ class YOLOFHead(AnchorHead):
         # implicit objectness
         objectness = objectness.view(N, -1, 1, H, W)
         normalized_cls_score = cls_score + objectness - torch.log(
-            1. + torch.clamp(cls_score.exp(), max=INF) +
-            torch.clamp(objectness.exp(), max=INF))
+            1. + torch.clamp(cls_score.exp(), max=INF)
+            + torch.clamp(objectness.exp(), max=INF))
         normalized_cls_score = normalized_cls_score.view(N, -1, H, W)
         return normalized_cls_score, bbox_reg
 
@@ -196,8 +196,8 @@ class YOLOFHead(AnchorHead):
         cls_score = cls_scores[0].permute(0, 2, 3,
                                           1).reshape(-1, self.cls_out_channels)
 
-        num_total_samples = (num_total_pos +
-                             num_total_neg) if self.sampling else num_total_pos
+        num_total_samples = (num_total_pos
+                             + num_total_neg) if self.sampling else num_total_pos
         num_total_samples = reduce_mean(
             cls_score.new_tensor(num_total_samples)).clamp_(1.0).item()
 

@@ -2,7 +2,7 @@
 import torch
 import torch.nn.functional as F
 
-from mmdet.core import bbox_overlaps
+from models.mmdetection.mmdet.core import bbox_overlaps
 from ..builder import HEADS
 from .retina_head import RetinaHead
 
@@ -120,8 +120,8 @@ class FreeAnchorRetinaHead(RetinaHead):
                     t1 = self.bbox_thr
                     t2 = object_box_iou.max(
                         dim=1, keepdim=True).values.clamp(min=t1 + 1e-12)
-                    object_box_prob = ((object_box_iou - t1) /
-                                       (t2 - t1)).clamp(
+                    object_box_prob = ((object_box_iou - t1)
+                                       / (t2 - t1)).clamp(
                                            min=0, max=1)
 
                     # object_cls_box_prob: P{a_{j} -> b_{i}}, shape: [i, c, j]
@@ -129,7 +129,7 @@ class FreeAnchorRetinaHead(RetinaHead):
                     indices = torch.stack([
                         torch.arange(num_obj).type_as(gt_labels_), gt_labels_
                     ],
-                                          dim=0)
+                        dim=0)
                     object_cls_box_prob = torch.sparse_coo_tensor(
                         indices, object_box_prob)
 

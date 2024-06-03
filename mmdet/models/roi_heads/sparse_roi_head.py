@@ -2,8 +2,8 @@
 import numpy as np
 import torch
 
-from mmdet.core import bbox2result, bbox2roi, bbox_xyxy_to_cxcywh
-from mmdet.core.bbox.samplers import PseudoSampler
+from models.mmdetection.mmdet.core import bbox2result, bbox2roi, bbox_xyxy_to_cxcywh
+from models.mmdetection.mmdet.core.bbox.samplers import PseudoSampler
 from ..builder import HEADS
 from .cascade_roi_head import CascadeRoIHead
 
@@ -240,8 +240,8 @@ class SparseRoIHead(CascadeRoIHead):
             cls_pred_list = bbox_results['detach_cls_score_list']
             proposal_list = bbox_results['detach_proposal_list']
             for i in range(num_imgs):
-                normalize_bbox_ccwh = bbox_xyxy_to_cxcywh(proposal_list[i] /
-                                                          imgs_whwh[i])
+                normalize_bbox_ccwh = bbox_xyxy_to_cxcywh(proposal_list[i]
+                                                          / imgs_whwh[i])
                 assign_result = self.bbox_assigner[stage].assign(
                     normalize_bbox_ccwh, cls_pred_list[i], gt_bboxes[i],
                     gt_labels[i], img_metas[i])
@@ -268,7 +268,7 @@ class SparseRoIHead(CascadeRoIHead):
 
             for key, value in single_stage_loss.items():
                 all_stage_loss[f'stage{stage}_{key}'] = value * \
-                                    self.stage_loss_weights[stage]
+                    self.stage_loss_weights[stage]
             object_feats = bbox_results['object_feats']
 
         return all_stage_loss
@@ -352,8 +352,8 @@ class SparseRoIHead(CascadeRoIHead):
                 0, 1).topk(
                     self.test_cfg.max_per_img, sorted=False)
             labels_per_img = topk_indices % num_classes
-            bbox_pred_per_img = proposal_list[img_id][topk_indices //
-                                                      num_classes]
+            bbox_pred_per_img = proposal_list[img_id][topk_indices
+                                                      // num_classes]
             if rescale:
                 scale_factor = img_metas[img_id]['scale_factor']
                 bbox_pred_per_img /= bbox_pred_per_img.new_tensor(scale_factor)
@@ -373,8 +373,8 @@ class SparseRoIHead(CascadeRoIHead):
                     for scale_factor in scale_factors
                 ]
             _bboxes = [
-                det_bboxes[i][:, :4] *
-                scale_factors[i] if rescale else det_bboxes[i][:, :4]
+                det_bboxes[i][:, :4]
+                * scale_factors[i] if rescale else det_bboxes[i][:, :4]
                 for i in range(len(det_bboxes))
             ]
             segm_results = []

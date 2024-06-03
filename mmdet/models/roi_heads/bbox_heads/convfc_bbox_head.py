@@ -2,8 +2,8 @@
 import torch.nn as nn
 from mmcv.cnn import ConvModule
 
-from mmdet.models.builder import HEADS
-from mmdet.models.utils import build_linear_layer
+from models.mmdetection.mmdet.models.builder import HEADS
+from models.mmdetection.mmdet.models.utils import build_linear_layer
 from .bbox_head import BBoxHead
 
 
@@ -35,8 +35,8 @@ class ConvFCBBoxHead(BBoxHead):
                  **kwargs):
         super(ConvFCBBoxHead, self).__init__(
             *args, init_cfg=init_cfg, **kwargs)
-        assert (num_shared_convs + num_shared_fcs + num_cls_convs +
-                num_cls_fcs + num_reg_convs + num_reg_fcs > 0)
+        assert (num_shared_convs + num_shared_fcs + num_cls_convs
+                + num_cls_fcs + num_reg_convs + num_reg_fcs > 0)
         if num_cls_convs > 0 or num_reg_convs > 0:
             assert num_shared_fcs == 0
         if not self.with_cls:
@@ -89,8 +89,8 @@ class ConvFCBBoxHead(BBoxHead):
                 in_features=self.cls_last_dim,
                 out_features=cls_channels)
         if self.with_reg:
-            out_dim_reg = (4 if self.reg_class_agnostic else 4 *
-                           self.num_classes)
+            out_dim_reg = (4 if self.reg_class_agnostic else 4
+                           * self.num_classes)
             self.fc_reg = build_linear_layer(
                 self.reg_predictor_cfg,
                 in_features=self.reg_last_dim,

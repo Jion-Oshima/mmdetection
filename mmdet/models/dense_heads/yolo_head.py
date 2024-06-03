@@ -10,9 +10,9 @@ from mmcv.cnn import (ConvModule, bias_init_with_prob, constant_init, is_norm,
                       normal_init)
 from mmcv.runner import force_fp32
 
-from mmdet.core import (build_assigner, build_bbox_coder,
-                        build_prior_generator, build_sampler, images_to_levels,
-                        multi_apply, multiclass_nms)
+from models.mmdetection.mmdet.core import (build_assigner, build_bbox_coder,
+                                           build_prior_generator, build_sampler, images_to_levels,
+                                           multi_apply, multiclass_nms)
 from ..builder import HEADS, build_loss
 from .base_dense_head import BaseDenseHead
 from .dense_test_mixins import BBoxTestMixin
@@ -458,7 +458,7 @@ class YOLOV3Head(BaseDenseHead, BBoxTestMixin):
 
         anchor_strides = torch.cat(anchor_strides)
         assert len(anchor_strides) == len(concat_anchors) == \
-               len(concat_responsible_flags)
+            len(concat_responsible_flags)
         assign_result = self.assigner.assign(concat_anchors,
                                              concat_responsible_flags,
                                              gt_bboxes)

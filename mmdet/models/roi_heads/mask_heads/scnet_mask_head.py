@@ -1,6 +1,6 @@
 # Copyright (c) OpenMMLab. All rights reserved.
-from mmdet.models.builder import HEADS
-from mmdet.models.utils import ResLayer, SimplifiedBasicBlock
+from models.mmdetection.mmdet.models.builder import HEADS
+from models.mmdetection.mmdet.models.utils import ResLayer, SimplifiedBasicBlock
 from .fcn_mask_head import FCNMaskHead
 
 

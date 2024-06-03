@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import torch
 
-from mmdet.core import bbox2result
+from models.mmdetection.mmdet.core import bbox2result
 from ..builder import DETECTORS, build_head
 from .single_stage import SingleStageDetector
 

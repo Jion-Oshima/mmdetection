@@ -4,8 +4,8 @@ import math
 import torch
 from torch.utils.data import DistributedSampler as _DistributedSampler
 
-from mmdet.core.utils import sync_random_seed
-from mmdet.utils import get_device
+from models.mmdetection.mmdet.core.utils import sync_random_seed
+from models.mmdetection.mmdet.utils import get_device
 
 
 class DistributedSampler(_DistributedSampler):
@@ -43,8 +43,8 @@ class DistributedSampler(_DistributedSampler):
 
         # add extra samples to make it evenly divisible
         # in case that indices is shorter than half of total_size
-        indices = (indices *
-                   math.ceil(self.total_size / len(indices)))[:self.total_size]
+        indices = (indices
+                   * math.ceil(self.total_size / len(indices)))[:self.total_size]
         assert len(indices) == self.total_size
 
         # subsample

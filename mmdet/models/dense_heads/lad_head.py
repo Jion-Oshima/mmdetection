@@ -2,7 +2,7 @@
 import torch
 from mmcv.runner import force_fp32
 
-from mmdet.core import bbox_overlaps, multi_apply
+from models.mmdetection.mmdet.core import bbox_overlaps, multi_apply
 from ..builder import HEADS
 from .paa_head import PAAHead, levels_to_images
 
@@ -105,8 +105,8 @@ class LADHead(PAAHead):
                                   0).view(-1, bboxes_target[0].size(-1))
 
         pos_inds_flatten = ((labels >= 0)
-                            &
-                            (labels < self.num_classes)).nonzero().reshape(-1)
+
+                            & (labels < self.num_classes)).nonzero().reshape(-1)
 
         if num_pos:
             pos_anchors = flatten_anchors[pos_inds_flatten]

@@ -7,10 +7,10 @@ import torch.nn as nn
 from mmcv.cnn import ConvModule
 from mmcv.runner import force_fp32
 
-from mmdet.core import (build_assigner, build_bbox_coder,
-                        build_prior_generator, build_sampler, images_to_levels,
-                        multi_apply, unmap)
-from mmdet.core.utils import filter_scores_and_topk
+from models.mmdetection.mmdet.core import (build_assigner, build_bbox_coder,
+                                           build_prior_generator, build_sampler, images_to_levels,
+                                           multi_apply, unmap)
+from models.mmdetection.mmdet.core.utils import filter_scores_and_topk
 from ..builder import HEADS, build_loss
 from .base_dense_head import BaseDenseHead
 from .dense_test_mixins import BBoxTestMixin
@@ -104,10 +104,10 @@ class SABLRetinaHead(BaseDenseHead, BBoxTestMixin):
         self.num_buckets = bbox_coder['num_buckets']
         self.side_num = int(np.ceil(self.num_buckets / 2))
 
-        assert (approx_anchor_generator['octave_base_scale'] ==
-                square_anchor_generator['scales'][0])
-        assert (approx_anchor_generator['strides'] ==
-                square_anchor_generator['strides'])
+        assert (approx_anchor_generator['octave_base_scale']
+                == square_anchor_generator['scales'][0])
+        assert (approx_anchor_generator['strides']
+                == square_anchor_generator['strides'])
 
         self.approx_anchor_generator = build_prior_generator(
             approx_anchor_generator)

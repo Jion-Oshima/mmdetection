@@ -2,7 +2,7 @@
 import mmcv
 import torch
 
-from mmdet.core import bbox_overlaps
+from models.mmdetection.mmdet.core import bbox_overlaps
 
 
 @mmcv.jit(derivate=True, coderize=True)
@@ -38,8 +38,8 @@ def isr_p(cls_score,
     """
 
     labels, label_weights, bbox_targets, bbox_weights = bbox_targets
-    pos_label_inds = ((labels >= 0) &
-                      (labels < num_class)).nonzero().reshape(-1)
+    pos_label_inds = ((labels >= 0)
+                      & (labels < num_class)).nonzero().reshape(-1)
     pos_labels = labels[pos_label_inds]
 
     # if no positive samples, return the original targets
@@ -148,8 +148,8 @@ def carl_loss(cls_score,
     Return:
         dict: CARL loss dict.
     """
-    pos_label_inds = ((labels >= 0) &
-                      (labels < num_class)).nonzero().reshape(-1)
+    pos_label_inds = ((labels >= 0)
+                      & (labels < num_class)).nonzero().reshape(-1)
     if pos_label_inds.numel() == 0:
         return dict(loss_carl=cls_score.sum()[None] * 0.)
     pos_labels = labels[pos_label_inds]

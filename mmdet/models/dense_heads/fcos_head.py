@@ -6,7 +6,7 @@ import torch.nn as nn
 from mmcv.cnn import Scale
 from mmcv.runner import force_fp32
 
-from mmdet.core import multi_apply, reduce_mean
+from models.mmdetection.mmdet.core import multi_apply, reduce_mean
 from ..builder import HEADS, build_loss
 from .anchor_free_head import AnchorFreeHead
 
@@ -335,7 +335,7 @@ class FCOSHead(AnchorFreeHead):
         num_gts = gt_labels.size(0)
         if num_gts == 0:
             return gt_labels.new_full((num_points,), self.num_classes), \
-                   gt_bboxes.new_zeros((num_points, 4))
+                gt_bboxes.new_zeros((num_points, 4))
 
         areas = (gt_bboxes[:, 2] - gt_bboxes[:, 0]) * (
             gt_bboxes[:, 3] - gt_bboxes[:, 1])

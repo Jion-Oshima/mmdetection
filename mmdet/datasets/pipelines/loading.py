@@ -5,7 +5,7 @@ import mmcv
 import numpy as np
 import pycocotools.mask as maskUtils
 
-from mmdet.core import BitmapMasks, PolygonMasks
+from models.mmdetection.mmdet.core import BitmapMasks, PolygonMasks
 from ..builder import PIPELINES
 
 try:
@@ -564,7 +564,7 @@ class LoadProposals:
 
     def __repr__(self):
         return self.__class__.__name__ + \
-               f'(num_max_proposals={self.num_max_proposals})'
+            f'(num_max_proposals={self.num_max_proposals})'
 
 
 @PIPELINES.register_module()
@@ -605,5 +605,5 @@ class FilterAnnotations:
 
     def __repr__(self):
         return self.__class__.__name__ + \
-               f'(min_gt_bbox_wh={self.min_gt_bbox_wh},' \
-               f'always_keep={self.always_keep})'
+            f'(min_gt_bbox_wh={self.min_gt_bbox_wh},' \
+            f'always_keep={self.always_keep})'

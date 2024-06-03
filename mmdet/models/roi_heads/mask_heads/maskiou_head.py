@@ -6,7 +6,7 @@ from mmcv.cnn import Conv2d, Linear, MaxPool2d
 from mmcv.runner import BaseModule, force_fp32
 from torch.nn.modules.utils import _pair
 
-from mmdet.models.builder import HEADS, build_loss
+from models.mmdetection.mmdet.models.builder import HEADS, build_loss
 
 
 @HEADS.register_module()
@@ -61,8 +61,8 @@ class MaskIoUHead(BaseModule):
         self.fcs = nn.ModuleList()
         for i in range(num_fcs):
             in_channels = (
-                self.conv_out_channels *
-                pooled_area if i == 0 else self.fc_out_channels)
+                self.conv_out_channels
+                * pooled_area if i == 0 else self.fc_out_channels)
             self.fcs.append(Linear(in_channels, self.fc_out_channels))
 
         self.fc_mask_iou = Linear(self.fc_out_channels, self.num_classes)

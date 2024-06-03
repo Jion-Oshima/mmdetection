@@ -9,9 +9,9 @@ from mmcv.cnn import (ConvModule, DepthwiseSeparableConvModule,
 from mmcv.ops.nms import batched_nms
 from mmcv.runner import force_fp32
 
-from mmdet.core import (MlvlPointGenerator, bbox_xyxy_to_cxcywh,
-                        build_assigner, build_sampler, multi_apply,
-                        reduce_mean)
+from models.mmdetection.mmdet.core import (MlvlPointGenerator, bbox_xyxy_to_cxcywh,
+                                           build_assigner, build_sampler, multi_apply,
+                                           reduce_mean)
 from ..builder import HEADS, build_loss
 from .base_dense_head import BaseDenseHead
 from .dense_test_mixins import BBoxTestMixin

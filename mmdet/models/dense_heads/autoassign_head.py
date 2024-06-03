@@ -7,13 +7,13 @@ import torch.nn.functional as F
 from mmcv.cnn import bias_init_with_prob, normal_init
 from mmcv.runner import force_fp32
 
-from mmdet.core import multi_apply
-from mmdet.core.anchor.point_generator import MlvlPointGenerator
-from mmdet.core.bbox import bbox_overlaps
-from mmdet.models import HEADS
-from mmdet.models.dense_heads.atss_head import reduce_mean
-from mmdet.models.dense_heads.fcos_head import FCOSHead
-from mmdet.models.dense_heads.paa_head import levels_to_images
+from models.mmdetection.mmdet.core import multi_apply
+from models.mmdetection.mmdet.core.anchor.point_generator import MlvlPointGenerator
+from models.mmdetection.mmdet.core.bbox import bbox_overlaps
+from models.mmdetection.mmdet.models import HEADS
+from models.mmdetection.mmdet.models.dense_heads.atss_head import reduce_mean
+from models.mmdetection.mmdet.models.dense_heads.fcos_head import FCOSHead
+from models.mmdetection.mmdet.models.dense_heads.paa_head import levels_to_images
 
 EPS = 1e-12
 
@@ -96,10 +96,10 @@ class CenterPrior(nn.Module):
             # instance_sigma has shape (1, num_gt, 2)
             instance_sigma = self.sigma[labels][None]
             # distance has shape (num_points, num_gt, 2)
-            distance = (((single_level_points - gt_center) / float(stride) -
-                         instance_center)**2)
-            center_prior = torch.exp(-distance /
-                                     (2 * instance_sigma**2)).prod(dim=-1)
+            distance = (((single_level_points - gt_center) / float(stride)
+                         - instance_center)**2)
+            center_prior = torch.exp(-distance
+                                     / (2 * instance_sigma**2)).prod(dim=-1)
             center_prior_list.append(center_prior)
         center_prior_weights = torch.cat(center_prior_list, dim=0)
 
@@ -109,16 +109,16 @@ class CenterPrior(nn.Module):
             if gt_inds_no_points_inside.numel():
                 topk_center_index = \
                     center_prior_weights[:, gt_inds_no_points_inside].topk(
-                                                             self.topk,
-                                                             dim=0)[1]
+                        self.topk,
+                        dim=0)[1]
                 temp_mask = inside_gt_bbox_mask[:, gt_inds_no_points_inside]
                 inside_gt_bbox_mask[:, gt_inds_no_points_inside] = \
                     torch.scatter(temp_mask,
                                   dim=0,
                                   index=topk_center_index,
                                   src=torch.ones_like(
-                                    topk_center_index,
-                                    dtype=torch.bool))
+                                      topk_center_index,
+                                      dtype=torch.bool))
 
         center_prior_weights[~inside_gt_bbox_mask] = 0
         return center_prior_weights, inside_gt_bbox_mask
@@ -416,8 +416,8 @@ class AutoAssignHead(FCOSHead):
 
             if inside_gt_bbox_mask_list[i].any():
                 center_loss.append(
-                    len(gt_bboxes[i]) /
-                    center_prior_weight_list[i].sum().clamp_(min=EPS))
+                    len(gt_bboxes[i])
+                    / center_prior_weight_list[i].sum().clamp_(min=EPS))
             # when width or height of gt_bbox is smaller than stride of p3
             else:
                 center_loss.append(center_prior_weight_list[i].sum() * 0)

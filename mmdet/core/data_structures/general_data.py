@@ -4,7 +4,7 @@ import copy
 import numpy as np
 import torch
 
-from mmdet.utils.util_mixins import NiceRepr
+from models.mmdetection.mmdet.utils.util_mixins import NiceRepr
 
 
 class GeneralData(NiceRepr):
@@ -251,7 +251,7 @@ class GeneralData(NiceRepr):
 
     def __contains__(self, item):
         return item in self._data_fields or \
-                    item in self._meta_info_fields
+            item in self._meta_info_fields
 
     # Tensor-like methods
     def to(self, *args, **kwargs):

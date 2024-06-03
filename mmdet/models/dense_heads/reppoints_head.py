@@ -5,10 +5,10 @@ import torch.nn as nn
 from mmcv.cnn import ConvModule
 from mmcv.ops import DeformConv2d
 
-from mmdet.core import (build_assigner, build_sampler, images_to_levels,
-                        multi_apply, unmap)
-from mmdet.core.anchor.point_generator import MlvlPointGenerator
-from mmdet.core.utils import filter_scores_and_topk
+from models.mmdetection.mmdet.core import (build_assigner, build_sampler, images_to_levels,
+                                           multi_apply, unmap)
+from models.mmdetection.mmdet.core.anchor.point_generator import MlvlPointGenerator
+from models.mmdetection.mmdet.core.utils import filter_scores_and_topk
 from ..builder import HEADS, build_loss
 from .anchor_free_head import AnchorFreeHead
 
@@ -213,7 +213,7 @@ class RepPointsHead(AnchorFreeHead):
                 pts_x_mean - half_width, pts_y_mean - half_height,
                 pts_x_mean + half_width, pts_y_mean + half_height
             ],
-                             dim=1)
+                dim=1)
         else:
             raise NotImplementedError
         return bbox
@@ -228,8 +228,8 @@ class RepPointsHead(AnchorFreeHead):
         """
         b, _, h, w = reg.shape
         bxy = (previous_boxes[:, :2, ...] + previous_boxes[:, 2:, ...]) / 2.
-        bwh = (previous_boxes[:, 2:, ...] -
-               previous_boxes[:, :2, ...]).clamp(min=1e-6)
+        bwh = (previous_boxes[:, 2:, ...]
+               - previous_boxes[:, :2, ...]).clamp(min=1e-6)
         grid_topleft = bxy + bwh * reg[:, :2, ...] - 0.5 * bwh * torch.exp(
             reg[:, 2:, ...])
         grid_wh = bwh * torch.exp(reg[:, 2:, ...])
@@ -597,8 +597,8 @@ class RepPointsHead(AnchorFreeHead):
         (*_, bbox_gt_list_init, candidate_list_init, bbox_weights_list_init,
          num_total_pos_init, num_total_neg_init) = cls_reg_targets_init
         num_total_samples_init = (
-            num_total_pos_init +
-            num_total_neg_init if self.sampling else num_total_pos_init)
+            num_total_pos_init
+            + num_total_neg_init if self.sampling else num_total_pos_init)
 
         # target for refinement stage
         center_list, valid_flag_list = self.get_points(featmap_sizes,
@@ -614,8 +614,8 @@ class RepPointsHead(AnchorFreeHead):
                 bbox_shift = bbox_preds_init * self.point_strides[i_lvl]
                 bbox_center = torch.cat(
                     [center[i_lvl][:, :2], center[i_lvl][:, :2]], dim=1)
-                bbox.append(bbox_center +
-                            bbox_shift[i_img].permute(1, 2, 0).reshape(-1, 4))
+                bbox.append(bbox_center
+                            + bbox_shift[i_img].permute(1, 2, 0).reshape(-1, 4))
             bbox_list.append(bbox)
         cls_reg_targets_refine = self.get_targets(
             bbox_list,
@@ -630,8 +630,8 @@ class RepPointsHead(AnchorFreeHead):
          candidate_list_refine, bbox_weights_list_refine, num_total_pos_refine,
          num_total_neg_refine) = cls_reg_targets_refine
         num_total_samples_refine = (
-            num_total_pos_refine +
-            num_total_neg_refine if self.sampling else num_total_pos_refine)
+            num_total_pos_refine
+            + num_total_neg_refine if self.sampling else num_total_pos_refine)
 
         # compute loss
         losses_cls, losses_pts_init, losses_pts_refine = multi_apply(

@@ -4,9 +4,9 @@ import torch
 import torch.nn as nn
 from mmcv.runner import ModuleList
 
-from mmdet.core import (bbox2result, bbox2roi, bbox_mapping, build_assigner,
-                        build_sampler, merge_aug_bboxes, merge_aug_masks,
-                        multiclass_nms)
+from models.mmdetection.mmdet.core import (bbox2result, bbox2roi, bbox_mapping, build_assigner,
+                                           build_sampler, merge_aug_bboxes, merge_aug_masks,
+                                           multiclass_nms)
 from ..builder import HEADS, build_head, build_roi_extractor
 from .base_roi_head import BaseRoIHead
 from .test_mixins import BBoxTestMixin, MaskTestMixin
@@ -411,8 +411,8 @@ class CascadeRoIHead(BaseRoIHead, BBoxTestMixin, MaskTestMixin):
                         for scale_factor in scale_factors
                     ]
                 _bboxes = [
-                    det_bboxes[i][:, :4] *
-                    scale_factors[i] if rescale else det_bboxes[i][:, :4]
+                    det_bboxes[i][:, :4]
+                    * scale_factors[i] if rescale else det_bboxes[i][:, :4]
                     for i in range(len(det_bboxes))
                 ]
                 mask_rois = bbox2roi(_bboxes)

@@ -5,7 +5,7 @@ import torch
 from mmcv.runner import get_dist_info
 from torch.utils.data import Sampler
 
-from mmdet.core.utils import sync_random_seed
+from models.mmdetection.mmdet.core.utils import sync_random_seed
 
 
 class ClassAwareSampler(Sampler):
@@ -70,8 +70,8 @@ class ClassAwareSampler(Sampler):
 
         self.num_samples = int(
             math.ceil(
-                len(self.dataset) * 1.0 / self.num_replicas /
-                self.samples_per_gpu)) * self.samples_per_gpu
+                len(self.dataset) * 1.0 / self.num_replicas
+                / self.samples_per_gpu)) * self.samples_per_gpu
         self.total_size = self.num_samples * self.num_replicas
 
         # get number of images containing each category
@@ -107,8 +107,8 @@ class ClassAwareSampler(Sampler):
 
         # deterministically shuffle based on epoch
         num_bins = int(
-            math.ceil(self.total_size * 1.0 / self.num_classes /
-                      self.num_sample_class))
+            math.ceil(self.total_size * 1.0 / self.num_classes
+                      / self.num_sample_class))
         indices = []
         for i in range(num_bins):
             indices += gen_cat_img_inds(label_iter_list, data_iter_dict,

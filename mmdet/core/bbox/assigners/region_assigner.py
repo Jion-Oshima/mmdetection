@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import torch
 
-from mmdet.core import anchor_inside_flags
+from models.mmdetection.mmdet.core import anchor_inside_flags
 from ..builder import BBOX_ASSIGNERS
 from .assign_result import AssignResult
 from .base_assigner import BaseAssigner
@@ -129,8 +129,8 @@ class RegionAssigner(BaseAssigner):
         r1 = (1 - self.center_ratio) / 2
         r2 = (1 - self.ignore_ratio) / 2
 
-        scale = torch.sqrt((gt_bboxes[:, 2] - gt_bboxes[:, 0]) *
-                           (gt_bboxes[:, 3] - gt_bboxes[:, 1]))
+        scale = torch.sqrt((gt_bboxes[:, 2] - gt_bboxes[:, 0])
+                           * (gt_bboxes[:, 3] - gt_bboxes[:, 1]))
         min_anchor_size = scale.new_full(
             (1, ), float(anchor_scale * anchor_strides[0]))
         target_lvls = torch.floor(
@@ -202,8 +202,8 @@ class RegionAssigner(BaseAssigner):
         flat_assigned_gt_inds = torch.cat(mlvl_assigned_gt_inds)
         flat_anchors = torch.cat(mlvl_anchors)
         flat_valid_flags = torch.cat(mlvl_valid_flags)
-        assert (flat_assigned_gt_inds.shape[0] == flat_anchors.shape[0] ==
-                flat_valid_flags.shape[0])
+        assert (flat_assigned_gt_inds.shape[0] == flat_anchors.shape[0]
+                == flat_valid_flags.shape[0])
         inside_flags = anchor_inside_flags(flat_anchors, flat_valid_flags,
                                            img_meta['img_shape'],
                                            allowed_border)

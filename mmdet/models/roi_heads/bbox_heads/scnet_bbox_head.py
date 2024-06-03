@@ -1,5 +1,5 @@
 # Copyright (c) OpenMMLab. All rights reserved.
-from mmdet.models.builder import HEADS
+from models.mmdetection.mmdet.models.builder import HEADS
 from .convfc_bbox_head import ConvFCBBoxHead
 
 

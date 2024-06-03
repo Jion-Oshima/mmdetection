@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import torch
 
-from mmdet.utils import util_mixins
+from models.mmdetection.mmdet.utils import util_mixins
 
 
 class SamplingResult(util_mixins.NiceRepr):

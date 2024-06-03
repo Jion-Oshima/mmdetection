@@ -6,10 +6,10 @@ from mmcv.cnn import ConvModule, Scale, bias_init_with_prob, normal_init
 from mmcv.ops import deform_conv2d
 from mmcv.runner import force_fp32
 
-from mmdet.core import (anchor_inside_flags, build_assigner, distance2bbox,
-                        images_to_levels, multi_apply, reduce_mean, unmap)
-from mmdet.core.utils import filter_scores_and_topk
-from mmdet.models.utils import sigmoid_geometric_mean
+from models.mmdetection.mmdet.core import (anchor_inside_flags, build_assigner, distance2bbox,
+                                           images_to_levels, multi_apply, reduce_mean, unmap)
+from models.mmdetection.mmdet.core.utils import filter_scores_and_topk
+from models.mmdetection.mmdet.models.utils import sigmoid_geometric_mean
 from ..builder import HEADS, build_loss
 from .atss_head import ATSSHead
 
@@ -439,7 +439,7 @@ class TOODHead(ATSSHead):
         (anchor_list, labels_list, label_weights_list, bbox_targets_list,
          alignment_metrics_list) = cls_reg_targets
 
-        losses_cls, losses_bbox,\
+        losses_cls, losses_bbox, \
             cls_avg_factors, bbox_avg_factors = multi_apply(
                 self.loss_single,
                 anchor_list,
@@ -755,8 +755,8 @@ class TOODHead(ATSSHead):
         class_assigned_gt_inds = torch.unique(
             sampling_result.pos_assigned_gt_inds)
         for gt_inds in class_assigned_gt_inds:
-            gt_class_inds = pos_inds[sampling_result.pos_assigned_gt_inds ==
-                                     gt_inds]
+            gt_class_inds = pos_inds[sampling_result.pos_assigned_gt_inds
+                                     == gt_inds]
             pos_alignment_metrics = assign_metrics[gt_class_inds]
             pos_ious = assign_ious[gt_class_inds]
             pos_norm_alignment_metrics = pos_alignment_metrics / (

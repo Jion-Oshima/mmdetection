@@ -6,9 +6,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 from mmcv.cnn import ConvModule
 
-from mmdet.core import InstanceData, mask_matrix_nms, multi_apply
-from mmdet.core.utils import center_of_mass, generate_coordinate
-from mmdet.models.builder import HEADS, build_loss
+from models.mmdetection.mmdet.core import InstanceData, mask_matrix_nms, multi_apply
+from models.mmdetection.mmdet.core.utils import center_of_mass, generate_coordinate
+from models.mmdetection.mmdet.models.builder import HEADS, build_loss
 from .base_mask_head import BaseMaskHead
 
 
