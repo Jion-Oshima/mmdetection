@@ -7,11 +7,11 @@ import torch
 from mmcv.ops import batched_nms
 from mmengine.structures import InstanceData
 
-from mmdet.structures.bbox import bbox_mapping_back
+from models.mmdetection.mmdet.structures.bbox import bbox_mapping_back
 from ..test_time_augs import merge_aug_proposals
 
 if sys.version_info >= (3, 7):
-    from mmdet.utils.contextmanagers import completed
+    from models.mmdetection.mmdet.utils.contextmanagers import completed
 
 
 class BBoxTestMixin(object):

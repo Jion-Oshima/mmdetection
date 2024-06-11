@@ -5,10 +5,10 @@ from typing import List, Optional, Tuple
 from mmengine.model import BaseModule
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.structures import TrackSampleList
-from mmdet.structures.bbox import bbox2roi
-from mmdet.utils import InstanceList
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.structures import TrackSampleList
+from models.mmdetection.mmdet.structures.bbox import bbox2roi
+from models.mmdetection.mmdet.utils import InstanceList
 
 
 @MODELS.register_module()

@@ -4,7 +4,7 @@ from abc import ABCMeta, abstractmethod
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.structures.bbox import BaseBoxes, cat_boxes
+from models.mmdetection.mmdet.structures.bbox import BaseBoxes, cat_boxes
 from ..assigners import AssignResult
 from .sampling_result import SamplingResult
 
@@ -71,9 +71,9 @@ class BaseSampler(metaclass=ABCMeta):
 
         Example:
             >>> from mmengine.structures import InstanceData
-            >>> from mmdet.models.task_modules.samplers import RandomSampler,
-            >>> from mmdet.models.task_modules.assigners import AssignResult
-            >>> from mmdet.models.task_modules.samplers.
+            >>> from models.mmdetection.mmdet.models.task_modules.samplers import RandomSampler,
+            >>> from models.mmdetection.mmdet.models.task_modules.assigners import AssignResult
+            >>> from models.mmdetection.mmdet.models.task_modules.samplers.
             ... sampling_result import ensure_rng, random_boxes
             >>> rng = ensure_rng(None)
             >>> assign_result = AssignResult.random(rng=rng)

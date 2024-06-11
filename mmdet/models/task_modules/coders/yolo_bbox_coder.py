@@ -4,8 +4,8 @@ from typing import Union
 import torch
 from torch import Tensor
 
-from mmdet.registry import TASK_UTILS
-from mmdet.structures.bbox import BaseBoxes, HorizontalBoxes, get_box_tensor
+from models.mmdetection.mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.structures.bbox import BaseBoxes, HorizontalBoxes, get_box_tensor
 from .base_bbox_coder import BaseBBoxCoder
 
 
@@ -81,11 +81,11 @@ class YOLOBBoxCoder(BaseBBoxCoder):
         assert pred_bboxes.size(-1) == bboxes.size(-1) == 4
         xy_centers = (bboxes[..., :2] + bboxes[..., 2:]) * 0.5 + (
             pred_bboxes[..., :2] - 0.5) * stride
-        whs = (bboxes[..., 2:] -
-               bboxes[..., :2]) * 0.5 * pred_bboxes[..., 2:].exp()
+        whs = (bboxes[..., 2:]
+               - bboxes[..., :2]) * 0.5 * pred_bboxes[..., 2:].exp()
         decoded_bboxes = torch.stack(
-            (xy_centers[..., 0] - whs[..., 0], xy_centers[..., 1] -
-             whs[..., 1], xy_centers[..., 0] + whs[..., 0],
+            (xy_centers[..., 0] - whs[..., 0], xy_centers[..., 1]
+             - whs[..., 1], xy_centers[..., 0] + whs[..., 0],
              xy_centers[..., 1] + whs[..., 1]),
             dim=-1)
 

@@ -4,7 +4,7 @@ from typing import Optional
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.registry import TASK_UTILS
 from .assign_result import AssignResult
 from .base_assigner import BaseAssigner
 
@@ -96,8 +96,8 @@ class PointAssigner(BaseAssigner):
         gt_bboxes_xy = (gt_bboxes[:, :2] + gt_bboxes[:, 2:]) / 2
         gt_bboxes_wh = (gt_bboxes[:, 2:] - gt_bboxes[:, :2]).clamp(min=1e-6)
         scale = self.scale
-        gt_bboxes_lvl = ((torch.log2(gt_bboxes_wh[:, 0] / scale) +
-                          torch.log2(gt_bboxes_wh[:, 1] / scale)) / 2).int()
+        gt_bboxes_lvl = ((torch.log2(gt_bboxes_wh[:, 0] / scale)
+                          + torch.log2(gt_bboxes_wh[:, 1] / scale)) / 2).int()
         gt_bboxes_lvl = torch.clamp(gt_bboxes_lvl, min=lvl_min, max=lvl_max)
 
         # stores the assigned gt index of each point
@@ -145,8 +145,8 @@ class PointAssigner(BaseAssigner):
         pos_inds = torch.nonzero(
             assigned_gt_inds > 0, as_tuple=False).squeeze()
         if pos_inds.numel() > 0:
-            assigned_labels[pos_inds] = gt_labels[assigned_gt_inds[pos_inds] -
-                                                  1]
+            assigned_labels[pos_inds] = gt_labels[assigned_gt_inds[pos_inds]
+                                                  - 1]
 
         return AssignResult(
             num_gts=num_gts,

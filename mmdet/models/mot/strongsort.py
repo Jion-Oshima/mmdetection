@@ -5,9 +5,9 @@ import numpy as np
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.structures import TrackSampleList
-from mmdet.utils import OptConfigType
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.structures import TrackSampleList
+from models.mmdetection.mmdet.utils import OptConfigType
 from .deep_sort import DeepSORT
 
 
@@ -112,10 +112,10 @@ class StrongSORT(DeepSORT):
                         pred_track_instances.instances_id[i].cpu(),
                         pred_track_instances.bboxes[i][0].cpu(),
                         pred_track_instances.bboxes[i][1].cpu(),
-                        (pred_track_instances.bboxes[i][2] -
-                         pred_track_instances.bboxes[i][0]).cpu(),
-                        (pred_track_instances.bboxes[i][3] -
-                         pred_track_instances.bboxes[i][1]).cpu(),
+                        (pred_track_instances.bboxes[i][2]
+                         - pred_track_instances.bboxes[i][0]).cpu(),
+                        (pred_track_instances.bboxes[i][3]
+                         - pred_track_instances.bboxes[i][1]).cpu(),
                         pred_track_instances.scores[i].cpu()
                     ]))
         video_track_instances = np.array(video_track_instances).reshape(-1, 7)
@@ -123,7 +123,7 @@ class StrongSORT(DeepSORT):
             video_track_instances)
         for frame_id in range(video_len):
             track_data_sample[frame_id].pred_track_instances = \
-                    InstanceData(bboxes=video_track_instances[
-                        video_track_instances[:, 0] == frame_id + 1, :])
+                InstanceData(bboxes=video_track_instances[
+                    video_track_instances[:, 0] == frame_id + 1, :])
 
         return [track_data_sample]

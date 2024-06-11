@@ -2,7 +2,7 @@
 import numpy as np
 import torch
 
-from mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.registry import TASK_UTILS
 from .random_sampler import RandomSampler
 
 
@@ -126,8 +126,8 @@ class IoUBalancedNegSampler(RandomSampler):
 
             floor_neg_inds = list(floor_set & neg_set)
             iou_sampling_neg_inds = list(iou_sampling_set & neg_set)
-            num_expected_iou_sampling = int(num_expected *
-                                            (1 - self.floor_fraction))
+            num_expected_iou_sampling = int(num_expected
+                                            * (1 - self.floor_fraction))
             if len(iou_sampling_neg_inds) > num_expected_iou_sampling:
                 if self.num_bins >= 2:
                     iou_sampled_inds = self.sample_via_interval(

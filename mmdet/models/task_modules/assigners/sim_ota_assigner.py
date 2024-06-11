@@ -6,8 +6,8 @@ import torch.nn.functional as F
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import TASK_UTILS
-from mmdet.utils import ConfigType
+from models.mmdetection.mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.utils import ConfigType
 from .assign_result import AssignResult
 from .base_assigner import BaseAssigner
 
@@ -124,8 +124,8 @@ class SimOTAAssigner(BaseAssigner):
                 ).sum(-1).to(dtype=valid_pred_scores.dtype))
 
         cost_matrix = (
-            cls_cost * self.cls_weight + iou_cost * self.iou_weight +
-            (~is_in_boxes_and_center) * INF)
+            cls_cost * self.cls_weight + iou_cost * self.iou_weight
+            + (~is_in_boxes_and_center) * INF)
 
         matched_pred_ious, matched_gt_inds = \
             self.dynamic_k_matching(
@@ -218,6 +218,6 @@ class SimOTAAssigner(BaseAssigner):
         valid_mask[valid_mask.clone()] = fg_mask_inboxes
 
         matched_gt_inds = matching_matrix[fg_mask_inboxes, :].argmax(1)
-        matched_pred_ious = (matching_matrix *
-                             pairwise_ious).sum(1)[fg_mask_inboxes]
+        matched_pred_ious = (matching_matrix
+                             * pairwise_ious).sum(1)[fg_mask_inboxes]
         return matched_pred_ious, matched_gt_inds

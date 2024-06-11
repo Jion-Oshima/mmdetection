@@ -9,11 +9,11 @@ from mmengine.config import ConfigDict
 from mmengine.model import bias_init_with_prob
 from torch import Tensor
 
-from mmdet.models.losses import accuracy
-from mmdet.models.task_modules import SamplingResult
-from mmdet.models.utils import multi_apply
-from mmdet.registry import MODELS
-from mmdet.utils import ConfigType, OptConfigType, reduce_mean
+from models.mmdetection.mmdet.models.losses import accuracy
+from models.mmdetection.mmdet.models.task_modules import SamplingResult
+from models.mmdetection.mmdet.models.utils import multi_apply
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import ConfigType, OptConfigType, reduce_mean
 from .bbox_head import BBoxHead
 
 

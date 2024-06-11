@@ -4,12 +4,12 @@ import sys
 
 import torch
 
-from mmdet.models.layers import multiclass_nms
-from mmdet.models.test_time_augs import merge_aug_bboxes, merge_aug_masks
-from mmdet.structures.bbox import bbox2roi, bbox_mapping
+from models.mmdetection.mmdet.models.layers import multiclass_nms
+from models.mmdetection.mmdet.models.test_time_augs import merge_aug_bboxes, merge_aug_masks
+from models.mmdetection.mmdet.structures.bbox import bbox2roi, bbox_mapping
 
 if sys.version_info >= (3, 7):
-    from mmdet.utils.contextmanagers import completed
+    from models.mmdetection.mmdet.utils.contextmanagers import completed
 
 
 class BBoxTestMixin:
@@ -113,8 +113,8 @@ class MaskTestMixin:
                                               (float, torch.Tensor)):
                     scale_factor = det_bboxes.new_tensor(scale_factor)
                 _bboxes = (
-                    det_bboxes[:, :4] *
-                    scale_factor if rescale else det_bboxes)
+                    det_bboxes[:, :4]
+                    * scale_factor if rescale else det_bboxes)
                 mask_rois = bbox2roi([_bboxes])
                 mask_feats = self.mask_roi_extractor(
                     x[:len(self.mask_roi_extractor.featmap_strides)],

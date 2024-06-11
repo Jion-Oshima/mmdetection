@@ -4,8 +4,8 @@ from typing import Optional
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.registry import TASK_UTILS
-from mmdet.utils import ConfigType
+from models.mmdetection.mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.utils import ConfigType
 from .assign_result import AssignResult
 from .base_assigner import BaseAssigner
 
@@ -150,8 +150,8 @@ class TaskAlignedAssigner(BaseAssigner):
         pos_inds = torch.nonzero(
             assigned_gt_inds > 0, as_tuple=False).squeeze()
         if pos_inds.numel() > 0:
-            assigned_labels[pos_inds] = gt_labels[assigned_gt_inds[pos_inds] -
-                                                  1]
+            assigned_labels[pos_inds] = gt_labels[assigned_gt_inds[pos_inds]
+                                                  - 1]
         assign_result = AssignResult(
             num_gt, assigned_gt_inds, max_overlaps, labels=assigned_labels)
         assign_result.assign_metrics = assign_metrics

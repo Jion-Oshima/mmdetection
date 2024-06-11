@@ -6,10 +6,10 @@ import torch
 import torch.nn.functional as F
 from mmengine.model.utils import stack_batch
 
-from mmdet.models.utils.misc import samplelist_boxtype2tensor
-from mmdet.registry import MODELS
-from mmdet.structures import TrackDataSample
-from mmdet.structures.mask import BitmapMasks
+from models.mmdetection.mmdet.models.utils.misc import samplelist_boxtype2tensor
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import TrackDataSample
+from models.mmdetection.mmdet.structures.mask import BitmapMasks
 from .data_preprocessor import DetDataPreprocessor
 
 
@@ -187,10 +187,10 @@ class TrackDataPreprocessor(DetDataPreprocessor):
         for imgs in data['inputs']:
             # The sequence images in one sample among a batch have the same
             # original shape
-            pad_h = int(np.ceil(imgs.shape[-2] /
-                                self.pad_size_divisor)) * self.pad_size_divisor
-            pad_w = int(np.ceil(imgs.shape[-1] /
-                                self.pad_size_divisor)) * self.pad_size_divisor
+            pad_h = int(np.ceil(imgs.shape[-2]
+                                / self.pad_size_divisor)) * self.pad_size_divisor
+            pad_w = int(np.ceil(imgs.shape[-1]
+                                / self.pad_size_divisor)) * self.pad_size_divisor
             pad_shapes = [(pad_h, pad_w)] * imgs.size(0)
             batch_pad_shape.append(pad_shapes)
         return batch_pad_shape
@@ -249,8 +249,8 @@ def stack_track_batch(tensors: List[torch.Tensor],
     if pad_size_divisor > 1:
         # the last two dims are H,W, both subject to divisibility requirement
         max_size = (
-            max_size +
-            (pad_size_divisor - 1)) // pad_size_divisor * pad_size_divisor
+            max_size
+            + (pad_size_divisor - 1)) // pad_size_divisor * pad_size_divisor
 
     padded_samples = []
     for tensor in tensors:

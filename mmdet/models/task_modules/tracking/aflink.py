@@ -9,7 +9,7 @@ from mmengine.runner.checkpoint import load_checkpoint
 from scipy.optimize import linear_sum_assignment
 from torch import Tensor, nn
 
-from mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.registry import TASK_UTILS
 
 INFINITY = 1e5
 

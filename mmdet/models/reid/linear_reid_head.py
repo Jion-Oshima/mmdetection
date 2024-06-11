@@ -13,8 +13,8 @@ except ImportError:
 
 from mmengine.model import BaseModule
 
-from mmdet.registry import MODELS
-from mmdet.structures import ReIDDataSample
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import ReIDDataSample
 from .fc_module import FcModule
 
 

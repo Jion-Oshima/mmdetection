@@ -10,8 +10,8 @@ except ImportError:
     mmpretrain = None
     ImageClassifier = object
 
-from mmdet.registry import MODELS
-from mmdet.structures import ReIDDataSample
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import ReIDDataSample
 
 
 @MODELS.register_module()

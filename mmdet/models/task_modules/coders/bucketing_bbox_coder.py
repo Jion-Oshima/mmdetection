@@ -6,9 +6,9 @@ import torch
 import torch.nn.functional as F
 from torch import Tensor
 
-from mmdet.registry import TASK_UTILS
-from mmdet.structures.bbox import (BaseBoxes, HorizontalBoxes, bbox_rescale,
-                                   get_box_tensor)
+from models.mmdetection.mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.structures.bbox import (BaseBoxes, HorizontalBoxes, bbox_rescale,
+                                                      get_box_tensor)
 from .base_bbox_coder import BaseBBoxCoder
 
 
@@ -231,14 +231,14 @@ def bbox2bucket(proposals: Tensor,
     for k in range(offset_topk):
         if k >= 1:
             offset_l_weights[inds, l_label[:,
-                                           k]] = (l_topk[:, k] <
-                                                  offset_upperbound).float()
+                                           k]] = (l_topk[:, k]
+                                                  < offset_upperbound).float()
             offset_r_weights[inds, r_label[:,
-                                           k]] = (r_topk[:, k] <
-                                                  offset_upperbound).float()
+                                           k]] = (r_topk[:, k]
+                                                  < offset_upperbound).float()
             offset_t_weights[inds, t_label[:,
-                                           k]] = (t_topk[:, k] <
-                                                  offset_upperbound).float()
+                                           k]] = (t_topk[:, k]
+                                                  < offset_upperbound).float()
             offset_d_weights[inds, d_label[:,
                                            k]] = (d_topk[:, k] <
                                                   offset_upperbound).float()
@@ -252,7 +252,7 @@ def bbox2bucket(proposals: Tensor,
     offsets_weights = torch.cat([
         offset_l_weights, offset_r_weights, offset_t_weights, offset_d_weights
     ],
-                                dim=-1)
+        dim=-1)
 
     # generate bucket labels and weight
     side_num = int(np.ceil(num_buckets / 2.0))
@@ -270,11 +270,11 @@ def bbox2bucket(proposals: Tensor,
         bucket_cls_l_weights, bucket_cls_r_weights, bucket_cls_t_weights,
         bucket_cls_d_weights
     ],
-                                   dim=-1)
+        dim=-1)
     # ignore second nearest buckets for cls if necessary
     if cls_ignore_neighbor:
-        bucket_cls_weights = (~((bucket_cls_weights == 1) &
-                                (bucket_labels == 0))).float()
+        bucket_cls_weights = (~((bucket_cls_weights == 1)
+                                & (bucket_labels == 0))).float()
     else:
         bucket_cls_weights[:] = 1.0
     return offsets, offsets_weights, bucket_labels, bucket_cls_weights

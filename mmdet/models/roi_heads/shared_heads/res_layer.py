@@ -4,9 +4,9 @@ import warnings
 import torch.nn as nn
 from mmengine.model import BaseModule
 
-from mmdet.models.backbones import ResNet
-from mmdet.models.layers import ResLayer as _ResLayer
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.models.backbones import ResNet
+from models.mmdetection.mmdet.models.layers import ResLayer as _ResLayer
+from models.mmdetection.mmdet.registry import MODELS
 
 
 @MODELS.register_module()

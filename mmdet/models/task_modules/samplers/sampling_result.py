@@ -5,9 +5,9 @@ import numpy as np
 import torch
 from torch import Tensor
 
-from mmdet.structures.bbox import BaseBoxes, cat_boxes
-from mmdet.utils import util_mixins
-from mmdet.utils.util_random import ensure_rng
+from models.mmdetection.mmdet.structures.bbox import BaseBoxes, cat_boxes
+from models.mmdetection.mmdet.utils import util_mixins
+from models.mmdetection.mmdet.utils.util_random import ensure_rng
 from ..assigners import AssignResult
 
 
@@ -65,7 +65,7 @@ class SamplingResult(util_mixins.NiceRepr):
 
     Example:
         >>> # xdoctest: +IGNORE_WANT
-        >>> from mmdet.models.task_modules.samplers.sampling_result import *  # NOQA
+        >>> from models.mmdetection.mmdet.models.task_modules.samplers.sampling_result import *  # NOQA
         >>> self = SamplingResult.random(rng=10)
         >>> print(f'self = {self}')
         self = <SamplingResult({
@@ -195,14 +195,14 @@ class SamplingResult(util_mixins.NiceRepr):
             :obj:`SamplingResult`: Randomly generated sampling result.
 
         Example:
-            >>> from mmdet.models.task_modules.samplers.sampling_result import *  # NOQA
+            >>> from models.mmdetection.mmdet.models.task_modules.samplers.sampling_result import *  # NOQA
             >>> self = SamplingResult.random()
             >>> print(self.__dict__)
         """
         from mmengine.structures import InstanceData
 
-        from mmdet.models.task_modules.assigners import AssignResult
-        from mmdet.models.task_modules.samplers import RandomSampler
+        from models.mmdetection.mmdet.models.task_modules.assigners import AssignResult
+        from models.mmdetection.mmdet.models.task_modules.samplers import RandomSampler
         rng = ensure_rng(rng)
 
         # make probabilistic?

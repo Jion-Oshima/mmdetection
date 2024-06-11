@@ -12,11 +12,11 @@ except ImportError:
     motmetrics = None
 from torch import Tensor
 
-from mmdet.models.utils import imrenormalize
-from mmdet.registry import MODELS
-from mmdet.structures import TrackDataSample
-from mmdet.structures.bbox import bbox_overlaps, bbox_xyxy_to_cxcyah
-from mmdet.utils import OptConfigType
+from models.mmdetection.mmdet.models.utils import imrenormalize
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import TrackDataSample
+from models.mmdetection.mmdet.structures.bbox import bbox_overlaps, bbox_xyxy_to_cxcyah
+from models.mmdetection.mmdet.utils import OptConfigType
 from .sort_tracker import SORTTracker
 
 

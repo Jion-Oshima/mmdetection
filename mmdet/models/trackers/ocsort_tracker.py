@@ -10,10 +10,10 @@ import torch
 from addict import Dict
 from mmengine.structures import InstanceData
 
-from mmdet.registry import MODELS
-from mmdet.structures import DetDataSample
-from mmdet.structures.bbox import (bbox_cxcyah_to_xyxy, bbox_overlaps,
-                                   bbox_xyxy_to_cxcyah)
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import DetDataSample
+from models.mmdetection.mmdet.structures.bbox import (bbox_cxcyah_to_xyxy, bbox_overlaps,
+                                                      bbox_xyxy_to_cxcyah)
 from .sort_tracker import SORTTracker
 
 
@@ -127,10 +127,10 @@ class OCSORTTracker(SORTTracker):
     def vel_direction_batch(self, bboxes1: torch.Tensor,
                             bboxes2: torch.Tensor):
         """Estimate the direction vector given two batches of boxes."""
-        cx1, cy1 = (bboxes1[:, 0] + bboxes1[:, 2]) / 2.0, (bboxes1[:, 1] +
-                                                           bboxes1[:, 3]) / 2.0
-        cx2, cy2 = (bboxes2[:, 0] + bboxes2[:, 2]) / 2.0, (bboxes2[:, 1] +
-                                                           bboxes2[:, 3]) / 2.0
+        cx1, cy1 = (bboxes1[:, 0] + bboxes1[:, 2]) / 2.0, (bboxes1[:, 1]
+                                                           + bboxes1[:, 3]) / 2.0
+        cx2, cy2 = (bboxes2[:, 0] + bboxes2[:, 2]) / 2.0, (bboxes2[:, 1]
+                                                           + bboxes2[:, 3]) / 2.0
         speed_diff_y = cy2[None, :] - cy1[:, None]
         speed_diff_x = cx2[None, :] - cx1[:, None]
         speed = torch.cat((speed_diff_y[..., None], speed_diff_x[..., None]),

@@ -10,12 +10,12 @@ from mmengine.model import BaseModule
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.structures import SampleList
-from mmdet.structures.bbox import (bbox_cxcywh_to_xyxy, bbox_overlaps,
-                                   bbox_xyxy_to_cxcywh)
-from mmdet.utils import (ConfigType, InstanceList, OptInstanceList,
-                         OptMultiConfig, reduce_mean)
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.structures.bbox import (bbox_cxcywh_to_xyxy, bbox_overlaps,
+                                                      bbox_xyxy_to_cxcywh)
+from models.mmdetection.mmdet.utils import (ConfigType, InstanceList, OptInstanceList,
+                                            OptMultiConfig, reduce_mean)
 from ..losses import QualityFocalLoss
 from ..utils import multi_apply
 

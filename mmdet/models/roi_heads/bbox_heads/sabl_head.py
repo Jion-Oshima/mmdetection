@@ -10,12 +10,12 @@ from mmengine.config import ConfigDict
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.models.layers import multiclass_nms
-from mmdet.models.losses import accuracy
-from mmdet.models.task_modules import SamplingResult
-from mmdet.models.utils import multi_apply
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.utils import ConfigType, InstanceList, OptConfigType, OptMultiConfig
+from models.mmdetection.mmdet.models.layers import multiclass_nms
+from models.mmdetection.mmdet.models.losses import accuracy
+from models.mmdetection.mmdet.models.task_modules import SamplingResult
+from models.mmdetection.mmdet.models.utils import multi_apply
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList, OptConfigType, OptMultiConfig
 from .bbox_head import BBoxHead
 
 

@@ -4,10 +4,10 @@ from typing import List, Optional, Tuple
 import torch
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.structures import DetDataSample, SampleList
-from mmdet.structures.bbox import bbox2roi
-from mmdet.utils import ConfigType, InstanceList
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.structures import DetDataSample, SampleList
+from models.mmdetection.mmdet.structures.bbox import bbox2roi
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList
 from ..task_modules.samplers import SamplingResult
 from ..utils import empty_instances, unpack_gt_instances
 from .base_roi_head import BaseRoIHead
@@ -275,8 +275,8 @@ class StandardRoIHead(BaseRoIHead):
                 - `mask_preds` (Tensor): Mask prediction.
                 - `mask_feats` (Tensor): Extract mask RoI features.
         """
-        assert ((rois is not None) ^
-                (pos_inds is not None and bbox_feats is not None))
+        assert ((rois is not None)
+                ^ (pos_inds is not None and bbox_feats is not None))
         if rois is not None:
             mask_feats = self.mask_roi_extractor(
                 x[:self.mask_roi_extractor.num_inputs], rois)

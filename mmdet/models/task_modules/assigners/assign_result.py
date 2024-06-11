@@ -2,7 +2,7 @@
 import torch
 from torch import Tensor
 
-from mmdet.utils import util_mixins
+from models.mmdetection.mmdet.utils import util_mixins
 
 
 class AssignResult(util_mixins.NiceRepr):
@@ -111,7 +111,7 @@ class AssignResult(util_mixins.NiceRepr):
             :obj:`AssignResult`: Randomly generated assign results.
 
         Example:
-            >>> from mmdet.models.task_modules.assigners.assign_result import *  # NOQA
+            >>> from models.mmdetection.mmdet.models.task_modules.assigners.assign_result import *  # NOQA
             >>> self = AssignResult.random()
             >>> print(self.info)
         """

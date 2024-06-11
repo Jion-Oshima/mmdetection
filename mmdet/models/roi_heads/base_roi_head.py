@@ -5,9 +5,9 @@ from typing import Tuple
 from mmengine.model import BaseModule
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList
-from mmdet.utils import InstanceList, OptConfigType, OptMultiConfig
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.utils import InstanceList, OptConfigType, OptMultiConfig
 
 
 class BaseRoIHead(BaseModule, metaclass=ABCMeta):

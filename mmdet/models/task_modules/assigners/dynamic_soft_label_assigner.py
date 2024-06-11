@@ -6,9 +6,9 @@ import torch.nn.functional as F
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import TASK_UTILS
-from mmdet.structures.bbox import BaseBoxes
-from mmdet.utils import ConfigType
+from models.mmdetection.mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.structures.bbox import BaseBoxes
+from models.mmdetection.mmdet.utils import ConfigType
 from .assign_result import AssignResult
 from .base_assigner import BaseAssigner
 
@@ -222,6 +222,6 @@ class DynamicSoftLabelAssigner(BaseAssigner):
         valid_mask[valid_mask.clone()] = fg_mask_inboxes
 
         matched_gt_inds = matching_matrix[fg_mask_inboxes, :].argmax(1)
-        matched_pred_ious = (matching_matrix *
-                             pairwise_ious).sum(1)[fg_mask_inboxes]
+        matched_pred_ious = (matching_matrix
+                             * pairwise_ious).sum(1)[fg_mask_inboxes]
         return matched_pred_ious, matched_gt_inds

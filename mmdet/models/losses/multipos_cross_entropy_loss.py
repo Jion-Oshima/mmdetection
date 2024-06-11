@@ -5,7 +5,7 @@ import torch
 from mmengine.model import BaseModule
 from torch import Tensor
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from .utils import weight_reduce_loss
 
 

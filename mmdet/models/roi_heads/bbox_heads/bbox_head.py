@@ -10,13 +10,13 @@ from mmengine.structures import InstanceData
 from torch import Tensor
 from torch.nn.modules.utils import _pair
 
-from mmdet.models.layers import multiclass_nms
-from mmdet.models.losses import accuracy
-from mmdet.models.task_modules.samplers import SamplingResult
-from mmdet.models.utils import empty_instances, multi_apply
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.structures.bbox import get_box_tensor, scale_boxes
-from mmdet.utils import ConfigType, InstanceList, OptMultiConfig
+from models.mmdetection.mmdet.models.layers import multiclass_nms
+from models.mmdetection.mmdet.models.losses import accuracy
+from models.mmdetection.mmdet.models.task_modules.samplers import SamplingResult
+from models.mmdetection.mmdet.models.utils import empty_instances, multi_apply
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.structures.bbox import get_box_tensor, scale_boxes
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList, OptMultiConfig
 
 
 @MODELS.register_module()
@@ -599,9 +599,9 @@ class BBoxHead(BaseModule):
         Example:
             >>> # xdoctest: +REQUIRES(module:kwarray)
             >>> import numpy as np
-            >>> from mmdet.models.task_modules.samplers.
+            >>> from models.mmdetection.mmdet.models.task_modules.samplers.
             ... sampling_result import random_boxes
-            >>> from mmdet.models.task_modules.samplers import SamplingResult
+            >>> from models.mmdetection.mmdet.models.task_modules.samplers import SamplingResult
             >>> self = BBoxHead(reg_class_agnostic=True)
             >>> n_roi = 2
             >>> n_img = 4

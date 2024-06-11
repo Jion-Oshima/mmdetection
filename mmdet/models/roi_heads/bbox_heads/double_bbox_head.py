@@ -6,9 +6,9 @@ from mmcv.cnn import ConvModule
 from mmengine.model import BaseModule, ModuleList
 from torch import Tensor
 
-from mmdet.models.backbones.resnet import Bottleneck
-from mmdet.registry import MODELS
-from mmdet.utils import ConfigType, MultiConfig, OptConfigType, OptMultiConfig
+from models.mmdetection.mmdet.models.backbones.resnet import Bottleneck
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import ConfigType, MultiConfig, OptConfigType, OptMultiConfig
 from .bbox_head import BBoxHead
 
 
@@ -157,8 +157,8 @@ class DoubleConvFCBBoxHead(BBoxHead):
         branch_fcs = ModuleList()
         for i in range(self.num_fcs):
             fc_in_channels = (
-                self.in_channels *
-                self.roi_feat_area if i == 0 else self.fc_out_channels)
+                self.in_channels
+                * self.roi_feat_area if i == 0 else self.fc_out_channels)
             branch_fcs.append(nn.Linear(fc_in_channels, self.fc_out_channels))
         return branch_fcs
 

@@ -5,8 +5,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from mmdet.models.losses.utils import weighted_loss
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.models.losses.utils import weighted_loss
+from models.mmdetection.mmdet.registry import MODELS
 
 
 @weighted_loss

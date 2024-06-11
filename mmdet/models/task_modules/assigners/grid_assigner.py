@@ -4,8 +4,8 @@ from typing import Optional, Tuple, Union
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.registry import TASK_UTILS
-from mmdet.utils import ConfigType
+from models.mmdetection.mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.utils import ConfigType
 from .assign_result import AssignResult
 from .base_assigner import BaseAssigner
 
@@ -160,7 +160,7 @@ class GridAssigner(BaseAssigner):
             if gt_max_overlaps[i] > self.min_pos_iou:
                 if self.gt_max_assign_all:
                     max_iou_inds = (overlaps[i, :] == gt_max_overlaps[i]) & \
-                         responsible_flags.type(torch.bool)
+                        responsible_flags.type(torch.bool)
                     assigned_gt_inds[max_iou_inds] = i + 1
                 elif responsible_flags[gt_argmax_overlaps[i]]:
                     assigned_gt_inds[gt_argmax_overlaps[i]] = i + 1
@@ -170,8 +170,8 @@ class GridAssigner(BaseAssigner):
         pos_inds = torch.nonzero(
             assigned_gt_inds > 0, as_tuple=False).squeeze()
         if pos_inds.numel() > 0:
-            assigned_labels[pos_inds] = gt_labels[assigned_gt_inds[pos_inds] -
-                                                  1]
+            assigned_labels[pos_inds] = gt_labels[assigned_gt_inds[pos_inds]
+                                                  - 1]
 
         return AssignResult(
             num_gts, assigned_gt_inds, max_overlaps, labels=assigned_labels)

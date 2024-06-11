@@ -7,7 +7,7 @@ from mmengine.structures import InstanceData
 from scipy.optimize import linear_sum_assignment
 from torch import Tensor
 
-from mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.registry import TASK_UTILS
 from .assign_result import AssignResult
 from .base_assigner import BaseAssigner
 

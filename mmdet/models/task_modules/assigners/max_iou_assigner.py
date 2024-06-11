@@ -6,7 +6,7 @@ import torch
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.registry import TASK_UTILS
 from .assign_result import AssignResult
 from .base_assigner import BaseAssigner
 
@@ -315,8 +315,8 @@ class MaxIoUAssigner(BaseAssigner):
         pos_inds = torch.nonzero(
             assigned_gt_inds > 0, as_tuple=False).squeeze()
         if pos_inds.numel() > 0:
-            assigned_labels[pos_inds] = gt_labels[assigned_gt_inds[pos_inds] -
-                                                  1]
+            assigned_labels[pos_inds] = gt_labels[assigned_gt_inds[pos_inds]
+                                                  - 1]
 
         return AssignResult(
             num_gts=num_gts,

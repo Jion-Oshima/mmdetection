@@ -9,10 +9,10 @@ from mmengine.config import ConfigDict
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.structures.bbox import bbox_overlaps
-from mmdet.utils import (ConfigType, InstanceList, MultiConfig, OptConfigType,
-                         OptInstanceList, reduce_mean)
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.structures.bbox import bbox_overlaps
+from models.mmdetection.mmdet.utils import (ConfigType, InstanceList, MultiConfig, OptConfigType,
+                                            OptInstanceList, reduce_mean)
 from ..task_modules.prior_generators import anchor_inside_flags
 from ..task_modules.samplers import PseudoSampler
 from ..utils import (filter_scores_and_topk, images_to_levels, multi_apply,
@@ -374,7 +374,7 @@ class GFLHead(AnchorHead):
         avg_factor = reduce_mean(
             torch.tensor(avg_factor, dtype=torch.float, device=device)).item()
 
-        losses_cls, losses_bbox, losses_dfl,\
+        losses_cls, losses_bbox, losses_dfl, \
             avg_factor = multi_apply(
                 self.loss_by_feat_single,
                 anchor_list,

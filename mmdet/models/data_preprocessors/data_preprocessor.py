@@ -14,12 +14,12 @@ from mmengine.structures import PixelData
 from mmengine.utils import is_seq_of
 from torch import Tensor
 
-from mmdet.models.utils import unfold_wo_center
-from mmdet.models.utils.misc import samplelist_boxtype2tensor
-from mmdet.registry import MODELS
-from mmdet.structures import DetDataSample
-from mmdet.structures.mask import BitmapMasks
-from mmdet.utils import ConfigType
+from models.mmdetection.mmdet.models.utils import unfold_wo_center
+from models.mmdetection.mmdet.models.utils.misc import samplelist_boxtype2tensor
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import DetDataSample
+from models.mmdetection.mmdet.structures.mask import BitmapMasks
+from models.mmdetection.mmdet.utils import ConfigType
 
 try:
     import skimage
@@ -157,8 +157,8 @@ class DetDataPreprocessor(ImgDataPreprocessor):
             batch_pad_shape = []
             for ori_input in _batch_inputs:
                 pad_h = int(
-                    np.ceil(ori_input.shape[1] /
-                            self.pad_size_divisor)) * self.pad_size_divisor
+                    np.ceil(ori_input.shape[1]
+                            / self.pad_size_divisor)) * self.pad_size_divisor
                 pad_w = int(
                     np.ceil(ori_input.shape[2] /
                             self.pad_size_divisor)) * self.pad_size_divisor
@@ -170,11 +170,11 @@ class DetDataPreprocessor(ImgDataPreprocessor):
                 'or a list of tensor, but got a tensor with shape: '
                 f'{_batch_inputs.shape}')
             pad_h = int(
-                np.ceil(_batch_inputs.shape[2] /
-                        self.pad_size_divisor)) * self.pad_size_divisor
+                np.ceil(_batch_inputs.shape[2]
+                        / self.pad_size_divisor)) * self.pad_size_divisor
             pad_w = int(
-                np.ceil(_batch_inputs.shape[3] /
-                        self.pad_size_divisor)) * self.pad_size_divisor
+                np.ceil(_batch_inputs.shape[3]
+                        / self.pad_size_divisor)) * self.pad_size_divisor
             batch_pad_shape = [(pad_h, pad_w)] * _batch_inputs.shape[0]
         else:
             raise TypeError('Output of `cast_data` should be a dict '
@@ -732,8 +732,8 @@ class BoxInstDataPreprocessor(DetDataPreprocessor):
             for i in range(inputs.shape[0]):
                 img_h, img_w = data_samples[i].img_shape
                 img_mask = inputs.new_ones((img_h, img_w))
-                pixels_removed = int(self.bottom_pixels_removed *
-                                     float(img_h) / float(b_img_h))
+                pixels_removed = int(self.bottom_pixels_removed
+                                     * float(img_h) / float(b_img_h))
                 if pixels_removed > 0:
                     img_mask[-pixels_removed:, :] = 0
                 pad_w = b_img_w - img_w
@@ -765,8 +765,8 @@ class BoxInstDataPreprocessor(DetDataPreprocessor):
                 images_lab = images_lab.permute(2, 0, 1)[None]
                 images_color_similarity = self.get_images_color_similarity(
                     images_lab, img_masks[im_i])
-                pairwise_mask = (images_color_similarity >=
-                                 self.pairwise_color_thresh).float()
+                pairwise_mask = (images_color_similarity
+                                 >= self.pairwise_color_thresh).float()
 
                 per_im_bboxes = data_sample.gt_instances.bboxes
                 if per_im_bboxes.shape[0] > 0:

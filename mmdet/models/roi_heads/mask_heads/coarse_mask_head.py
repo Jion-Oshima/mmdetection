@@ -3,8 +3,8 @@ from mmcv.cnn import ConvModule, Linear
 from mmengine.model import ModuleList
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.utils import MultiConfig
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import MultiConfig
 from .fcn_mask_head import FCNMaskHead
 
 

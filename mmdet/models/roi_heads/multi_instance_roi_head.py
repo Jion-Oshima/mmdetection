@@ -3,10 +3,10 @@ from typing import List, Tuple
 
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures import DetDataSample
-from mmdet.structures.bbox import bbox2roi
-from mmdet.utils import ConfigType, InstanceList
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import DetDataSample
+from models.mmdetection.mmdet.structures.bbox import bbox2roi
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList
 from ..task_modules.samplers import SamplingResult
 from ..utils import empty_instances, unpack_gt_instances
 from .standard_roi_head import StandardRoIHead

@@ -6,8 +6,8 @@ import numpy as np
 import torch
 from torch import Tensor
 
-from mmdet.registry import TASK_UTILS
-from mmdet.structures.bbox import BaseBoxes, HorizontalBoxes, get_box_tensor
+from models.mmdetection.mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.structures.bbox import BaseBoxes, HorizontalBoxes, get_box_tensor
 from .base_bbox_coder import BaseBBoxCoder
 
 
@@ -473,7 +473,7 @@ def onnx_delta2bbox(rois: Tensor,
     if clip_border and max_shape is not None:
         # clip bboxes with dynamic `min` and `max` for onnx
         if torch.onnx.is_in_onnx_export():
-            from mmdet.core.export import dynamic_clip_for_onnx
+            from models.mmdetection.mmdet.core.export import dynamic_clip_for_onnx
             x1, y1, x2, y2 = dynamic_clip_for_onnx(x1, y1, x2, y2, max_shape)
             bboxes = torch.stack([x1, y1, x2, y2], dim=-1).view(deltas.size())
             return bboxes

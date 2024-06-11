@@ -5,7 +5,7 @@ import torch
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.registry import TASK_UTILS
 from ..prior_generators import anchor_inside_flags
 from .assign_result import AssignResult
 from .base_assigner import BaseAssigner
@@ -150,8 +150,8 @@ class RegionAssigner(BaseAssigner):
         r1 = (1 - self.center_ratio) / 2
         r2 = (1 - self.ignore_ratio) / 2
 
-        scale = torch.sqrt((gt_bboxes[:, 2] - gt_bboxes[:, 0]) *
-                           (gt_bboxes[:, 3] - gt_bboxes[:, 1]))
+        scale = torch.sqrt((gt_bboxes[:, 2] - gt_bboxes[:, 0])
+                           * (gt_bboxes[:, 3] - gt_bboxes[:, 1]))
         min_anchor_size = scale.new_full(
             (1, ), float(anchor_scale * anchor_strides[0]))
         target_lvls = torch.floor(
@@ -219,8 +219,8 @@ class RegionAssigner(BaseAssigner):
 
         # 5. Assign -1 to anchor outside of image
         flat_assigned_gt_inds = torch.cat(mlvl_assigned_gt_inds)
-        assert (flat_assigned_gt_inds.shape[0] == flat_anchors.shape[0] ==
-                flat_valid_flags.shape[0])
+        assert (flat_assigned_gt_inds.shape[0] == flat_anchors.shape[0]
+                == flat_valid_flags.shape[0])
         inside_flags = anchor_inside_flags(flat_anchors, flat_valid_flags,
                                            img_meta['img_shape'],
                                            allowed_border)

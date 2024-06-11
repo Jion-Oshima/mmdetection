@@ -13,13 +13,13 @@ from mmengine.model.weight_init import caffe2_xavier_init
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.models.dense_heads import AnchorFreeHead, MaskFormerHead
-from mmdet.models.utils import get_uncertain_point_coords_with_randomness
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.structures import TrackDataSample, TrackSampleList
-from mmdet.structures.mask import mask2bbox
-from mmdet.utils import (ConfigType, InstanceList, OptConfigType,
-                         OptMultiConfig, reduce_mean)
+from models.mmdetection.mmdet.models.dense_heads import AnchorFreeHead, MaskFormerHead
+from models.mmdetection.mmdet.models.utils import get_uncertain_point_coords_with_randomness
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.structures import TrackDataSample, TrackSampleList
+from models.mmdetection.mmdet.structures.mask import mask2bbox
+from models.mmdetection.mmdet.utils import (ConfigType, InstanceList, OptConfigType,
+                                            OptMultiConfig, reduce_mean)
 from ..layers import Mask2FormerTransformerDecoder
 
 
@@ -202,10 +202,10 @@ class Mask2FormerTrackHead(MaskFormerHead):
         final_batch_gt_instances = []
         batch_size = len(batch_gt_instances) // self.num_frames
         for batch_idx in range(batch_size):
-            pair_gt_insatences = batch_gt_instances[batch_idx *
-                                                    self.num_frames:batch_idx *
-                                                    self.num_frames +
-                                                    self.num_frames]
+            pair_gt_insatences = batch_gt_instances[batch_idx
+                                                    * self.num_frames:batch_idx
+                                                    * self.num_frames
+                                                    + self.num_frames]
 
             assert len(
                 pair_gt_insatences

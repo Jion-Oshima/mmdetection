@@ -4,8 +4,8 @@ import numpy as np
 import torch
 from torch import Tensor
 
-from mmdet.registry import TASK_UTILS
-from mmdet.structures.bbox import bbox_cxcyah_to_xyxy, bbox_xyxy_to_cxcyah
+from models.mmdetection.mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.structures.bbox import bbox_cxcyah_to_xyxy, bbox_xyxy_to_cxcyah
 
 
 @TASK_UTILS.register_module()

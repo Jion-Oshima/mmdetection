@@ -11,9 +11,9 @@ from mmengine.model import BaseModule
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.models.task_modules.samplers import SamplingResult
-from mmdet.registry import MODELS
-from mmdet.utils import ConfigType, InstanceList, MultiConfig, OptConfigType
+from models.mmdetection.mmdet.models.task_modules.samplers import SamplingResult
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList, MultiConfig, OptConfigType
 
 
 @MODELS.register_module()
@@ -321,10 +321,10 @@ class GridHead(BaseModule):
                 gridpoint_y = factor_y * pos_gt_bboxes[i, 1] + (
                     1 - factor_y) * pos_gt_bboxes[i, 3]
 
-                cx = int((gridpoint_x - pos_bboxes[i, 0]) / pos_bbox_ws[i] *
-                         map_size)
-                cy = int((gridpoint_y - pos_bboxes[i, 1]) / pos_bbox_hs[i] *
-                         map_size)
+                cx = int((gridpoint_x - pos_bboxes[i, 0]) / pos_bbox_ws[i]
+                         * map_size)
+                cy = int((gridpoint_y - pos_bboxes[i, 1]) / pos_bbox_hs[i]
+                         * map_size)
 
                 for x in range(cx - radius, cx + radius + 1):
                     for y in range(cy - radius, cy + radius + 1):

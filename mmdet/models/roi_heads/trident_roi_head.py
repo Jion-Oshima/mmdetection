@@ -6,9 +6,9 @@ from mmcv.ops import batched_nms
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList
-from mmdet.utils import InstanceList
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.utils import InstanceList
 from .standard_roi_head import StandardRoIHead
 
 

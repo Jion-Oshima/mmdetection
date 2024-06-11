@@ -3,7 +3,7 @@ from typing import Tuple, Union
 
 from torch import Tensor
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from .convfc_bbox_head import ConvFCBBoxHead
 
 

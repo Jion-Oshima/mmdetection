@@ -7,8 +7,8 @@ import torch.nn.functional as F
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import TASK_UTILS
-from mmdet.structures.bbox import bbox_overlaps, bbox_xyxy_to_cxcywh
+from models.mmdetection.mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.structures.bbox import bbox_overlaps, bbox_xyxy_to_cxcywh
 
 
 class BaseMatchCost:
@@ -61,7 +61,7 @@ class BBoxL1Cost(BaseMatchCost):
         weight (Union[float, int]): Cost weight. Defaults to 1.
 
     Examples:
-        >>> from mmdet.models.task_modules.assigners.
+        >>> from models.mmdetection.mmdet.models.task_modules.assigners.
         ... match_costs.match_cost import BBoxL1Cost
         >>> import torch
         >>> self = BBoxL1Cost()
@@ -128,7 +128,7 @@ class IoUCost(BaseMatchCost):
         weight (Union[float, int]): Cost weight. Defaults to 1.
 
     Examples:
-        >>> from mmdet.models.task_modules.assigners.
+        >>> from models.mmdetection.mmdet.models.task_modules.assigners.
         ... match_costs.match_cost import IoUCost
         >>> import torch
         >>> self = IoUCost()
@@ -190,7 +190,7 @@ class ClassificationCost(BaseMatchCost):
         weight (Union[float, int]): Cost weight. Defaults to 1.
 
     Examples:
-        >>> from mmdet.models.task_modules.assigners.
+        >>> from models.mmdetection.mmdet.models.task_modules.assigners.
         ...  match_costs.match_cost import ClassificationCost
         >>> import torch
         >>> self = ClassificationCost()
@@ -424,10 +424,10 @@ class DiceCost(BaseMatchCost):
         numerator = 2 * torch.einsum('nc,mc->nm', mask_preds, gt_masks)
         if self.naive_dice:
             denominator = mask_preds.sum(-1)[:, None] + \
-                          gt_masks.sum(-1)[None, :]
+                gt_masks.sum(-1)[None, :]
         else:
             denominator = mask_preds.pow(2).sum(1)[:, None] + \
-                          gt_masks.pow(2).sum(1)[None, :]
+                gt_masks.pow(2).sum(1)[None, :]
         loss = 1 - (numerator + self.eps) / (denominator + self.eps)
         return loss
 

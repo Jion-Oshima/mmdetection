@@ -3,11 +3,11 @@ from typing import List, Tuple
 
 from torch import Tensor
 
-from mmdet.models.task_modules import SamplingResult
-from mmdet.registry import MODELS
-from mmdet.structures import DetDataSample
-from mmdet.structures.bbox import bbox2roi
-from mmdet.utils import InstanceList
+from models.mmdetection.mmdet.models.task_modules import SamplingResult
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import DetDataSample
+from models.mmdetection.mmdet.structures.bbox import bbox2roi
+from models.mmdetection.mmdet.utils import InstanceList
 from ..losses.pisa_loss import carl_loss, isr_p
 from ..utils import unpack_gt_instances
 from .standard_roi_head import StandardRoIHead
@@ -108,8 +108,8 @@ class PISARoIHead(StandardRoIHead):
             for i in range(len(sampling_results)):
                 num_pos = sampling_results[i].pos_inds.size(0)
                 num_neg = sampling_results[i].neg_inds.size(0)
-                label_weights[cur_num_rois + num_pos:cur_num_rois + num_pos +
-                              num_neg] = neg_label_weights[i]
+                label_weights[cur_num_rois + num_pos:cur_num_rois + num_pos
+                              + num_neg] = neg_label_weights[i]
                 cur_num_rois += num_pos + num_neg
 
         cls_score = bbox_results['cls_score']

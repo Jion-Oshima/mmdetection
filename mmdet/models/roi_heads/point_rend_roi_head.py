@@ -7,9 +7,9 @@ import torch.nn.functional as F
 from mmcv.ops import point_sample, rel_roi_point_to_rel_img_point
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures.bbox import bbox2roi
-from mmdet.utils import ConfigType, InstanceList
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures.bbox import bbox2roi
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList
 from ..task_modules.samplers import SamplingResult
 from ..utils import empty_instances
 from .standard_roi_head import StandardRoIHead
@@ -102,10 +102,10 @@ class PointRendRoIHead(StandardRoIHead):
             # resolution of the next step, then we can skip this step
             num_rois, channels, mask_height, mask_width = \
                 refined_mask_pred.shape
-            if (self.test_cfg.subdivision_num_points >=
-                    self.test_cfg.scale_factor**2 * mask_height * mask_width
-                    and
-                    subdivision_step < self.test_cfg.subdivision_steps - 1):
+            if (self.test_cfg.subdivision_num_points
+                    >= self.test_cfg.scale_factor**2 * mask_height * mask_width
+
+                    and subdivision_step < self.test_cfg.subdivision_steps - 1):
                 continue
             point_indices, rel_roi_points = \
                 self.point_head.get_roi_rel_points_test(

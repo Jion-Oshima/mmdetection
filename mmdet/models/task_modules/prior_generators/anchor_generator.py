@@ -8,8 +8,8 @@ from mmengine.utils import is_tuple_of
 from torch import Tensor
 from torch.nn.modules.utils import _pair
 
-from mmdet.registry import TASK_UTILS
-from mmdet.structures.bbox import HorizontalBoxes
+from models.mmdetection.mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.structures.bbox import HorizontalBoxes
 
 DeviceType = Union[str, torch.device]
 
@@ -47,7 +47,7 @@ class AnchorGenerator:
             structure. Defaults to False.
 
     Examples:
-        >>> from mmdet.models.task_modules.
+        >>> from models.mmdetection.mmdet.models.task_modules.
         ... prior_generators import AnchorGenerator
         >>> self = AnchorGenerator([16], [1.], [1.], [9])
         >>> all_anchors = self.grid_priors([(2, 2)], device='cpu')
@@ -326,10 +326,10 @@ class AnchorGenerator:
         height, width = featmap_size
         num_base_anchors = self.num_base_anchors[level_idx]
         base_anchor_id = prior_idxs % num_base_anchors
-        x = (prior_idxs //
-             num_base_anchors) % width * self.strides[level_idx][0]
-        y = (prior_idxs // width //
-             num_base_anchors) % height * self.strides[level_idx][1]
+        x = (prior_idxs
+             // num_base_anchors) % width * self.strides[level_idx][0]
+        y = (prior_idxs // width
+             // num_base_anchors) % height * self.strides[level_idx][1]
         priors = torch.stack([x, y, x, y], 1).to(dtype).to(device) + \
             self.base_anchors[level_idx][base_anchor_id, :].to(device)
 
@@ -677,7 +677,7 @@ class LegacyAnchorGenerator(AnchorGenerator):
             structure. Defaults to False.
 
     Examples:
-        >>> from mmdet.models.task_modules.
+        >>> from models.mmdetection.mmdet.models.task_modules.
         ... prior_generators import LegacyAnchorGenerator
         >>> self = LegacyAnchorGenerator(
         >>>     [16], [1.], [1.], [9], center_offset=0.5)

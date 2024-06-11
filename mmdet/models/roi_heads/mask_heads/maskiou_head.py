@@ -11,9 +11,9 @@ from mmengine.structures import InstanceData
 from torch import Tensor
 from torch.nn.modules.utils import _pair
 
-from mmdet.models.task_modules.samplers import SamplingResult
-from mmdet.registry import MODELS
-from mmdet.utils import ConfigType, InstanceList, OptMultiConfig
+from models.mmdetection.mmdet.models.task_modules.samplers import SamplingResult
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList, OptMultiConfig
 
 
 @MODELS.register_module()
@@ -82,8 +82,8 @@ class MaskIoUHead(BaseModule):
         self.fcs = nn.ModuleList()
         for i in range(num_fcs):
             in_channels = (
-                self.conv_out_channels *
-                pooled_area if i == 0 else self.fc_out_channels)
+                self.conv_out_channels
+                * pooled_area if i == 0 else self.fc_out_channels)
             self.fcs.append(Linear(in_channels, self.fc_out_channels))
 
         self.fc_mask_iou = Linear(self.fc_out_channels, self.num_classes)

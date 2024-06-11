@@ -5,7 +5,7 @@ import torch
 import torch.nn as nn
 from torch import Tensor
 
-from mmdet.structures.bbox import bbox_overlaps
+from models.mmdetection.mmdet.structures.bbox import bbox_overlaps
 from ..task_modules.coders import BaseBBoxCoder
 from ..task_modules.samplers import SamplingResult
 
@@ -42,8 +42,8 @@ def isr_p(cls_score: Tensor,
     """
 
     labels, label_weights, bbox_targets, bbox_weights = bbox_targets
-    pos_label_inds = ((labels >= 0) &
-                      (labels < num_class)).nonzero().reshape(-1)
+    pos_label_inds = ((labels >= 0)
+                      & (labels < num_class)).nonzero().reshape(-1)
     pos_labels = labels[pos_label_inds]
 
     # if no positive samples, return the original targets
@@ -151,8 +151,8 @@ def carl_loss(cls_score: Tensor,
     Return:
         dict: CARL loss dict.
     """
-    pos_label_inds = ((labels >= 0) &
-                      (labels < num_class)).nonzero().reshape(-1)
+    pos_label_inds = ((labels >= 0)
+                      & (labels < num_class)).nonzero().reshape(-1)
     if pos_label_inds.numel() == 0:
         return dict(loss_carl=cls_score.sum()[None] * 0.)
     pos_labels = labels[pos_label_inds]

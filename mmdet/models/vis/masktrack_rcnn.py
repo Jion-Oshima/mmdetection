@@ -4,10 +4,10 @@ from typing import Optional
 import torch
 from torch import Tensor
 
-from mmdet.models.mot import BaseMOTModel
-from mmdet.registry import MODELS
-from mmdet.structures import TrackSampleList
-from mmdet.utils import OptConfigType, OptMultiConfig
+from models.mmdetection.mmdet.models.mot import BaseMOTModel
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import TrackSampleList
+from models.mmdetection.mmdet.utils import OptConfigType, OptMultiConfig
 
 
 @MODELS.register_module()

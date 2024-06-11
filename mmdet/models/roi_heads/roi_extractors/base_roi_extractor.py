@@ -8,7 +8,7 @@ from mmcv import ops
 from mmengine.model import BaseModule
 from torch import Tensor
 
-from mmdet.utils import ConfigType, OptMultiConfig
+from models.mmdetection.mmdet.utils import ConfigType, OptMultiConfig
 
 
 class BaseRoIExtractor(BaseModule, metaclass=ABCMeta):

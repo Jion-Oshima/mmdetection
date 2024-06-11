@@ -3,9 +3,9 @@ from typing import Dict, Optional
 
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList, TrackSampleList
-from mmdet.utils import OptConfigType, OptMultiConfig
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import SampleList, TrackSampleList
+from models.mmdetection.mmdet.utils import OptConfigType, OptMultiConfig
 from .base import BaseMOTModel
 
 

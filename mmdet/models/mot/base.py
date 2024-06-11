@@ -5,9 +5,9 @@ from typing import Dict, List, Tuple, Union
 from mmengine.model import BaseModel
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures import OptTrackSampleList, TrackSampleList
-from mmdet.utils import OptConfigType, OptMultiConfig
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import OptTrackSampleList, TrackSampleList
+from models.mmdetection.mmdet.utils import OptConfigType, OptMultiConfig
 
 
 @MODELS.register_module()

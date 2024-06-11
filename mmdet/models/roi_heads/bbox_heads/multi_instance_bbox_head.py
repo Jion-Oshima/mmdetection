@@ -9,11 +9,11 @@ from mmengine.config import ConfigDict
 from mmengine.structures import InstanceData
 from torch import Tensor, nn
 
-from mmdet.models.roi_heads.bbox_heads.bbox_head import BBoxHead
-from mmdet.models.task_modules.samplers import SamplingResult
-from mmdet.models.utils import empty_instances
-from mmdet.registry import MODELS
-from mmdet.structures.bbox import bbox_overlaps
+from models.mmdetection.mmdet.models.roi_heads.bbox_heads.bbox_head import BBoxHead
+from models.mmdetection.mmdet.models.task_modules.samplers import SamplingResult
+from models.mmdetection.mmdet.models.utils import empty_instances
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures.bbox import bbox_overlaps
 
 
 @MODELS.register_module()
@@ -69,8 +69,8 @@ class MultiInstanceBBoxHead(BBoxHead):
                  *args,
                  **kwargs) -> None:
         super().__init__(*args, init_cfg=init_cfg, **kwargs)
-        assert (num_shared_convs + num_shared_fcs + num_cls_convs +
-                num_cls_fcs + num_reg_convs + num_reg_fcs > 0)
+        assert (num_shared_convs + num_shared_fcs + num_cls_convs
+                + num_cls_fcs + num_reg_convs + num_reg_fcs > 0)
         assert num_instance == 2, 'Currently only 2 instances are supported'
         if num_cls_convs > 0 or num_reg_convs > 0:
             assert num_shared_fcs == 0
@@ -151,8 +151,8 @@ class MultiInstanceBBoxHead(BBoxHead):
                     self.fc_cls_ref.append(MODELS.build(cls_predictor_cfg_))
 
             if self.with_reg:
-                out_dim_reg = (4 if self.reg_class_agnostic else 4 *
-                               self.num_classes)
+                out_dim_reg = (4 if self.reg_class_agnostic else 4
+                               * self.num_classes)
                 reg_predictor_cfg_ = self.reg_predictor_cfg.copy()
                 reg_predictor_cfg_.update(
                     in_features=self.reg_last_dim[k], out_features=out_dim_reg)

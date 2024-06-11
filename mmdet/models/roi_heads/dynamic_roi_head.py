@@ -5,12 +5,12 @@ import numpy as np
 import torch
 from torch import Tensor
 
-from mmdet.models.losses import SmoothL1Loss
-from mmdet.models.task_modules.samplers import SamplingResult
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList
-from mmdet.structures.bbox import bbox2roi
-from mmdet.utils import InstanceList
+from models.mmdetection.mmdet.models.losses import SmoothL1Loss
+from models.mmdetection.mmdet.models.task_modules.samplers import SamplingResult
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.structures.bbox import bbox2roi
+from models.mmdetection.mmdet.utils import InstanceList
 from ..utils.misc import unpack_gt_instances
 from .standard_roi_head import StandardRoIHead
 

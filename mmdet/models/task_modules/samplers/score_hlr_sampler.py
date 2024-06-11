@@ -7,8 +7,8 @@ from mmengine.structures import InstanceData
 from numpy import ndarray
 from torch import Tensor
 
-from mmdet.registry import TASK_UTILS
-from mmdet.structures.bbox import bbox2roi
+from models.mmdetection.mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.structures.bbox import bbox2roi
 from ..assigners import AssignResult
 from .base_sampler import BaseSampler
 from .sampling_result import SamplingResult
@@ -216,12 +216,12 @@ class ScoreHLRSampler(BaseSampler):
                 neg_label_weights = cls_score.new_ones(num_expected)
 
                 up_bound = max(num_expected, num_valid)
-                imp_weights = (up_bound -
-                               imp_rank[hlr_inds].float()) / up_bound
+                imp_weights = (up_bound
+                               - imp_rank[hlr_inds].float()) / up_bound
                 neg_label_weights[:num_hlr] = imp_weights
                 neg_label_weights[num_hlr:] = imp_weights.min()
-                neg_label_weights = (self.bias +
-                                     (1 - self.bias) * neg_label_weights).pow(
+                neg_label_weights = (self.bias
+                                     + (1 - self.bias) * neg_label_weights).pow(
                                          self.k)
                 ori_selected_loss = ori_loss[select_inds]
                 new_loss = ori_selected_loss * neg_label_weights

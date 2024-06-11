@@ -13,11 +13,11 @@ from mmengine.structures import InstanceData
 from torch import Tensor
 from torch.nn.modules.utils import _pair
 
-from mmdet.models.task_modules.samplers import SamplingResult
-from mmdet.models.utils import empty_instances
-from mmdet.registry import MODELS
-from mmdet.structures.mask import mask_target
-from mmdet.utils import ConfigType, InstanceList, OptConfigType, OptMultiConfig
+from models.mmdetection.mmdet.models.task_modules.samplers import SamplingResult
+from models.mmdetection.mmdet.models.utils import empty_instances
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures.mask import mask_target
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList, OptConfigType, OptMultiConfig
 
 BYTES_PER_FLOAT = 4
 # TODO: This memory limit may be too much or too little. It would be better to
@@ -304,7 +304,7 @@ class FCNMaskHead(BaseModule):
 
         Example:
             >>> from mmengine.config import Config
-            >>> from mmdet.models.roi_heads.mask_heads.fcn_mask_head import *  # NOQA
+            >>> from models.mmdetection.mmdet.models.roi_heads.mask_heads.fcn_mask_head import *  # NOQA
             >>> N = 7  # N = number of extracted ROIs
             >>> C, H, W = 11, 32, 32
             >>> # Create example instance of FCN Mask Head.
@@ -362,10 +362,10 @@ class FCNMaskHead(BaseModule):
             # so we need to change the types of img_w and img_h to int.
             # See https://github.com/open-mmlab/mmdetection/pull/5191
             num_chunks = int(
-                np.ceil(N * int(img_h) * int(img_w) * BYTES_PER_FLOAT /
-                        GPU_MEM_LIMIT))
-            assert (num_chunks <=
-                    N), 'Default GPU_MEM_LIMIT is too small; try increasing it'
+                np.ceil(N * int(img_h) * int(img_w) * BYTES_PER_FLOAT
+                        / GPU_MEM_LIMIT))
+            assert (num_chunks
+                    <= N), 'Default GPU_MEM_LIMIT is too small; try increasing it'
         chunks = torch.chunk(torch.arange(N, device=device), num_chunks)
 
         threshold = rcnn_test_cfg.mask_thr_binary

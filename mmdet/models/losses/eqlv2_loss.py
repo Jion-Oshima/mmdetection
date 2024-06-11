@@ -10,7 +10,7 @@ import torch.nn.functional as F
 from mmengine.logging import print_log
 from torch import Tensor
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 
 
 @MODELS.register_module()

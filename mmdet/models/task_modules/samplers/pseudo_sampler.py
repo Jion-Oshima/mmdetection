@@ -2,7 +2,7 @@
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.registry import TASK_UTILS
 from ..assigners import AssignResult
 from .base_sampler import BaseSampler
 from .sampling_result import SamplingResult

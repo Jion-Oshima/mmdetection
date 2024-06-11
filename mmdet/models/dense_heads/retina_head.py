@@ -2,7 +2,7 @@
 import torch.nn as nn
 from mmcv.cnn import ConvModule
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from .anchor_head import AnchorHead
 
 

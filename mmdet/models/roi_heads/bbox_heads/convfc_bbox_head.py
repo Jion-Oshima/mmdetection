@@ -6,7 +6,7 @@ from mmcv.cnn import ConvModule
 from mmengine.config import ConfigDict
 from torch import Tensor
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from .bbox_head import BBoxHead
 
 
@@ -37,8 +37,8 @@ class ConvFCBBoxHead(BBoxHead):
                  *args,
                  **kwargs) -> None:
         super().__init__(*args, init_cfg=init_cfg, **kwargs)
-        assert (num_shared_convs + num_shared_fcs + num_cls_convs +
-                num_cls_fcs + num_reg_convs + num_reg_fcs > 0)
+        assert (num_shared_convs + num_shared_fcs + num_cls_convs
+                + num_cls_fcs + num_reg_convs + num_reg_fcs > 0)
         if num_cls_convs > 0 or num_reg_convs > 0:
             assert num_shared_fcs == 0
         if not self.with_cls:

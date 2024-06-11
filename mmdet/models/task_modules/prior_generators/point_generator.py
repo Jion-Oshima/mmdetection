@@ -6,7 +6,7 @@ import torch
 from torch import Tensor
 from torch.nn.modules.utils import _pair
 
-from mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.registry import TASK_UTILS
 
 DeviceType = Union[str, torch.device]
 
@@ -203,14 +203,14 @@ class MlvlPointGenerator:
         """
         feat_h, feat_w = featmap_size
         stride_w, stride_h = self.strides[level_idx]
-        shift_x = (torch.arange(0, feat_w, device=device) +
-                   self.offset) * stride_w
+        shift_x = (torch.arange(0, feat_w, device=device)
+                   + self.offset) * stride_w
         # keep featmap_size as Tensor instead of int, so that we
         # can convert to ONNX correctly
         shift_x = shift_x.to(dtype)
 
-        shift_y = (torch.arange(0, feat_h, device=device) +
-                   self.offset) * stride_h
+        shift_y = (torch.arange(0, feat_h, device=device)
+                   + self.offset) * stride_h
         # keep featmap_size as Tensor instead of int, so that we
         # can convert to ONNX correctly
         shift_y = shift_y.to(dtype)
@@ -314,8 +314,8 @@ class MlvlPointGenerator:
         """
         height, width = featmap_size
         x = (prior_idxs % width + self.offset) * self.strides[level_idx][0]
-        y = ((prior_idxs // width) % height +
-             self.offset) * self.strides[level_idx][1]
+        y = ((prior_idxs // width) % height
+             + self.offset) * self.strides[level_idx][1]
         prioris = torch.stack([x, y], 1).to(dtype)
         prioris = prioris.to(device)
         return prioris

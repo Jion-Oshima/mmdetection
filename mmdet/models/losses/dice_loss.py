@@ -2,7 +2,7 @@
 import torch
 import torch.nn as nn
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from .utils import weight_reduce_loss
 
 

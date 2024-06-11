@@ -4,7 +4,7 @@ from typing import Optional, Union
 import torch.nn as nn
 from torch import Tensor
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from .utils import weight_reduce_loss, weighted_loss
 
 

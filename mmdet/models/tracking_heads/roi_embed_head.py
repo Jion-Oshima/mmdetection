@@ -9,10 +9,10 @@ from mmengine.model import BaseModule
 from torch import Tensor
 from torch.nn.modules.utils import _pair
 
-from mmdet.models.losses import accuracy
-from mmdet.models.task_modules import SamplingResult
-from mmdet.models.task_modules.tracking import embed_similarity
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.models.losses import accuracy
+from models.mmdetection.mmdet.models.task_modules import SamplingResult
+from models.mmdetection.mmdet.models.task_modules.tracking import embed_similarity
+from models.mmdetection.mmdet.registry import MODELS
 
 
 @MODELS.register_module()

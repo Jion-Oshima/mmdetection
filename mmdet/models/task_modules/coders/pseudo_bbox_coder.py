@@ -3,8 +3,8 @@ from typing import Union
 
 from torch import Tensor
 
-from mmdet.registry import TASK_UTILS
-from mmdet.structures.bbox import BaseBoxes, HorizontalBoxes, get_box_tensor
+from models.mmdetection.mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.structures.bbox import BaseBoxes, HorizontalBoxes, get_box_tensor
 from .base_bbox_coder import BaseBBoxCoder
 
 

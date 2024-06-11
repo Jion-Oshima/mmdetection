@@ -6,8 +6,8 @@ import torch
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import TASK_UTILS
-from mmdet.utils import ConfigType
+from models.mmdetection.mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.utils import ConfigType
 from .assign_result import AssignResult
 from .base_assigner import BaseAssigner
 
@@ -30,8 +30,8 @@ def bbox_center_distance(bboxes: Tensor, priors: Tensor) -> Tensor:
     priors_cy = (priors[:, 1] + priors[:, 3]) / 2.0
     priors_points = torch.stack((priors_cx, priors_cy), dim=1)
 
-    distances = (priors_points[:, None, :] -
-                 bbox_points[None, :, :]).pow(2).sum(-1).sqrt()
+    distances = (priors_points[:, None, :]
+                 - bbox_points[None, :, :]).pow(2).sum(-1).sqrt()
 
     return distances
 
@@ -248,7 +248,7 @@ class ATSSAssigner(BaseAssigner):
         pos_inds = torch.nonzero(
             assigned_gt_inds > 0, as_tuple=False).squeeze()
         if pos_inds.numel() > 0:
-            assigned_labels[pos_inds] = gt_labels[assigned_gt_inds[pos_inds] -
-                                                  1]
+            assigned_labels[pos_inds] = gt_labels[assigned_gt_inds[pos_inds]
+                                                  - 1]
         return AssignResult(
             num_gt, assigned_gt_inds, max_overlaps, labels=assigned_labels)

@@ -3,7 +3,7 @@ import torch
 from mmengine.structures import BaseDataElement
 from scipy.optimize import linear_sum_assignment
 
-from mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.registry import TASK_UTILS
 from .assign_result import AssignResult
 from .task_aligned_assigner import TaskAlignedAssigner
 

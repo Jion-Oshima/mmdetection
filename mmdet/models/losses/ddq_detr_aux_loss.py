@@ -3,9 +3,9 @@ import torch
 import torch.nn as nn
 from mmengine.structures import BaseDataElement
 
-from mmdet.models.utils import multi_apply
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.utils import reduce_mean
+from models.mmdetection.mmdet.models.utils import multi_apply
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.utils import reduce_mean
 
 
 class DDQAuxLoss(nn.Module):
@@ -146,7 +146,7 @@ class DDQAuxLoss(nn.Module):
                 label_weights_list,
                 bbox_targets_list,
                 alignment_metrics_list,
-                )
+            )
 
         cls_avg_factor = reduce_mean(sum(cls_avg_factors)).clamp_(min=1).item()
         losses_cls = list(map(lambda x: x / cls_avg_factor, losses_cls))

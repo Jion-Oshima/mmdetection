@@ -7,7 +7,7 @@ import torch
 import torch.nn.functional as F
 from mmengine.model import BaseDataPreprocessor, stack_batch
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 
 try:
     import mmpretrain

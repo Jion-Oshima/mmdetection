@@ -5,8 +5,8 @@ import torch
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import TASK_UTILS
-from mmdet.utils import ConfigType
+from models.mmdetection.mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.utils import ConfigType
 from .assign_result import AssignResult
 from .base_assigner import BaseAssigner
 
@@ -219,8 +219,8 @@ class CenterRegionAssigner(BaseAssigner):
             prior_and_gt_core_overlaps > self.min_pos_iof)  # shape (n, k)
 
         is_prior_in_gt_shadow = (
-            self.iou_calculator(priors, gt_shadow, mode='iof') >
-            self.min_pos_iof)
+            self.iou_calculator(priors, gt_shadow, mode='iof')
+            > self.min_pos_iof)
         # Rule out center effective positive pixels
         is_prior_in_gt_shadow &= (~is_prior_in_gt_core)
 
@@ -256,8 +256,8 @@ class CenterRegionAssigner(BaseAssigner):
         assigned_labels = assigned_gt_ids.new_full((num_priors, ), -1)
         pos_inds = torch.nonzero(assigned_gt_ids > 0, as_tuple=False).squeeze()
         if pos_inds.numel() > 0:
-            assigned_labels[pos_inds] = gt_labels[assigned_gt_ids[pos_inds] -
-                                                  1]
+            assigned_labels[pos_inds] = gt_labels[assigned_gt_ids[pos_inds]
+                                                  - 1]
         # 5. Find pixels lying in the shadow of an object
         shadowed_pixel_labels = pixels_in_gt_shadow.clone()
         if pixels_in_gt_shadow.numel() > 0:

@@ -4,10 +4,10 @@ from typing import List, Optional
 import torch
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList
-from mmdet.structures.bbox import bbox_overlaps
-from mmdet.utils import InstanceList, OptInstanceList
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.structures.bbox import bbox_overlaps
+from models.mmdetection.mmdet.utils import InstanceList, OptInstanceList
 from ..utils import levels_to_images, multi_apply, unpack_gt_instances
 from .paa_head import PAAHead
 
@@ -108,8 +108,8 @@ class LADHead(PAAHead):
                                   0).view(-1, bboxes_target[0].size(-1))
 
         pos_inds_flatten = ((labels >= 0)
-                            &
-                            (labels < self.num_classes)).nonzero().reshape(-1)
+
+                            & (labels < self.num_classes)).nonzero().reshape(-1)
 
         if num_pos:
             pos_anchors = flatten_anchors[pos_inds_flatten]

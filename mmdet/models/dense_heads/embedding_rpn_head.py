@@ -7,10 +7,10 @@ from mmengine.model import BaseModule
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures.bbox import bbox_cxcywh_to_xyxy
-from mmdet.structures.det_data_sample import SampleList
-from mmdet.utils import InstanceList, OptConfigType
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures.bbox import bbox_cxcywh_to_xyxy
+from models.mmdetection.mmdet.structures.det_data_sample import SampleList
+from models.mmdetection.mmdet.utils import InstanceList, OptConfigType
 
 
 @MODELS.register_module()

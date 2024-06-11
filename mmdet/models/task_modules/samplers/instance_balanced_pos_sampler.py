@@ -2,7 +2,7 @@
 import numpy as np
 import torch
 
-from mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.registry import TASK_UTILS
 from .random_sampler import RandomSampler
 
 

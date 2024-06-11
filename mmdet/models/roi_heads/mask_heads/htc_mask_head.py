@@ -4,7 +4,7 @@ from typing import List, Optional, Union
 from mmcv.cnn import ConvModule
 from torch import Tensor
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from .fcn_mask_head import FCNMaskHead
 
 

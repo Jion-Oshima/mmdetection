@@ -11,12 +11,12 @@ from mmengine.model import BaseModule
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.models.task_modules.samplers import SamplingResult
-from mmdet.models.utils import (get_uncertain_point_coords_with_randomness,
-                                get_uncertainty)
-from mmdet.registry import MODELS
-from mmdet.structures.bbox import bbox2roi
-from mmdet.utils import ConfigType, InstanceList, MultiConfig, OptConfigType
+from models.mmdetection.mmdet.models.task_modules.samplers import SamplingResult
+from models.mmdetection.mmdet.models.utils import (get_uncertain_point_coords_with_randomness,
+                                                   get_uncertainty)
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures.bbox import bbox2roi
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList, MultiConfig, OptConfigType
 
 
 @MODELS.register_module()

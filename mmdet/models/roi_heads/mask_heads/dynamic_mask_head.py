@@ -6,9 +6,9 @@ import torch.nn as nn
 from mmengine.config import ConfigDict
 from torch import Tensor
 
-from mmdet.models.task_modules import SamplingResult
-from mmdet.registry import MODELS
-from mmdet.utils import ConfigType, InstanceList, OptConfigType, reduce_mean
+from models.mmdetection.mmdet.models.task_modules import SamplingResult
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList, OptConfigType, reduce_mean
 from .fcn_mask_head import FCNMaskHead
 
 

@@ -12,10 +12,10 @@ except ImportError:
     motmetrics = None
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.structures import DetDataSample
-from mmdet.structures.bbox import bbox_overlaps, bbox_xyxy_to_cxcyah
-from mmdet.utils import OptConfigType
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.structures import DetDataSample
+from models.mmdetection.mmdet.structures.bbox import bbox_overlaps, bbox_xyxy_to_cxcyah
+from models.mmdetection.mmdet.utils import OptConfigType
 from ..utils import imrenormalize
 from .base_tracker import BaseTracker
 

@@ -4,7 +4,7 @@ from typing import Optional
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.registry import TASK_UTILS
 from .assign_result import AssignResult
 from .max_iou_assigner import MaxIoUAssigner
 
