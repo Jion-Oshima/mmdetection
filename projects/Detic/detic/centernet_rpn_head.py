@@ -9,9 +9,9 @@ from mmengine import ConfigDict
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.models.dense_heads import CenterNetUpdateHead
-from mmdet.models.utils import multi_apply
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.models.dense_heads import CenterNetUpdateHead
+from models.mmdetection.mmdet.models.utils import multi_apply
+from models.mmdetection.mmdet.registry import MODELS
 
 INF = 1000000000
 RangeType = Sequence[Tuple[int, int]]

@@ -4,8 +4,8 @@ from typing import List
 
 from mmengine.fileio import get_local_path
 
-from mmdet.datasets import BaseDetDataset
-from mmdet.registry import DATASETS
+from models.mmdetection.mmdet.datasets import BaseDetDataset
+from models.mmdetection.mmdet.registry import DATASETS
 from .api_wrappers import COCO
 
 

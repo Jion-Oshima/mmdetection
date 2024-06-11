@@ -3,11 +3,11 @@ import pytest
 import torch
 from mmengine.config import ConfigDict
 
-from mmdet.models.layers.transformer import (AdaptivePadding,
-                                             DDQTransformerDecoder,
-                                             DetrTransformerDecoder,
-                                             DetrTransformerEncoder,
-                                             PatchEmbed, PatchMerging)
+from models.mmdetection.mmdet.models.layers.transformer import (AdaptivePadding,
+                                                                DDQTransformerDecoder,
+                                                                DetrTransformerDecoder,
+                                                                DetrTransformerEncoder,
+                                                                PatchEmbed, PatchMerging)
 
 
 def test_adaptive_padding():
@@ -179,10 +179,10 @@ def test_patch_embed():
     assert shape[0] * shape[1] == x3.shape[1]
 
     # test the init_out_size with nn.Unfold
-    assert patch_merge_3.init_out_size[1] == (input_size[0] - 2 * 4 -
-                                              1) // 2 + 1
-    assert patch_merge_3.init_out_size[0] == (input_size[0] - 2 * 4 -
-                                              1) // 2 + 1
+    assert patch_merge_3.init_out_size[1] == (input_size[0] - 2 * 4
+                                              - 1) // 2 + 1
+    assert patch_merge_3.init_out_size[0] == (input_size[0] - 2 * 4
+                                              - 1) // 2 + 1
     H = 11
     W = 12
     input_size = (H, W)

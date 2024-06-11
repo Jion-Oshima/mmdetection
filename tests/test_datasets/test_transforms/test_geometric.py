@@ -4,10 +4,10 @@ import unittest
 
 import numpy as np
 
-from mmdet.datasets.transforms import (GeomTransform, Rotate, ShearX, ShearY,
-                                       TranslateX, TranslateY)
-from mmdet.structures.bbox import HorizontalBoxes
-from mmdet.structures.mask import BitmapMasks, PolygonMasks
+from models.mmdetection.mmdet.datasets.transforms import (GeomTransform, Rotate, ShearX, ShearY,
+                                                          TranslateX, TranslateY)
+from models.mmdetection.mmdet.structures.bbox import HorizontalBoxes
+from models.mmdetection.mmdet.structures.mask import BitmapMasks, PolygonMasks
 from .utils import check_result_same, construct_toy_data
 
 

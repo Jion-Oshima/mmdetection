@@ -4,13 +4,13 @@ from unittest import TestCase
 
 from mmengine import DefaultScope
 
-from mmdet.utils import register_all_modules
+from models.mmdetection.mmdet.utils import register_all_modules
 
 
 class TestSetupEnv(TestCase):
 
     def test_register_all_modules(self):
-        from mmdet.registry import DATASETS
+        from models.mmdetection.mmdet.registry import DATASETS
 
         # not init default scope
         sys.modules.pop('mmdet.datasets', None)

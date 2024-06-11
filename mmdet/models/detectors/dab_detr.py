@@ -4,7 +4,7 @@ from typing import Dict, Tuple
 from mmengine.model import uniform_init
 from torch import Tensor, nn
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from ..layers import SinePositionalEncoding
 from ..layers.transformer import (DABDetrTransformerDecoder,
                                   DABDetrTransformerEncoder, inverse_sigmoid)

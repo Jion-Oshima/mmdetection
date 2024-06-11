@@ -2,7 +2,7 @@ import unittest
 
 import torch
 
-from mmdet.models.roi_heads.roi_extractors import GenericRoIExtractor
+from models.mmdetection.mmdet.models.roi_heads.roi_extractors import GenericRoIExtractor
 
 
 class TestGenericRoIExtractor(unittest.TestCase):

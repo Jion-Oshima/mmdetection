@@ -2,8 +2,8 @@
 from mmengine.config import read_base
 from mmengine.optim.scheduler import LinearLR
 
-from mmdet.models.backbones import SwinTransformer
-from mmdet.models.layers import PixelDecoder
+from models.mmdetection.mmdet.models.backbones import SwinTransformer
+from models.mmdetection.mmdet.models.layers import PixelDecoder
 
 with read_base():
     from .maskformer_r50_ms_16xb1_75e_coco import *

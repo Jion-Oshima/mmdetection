@@ -7,10 +7,10 @@ from mmcv.cnn import Scale
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures.bbox import bbox2distance
-from mmdet.utils import (ConfigType, InstanceList, OptConfigType,
-                         OptInstanceList, reduce_mean)
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures.bbox import bbox2distance
+from models.mmdetection.mmdet.utils import (ConfigType, InstanceList, OptConfigType,
+                                            OptInstanceList, reduce_mean)
 from ..utils import multi_apply
 from .anchor_free_head import AnchorFreeHead
 
@@ -341,7 +341,7 @@ class CenterNetUpdateHead(AnchorFreeHead):
             return gt_labels.new_full((num_points,
                                        self.num_classes),
                                       self.num_classes), \
-                   gt_bboxes.new_full((num_points, 4), -1)
+                gt_bboxes.new_full((num_points, 4), -1)
 
         # Calculate the regression tblr target corresponding to all points
         points = points[:, None].expand(num_points, num_gts, 2)

@@ -2,7 +2,7 @@ import unittest
 
 import torch
 
-from mmdet.models.roi_heads.bbox_heads import SCNetBBoxHead
+from models.mmdetection.mmdet.models.roi_heads.bbox_heads import SCNetBBoxHead
 
 
 class TestSCNetBBoxHead(unittest.TestCase):

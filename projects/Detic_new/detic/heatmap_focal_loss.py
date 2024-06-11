@@ -5,7 +5,7 @@ import torch
 import torch.nn as nn
 from torch import Tensor
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 
 
 # support class-agnostic heatmap_focal_loss

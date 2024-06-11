@@ -2,10 +2,10 @@
 from mmcv.transforms import LoadImageFromFile
 from mmengine.dataset.sampler import DefaultSampler
 
-from mmdet.datasets import AspectRatioBatchSampler, CocoDataset
-from mmdet.datasets.transforms import (LoadAnnotations, PackDetInputs,
-                                       RandomFlip, Resize)
-from mmdet.evaluation import CocoMetric
+from models.mmdetection.mmdet.datasets import AspectRatioBatchSampler, CocoDataset
+from models.mmdetection.mmdet.datasets.transforms import (LoadAnnotations, PackDetInputs,
+                                                          RandomFlip, Resize)
+from models.mmdetection.mmdet.evaluation import CocoMetric
 
 # dataset settings
 dataset_type = CocoDataset

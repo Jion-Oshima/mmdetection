@@ -6,11 +6,11 @@ import torch.nn.functional as F
 from mmengine.structures import InstanceData, PixelData
 from torch import Tensor
 
-from mmdet.evaluation.functional import INSTANCE_OFFSET
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList
-from mmdet.structures.mask import mask2bbox
-from mmdet.utils import OptConfigType, OptMultiConfig
+from models.mmdetection.mmdet.evaluation.functional import INSTANCE_OFFSET
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.structures.mask import mask2bbox
+from models.mmdetection.mmdet.utils import OptConfigType, OptMultiConfig
 from .base_panoptic_fusion_head import BasePanopticFusionHead
 
 
@@ -167,8 +167,8 @@ class MaskFormerFusionHead(BasePanopticFusionHead):
         mask_pred = mask_pred[is_thing]
 
         mask_pred_binary = (mask_pred > 0).float()
-        mask_scores_per_image = (mask_pred.sigmoid() *
-                                 mask_pred_binary).flatten(1).sum(1) / (
+        mask_scores_per_image = (mask_pred.sigmoid()
+                                 * mask_pred_binary).flatten(1).sum(1) / (
                                      mask_pred_binary.flatten(1).sum(1) + 1e-6)
         det_scores = scores_per_image * mask_scores_per_image
         mask_pred_binary = mask_pred_binary.bool()

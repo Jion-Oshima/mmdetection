@@ -9,7 +9,7 @@ import numpy as np
 import torch
 from mmengine.fileio import dump
 
-from mmdet.evaluation import INSTANCE_OFFSET, CocoPanopticMetric
+from models.mmdetection.mmdet.evaluation import INSTANCE_OFFSET, CocoPanopticMetric
 
 try:
     import panopticapi

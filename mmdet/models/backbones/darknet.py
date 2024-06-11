@@ -8,7 +8,7 @@ from mmcv.cnn import ConvModule
 from mmengine.model import BaseModule
 from torch.nn.modules.batchnorm import _BatchNorm
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 
 
 class ResBlock(BaseModule):
@@ -78,7 +78,7 @@ class Darknet(BaseModule):
             Default: None
 
     Example:
-        >>> from mmdet.models import Darknet
+        >>> from models.mmdetection.mmdet.models import Darknet
         >>> import torch
         >>> self = Darknet(depth=53)
         >>> self.eval()

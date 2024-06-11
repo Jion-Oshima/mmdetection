@@ -4,9 +4,9 @@ from typing import Optional
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.models.task_modules.assigners.assign_result import AssignResult
-from mmdet.models.task_modules.assigners.max_iou_assigner import MaxIoUAssigner
-from mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.models.task_modules.assigners.assign_result import AssignResult
+from models.mmdetection.mmdet.models.task_modules.assigners.max_iou_assigner import MaxIoUAssigner
+from models.mmdetection.mmdet.registry import TASK_UTILS
 
 
 @TASK_UTILS.register_module()
@@ -86,7 +86,7 @@ class TransMaxIoUAssigner(MaxIoUAssigner):
             priors[..., 1].view(-1, 1), priors[..., 0].view(-1, 1),
             priors[..., 3].view(-1, 1), priors[..., 2].view(-1, 1)
         ],
-                                 dim=-1)
+            dim=-1)
         overlaps = self.iou_calculator(gt_bboxes, trans_priors)
 
         if (self.ignore_iof_thr > 0 and gt_bboxes_ignore is not None

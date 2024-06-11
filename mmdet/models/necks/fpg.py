@@ -4,7 +4,7 @@ import torch.nn.functional as F
 from mmcv.cnn import ConvModule
 from mmengine.model import BaseModule
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 
 
 class Transition(BaseModule):
@@ -378,8 +378,8 @@ class FPG(BaseModule):
                         current_outs[lvl])
                 # across downsample
                 if lvl > 0 and across_up_trans is not None:
-                    to_fuse['across_up'] = across_up_trans(current_outs[lvl -
-                                                                        1])
+                    to_fuse['across_up'] = across_up_trans(current_outs[lvl
+                                                                        - 1])
                 # across upsample
                 if (lvl < self.num_outs - 1 and across_down_trans is not None):
                     to_fuse['across_down'] = across_down_trans(

@@ -4,8 +4,8 @@ from mmengine.hooks import (CheckpointHook, DistSamplerSeedHook, IterTimerHook,
 from mmengine.runner import LogProcessor
 from mmengine.visualization import LocalVisBackend
 
-from mmdet.engine.hooks import DetVisualizationHook
-from mmdet.visualization import DetLocalVisualizer
+from models.mmdetection.mmdet.engine.hooks import DetVisualizationHook
+from models.mmdetection.mmdet.visualization import DetLocalVisualizer
 
 default_scope = None
 

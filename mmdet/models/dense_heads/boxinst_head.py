@@ -7,8 +7,8 @@ from mmengine import MessageHub
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.utils import InstanceList
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import InstanceList
 from ..utils.misc import unfold_wo_center
 from .condinst_head import CondInstBboxHead, CondInstMaskHead
 
@@ -71,8 +71,8 @@ class BoxInstMaskHead(CondInstMaskHead):
         # TODO: Figure out the difference between it and directly sum
         max_ = torch.max(log_same_fg_prob, log_same_bg_prob)
         log_same_prob = torch.log(
-            torch.exp(log_same_fg_prob - max_) +
-            torch.exp(log_same_bg_prob - max_)) + max_
+            torch.exp(log_same_fg_prob - max_)
+            + torch.exp(log_same_bg_prob - max_)) + max_
 
         return -log_same_prob[:, 0]
 

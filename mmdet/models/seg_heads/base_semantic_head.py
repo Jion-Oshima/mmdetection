@@ -6,9 +6,9 @@ import torch.nn.functional as F
 from mmengine.model import BaseModule
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList
-from mmdet.utils import ConfigType, OptMultiConfig
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.utils import ConfigType, OptMultiConfig
 
 
 @MODELS.register_module()

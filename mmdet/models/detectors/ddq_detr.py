@@ -7,10 +7,10 @@ from mmcv.ops import MultiScaleDeformableAttention, batched_nms
 from torch import Tensor, nn
 from torch.nn.init import normal_
 
-from mmdet.registry import MODELS
-from mmdet.structures import OptSampleList
-from mmdet.structures.bbox import bbox_cxcywh_to_xyxy
-from mmdet.utils import OptConfigType
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import OptSampleList
+from models.mmdetection.mmdet.structures.bbox import bbox_cxcywh_to_xyxy
+from models.mmdetection.mmdet.utils import OptConfigType
 from ..layers import DDQTransformerDecoder
 from ..utils import align_tensor
 from .deformable_detr import DeformableDETR

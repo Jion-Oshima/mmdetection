@@ -8,7 +8,7 @@ import numpy as np
 from mmengine.dataset import BaseDataset
 from mmengine.utils import check_file_exist
 
-from mmdet.registry import DATASETS
+from models.mmdetection.mmdet.registry import DATASETS
 
 
 @DATASETS.register_module()

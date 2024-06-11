@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 from unittest import TestCase
 
-from mmdet.datasets import YouTubeVISDataset
+from models.mmdetection.mmdet.datasets import YouTubeVISDataset
 
 
 class TestYouTubeVISDataset(TestCase):

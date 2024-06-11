@@ -11,9 +11,9 @@ from mmengine.model import BaseModule, ModuleList
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.utils import (ConfigType, InstanceList, OptConfigType,
-                         OptInstanceList, OptMultiConfig)
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import (ConfigType, InstanceList, OptConfigType,
+                                            OptInstanceList, OptMultiConfig)
 from ..layers import fast_nms
 from ..utils import images_to_levels, multi_apply, select_single_mlvl
 from ..utils.misc import empty_instances
@@ -308,7 +308,7 @@ class YOLACTHead(AnchorHead):
             num_neg_samples = neg_inds.size(0)
         else:
             num_neg_samples = self.train_cfg['neg_pos_ratio'] * \
-                              num_pos_samples
+                num_pos_samples
             if num_neg_samples > neg_inds.size(0):
                 num_neg_samples = neg_inds.size(0)
         topk_loss_cls_neg, _ = loss_cls_all[neg_inds].topk(num_neg_samples)
@@ -802,10 +802,10 @@ class YOLACTProtonet(BaseMaskHead):
                     reduction='none') * self.loss_mask_weight
 
                 h, w = img_meta['img_shape'][:2]
-                gt_bboxes_width = (gt_bboxes_for_reweight[:, 2] -
-                                   gt_bboxes_for_reweight[:, 0]) / w
-                gt_bboxes_height = (gt_bboxes_for_reweight[:, 3] -
-                                    gt_bboxes_for_reweight[:, 1]) / h
+                gt_bboxes_width = (gt_bboxes_for_reweight[:, 2]
+                                   - gt_bboxes_for_reweight[:, 0]) / w
+                gt_bboxes_height = (gt_bboxes_for_reweight[:, 3]
+                                    - gt_bboxes_for_reweight[:, 1]) / h
                 loss = loss.mean(dim=(1,
                                       2)) / gt_bboxes_width / gt_bboxes_height
                 loss = torch.sum(loss)

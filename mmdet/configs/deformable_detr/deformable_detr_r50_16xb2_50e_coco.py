@@ -16,16 +16,16 @@ from mmengine.optim.scheduler import MultiStepLR
 from mmengine.runner.loops import EpochBasedTrainLoop, TestLoop, ValLoop
 from torch.optim.adamw import AdamW
 
-from mmdet.datasets.transforms import (LoadAnnotations, PackDetInputs,
-                                       RandomCrop, RandomFlip, Resize)
-from mmdet.models.backbones import ResNet
-from mmdet.models.data_preprocessors import DetDataPreprocessor
-from mmdet.models.dense_heads import DeformableDETRHead
-from mmdet.models.detectors import DeformableDETR
-from mmdet.models.losses import FocalLoss, GIoULoss, L1Loss
-from mmdet.models.necks import ChannelMapper
-from mmdet.models.task_modules import (BBoxL1Cost, FocalLossCost,
-                                       HungarianAssigner, IoUCost)
+from models.mmdetection.mmdet.datasets.transforms import (LoadAnnotations, PackDetInputs,
+                                                          RandomCrop, RandomFlip, Resize)
+from models.mmdetection.mmdet.models.backbones import ResNet
+from models.mmdetection.mmdet.models.data_preprocessors import DetDataPreprocessor
+from models.mmdetection.mmdet.models.dense_heads import DeformableDETRHead
+from models.mmdetection.mmdet.models.detectors import DeformableDETR
+from models.mmdetection.mmdet.models.losses import FocalLoss, GIoULoss, L1Loss
+from models.mmdetection.mmdet.models.necks import ChannelMapper
+from models.mmdetection.mmdet.models.task_modules import (BBoxL1Cost, FocalLossCost,
+                                                          HungarianAssigner, IoUCost)
 
 model = dict(
     type=DeformableDETR,

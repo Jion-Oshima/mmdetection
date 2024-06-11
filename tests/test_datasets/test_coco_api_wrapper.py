@@ -4,7 +4,7 @@ import unittest
 
 from mmengine.fileio import dump
 
-from mmdet.datasets.api_wrappers import COCOPanoptic
+from models.mmdetection.mmdet.datasets.api_wrappers import COCOPanoptic
 
 
 class TestCOCOPanoptic(unittest.TestCase):

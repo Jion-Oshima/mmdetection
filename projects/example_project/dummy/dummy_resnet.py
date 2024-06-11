@@ -1,6 +1,6 @@
 # Copyright (c) OpenMMLab. All rights reserved.
-from mmdet.models.backbones import ResNet
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.models.backbones import ResNet
+from models.mmdetection.mmdet.registry import MODELS
 
 
 @MODELS.register_module()

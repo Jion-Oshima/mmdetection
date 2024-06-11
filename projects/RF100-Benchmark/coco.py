@@ -5,9 +5,9 @@ from typing import List, Union
 
 from mmengine.fileio import get_local_path
 
-from mmdet.datasets.api_wrappers import COCO
-from mmdet.datasets.coco import CocoDataset
-from mmdet.registry import DATASETS
+from models.mmdetection.mmdet.datasets.api_wrappers import COCO
+from models.mmdetection.mmdet.datasets.coco import CocoDataset
+from models.mmdetection.mmdet.registry import DATASETS
 
 
 @DATASETS.register_module()

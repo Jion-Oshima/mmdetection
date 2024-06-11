@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from mmcv.cnn import ConvModule
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from .fpn import FPN
 
 
@@ -121,7 +121,7 @@ class PAFPN(FPN):
         # part 2: add bottom-up path
         for i in range(0, used_backbone_levels - 1):
             inter_outs[i + 1] = inter_outs[i + 1] + \
-                                self.downsample_convs[i](inter_outs[i])
+                self.downsample_convs[i](inter_outs[i])
 
         outs = []
         outs.append(inter_outs[0])

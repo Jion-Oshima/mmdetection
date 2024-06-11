@@ -8,9 +8,9 @@ import torch
 import torch.nn as nn
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures import OptSampleList, SampleList
-from mmdet.utils import ConfigType
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import OptSampleList, SampleList
+from models.mmdetection.mmdet.utils import ConfigType
 from ..layers import SinePositionalEncoding
 from ..layers.transformer.grounding_dino_layers import (
     GroundingDinoTransformerDecoder, GroundingDinoTransformerEncoder)

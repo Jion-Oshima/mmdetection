@@ -22,8 +22,8 @@ from rich.table import Table
 from rich.text import Text
 from tqdm import tqdm
 
-from mmdet.registry import MODELS
-from mmdet.utils import register_all_modules
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import register_all_modules
 
 console = Console()
 MMDET_ROOT = Path(__file__).absolute().parents[1]

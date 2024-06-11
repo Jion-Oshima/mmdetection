@@ -5,7 +5,7 @@ from mmcv.cnn import build_activation_layer, build_norm_layer
 from mmcv.ops.modulated_deform_conv import ModulatedDeformConv2d
 from mmengine.model import BaseModule, constant_init, normal_init
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from ..layers import DyReLU
 
 # Reference:

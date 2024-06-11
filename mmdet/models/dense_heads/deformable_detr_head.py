@@ -8,9 +8,9 @@ from mmcv.cnn import Linear
 from mmengine.model import bias_init_with_prob, constant_init
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList
-from mmdet.utils import InstanceList, OptInstanceList
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.utils import InstanceList, OptInstanceList
 from ..layers import inverse_sigmoid
 from .detr_head import DETRHead
 

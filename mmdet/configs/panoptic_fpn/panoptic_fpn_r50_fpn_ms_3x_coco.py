@@ -8,9 +8,9 @@ with read_base():
 from mmcv.transforms import RandomResize
 from mmcv.transforms.loading import LoadImageFromFile
 
-from mmdet.datasets.transforms.formatting import PackDetInputs
-from mmdet.datasets.transforms.loading import LoadPanopticAnnotations
-from mmdet.datasets.transforms.transforms import RandomFlip
+from models.mmdetection.mmdet.datasets.transforms.formatting import PackDetInputs
+from models.mmdetection.mmdet.datasets.transforms.loading import LoadPanopticAnnotations
+from models.mmdetection.mmdet.datasets.transforms.transforms import RandomFlip
 
 # In mstrain 3x config, img_scale=[(1333, 640), (1333, 800)],
 # multiscale_mode='range'

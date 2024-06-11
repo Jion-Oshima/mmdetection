@@ -8,8 +8,8 @@ import mmengine.fileio as fileio
 from mmengine.dataset import BaseDataset
 from mmengine.logging import print_log
 
-from mmdet.datasets.api_wrappers import COCO
-from mmdet.registry import DATASETS
+from models.mmdetection.mmdet.datasets.api_wrappers import COCO
+from models.mmdetection.mmdet.registry import DATASETS
 
 
 @DATASETS.register_module()

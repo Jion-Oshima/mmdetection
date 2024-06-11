@@ -5,7 +5,7 @@ from mmcv.ops import batched_nms
 from mmengine.evaluator import BaseMetric
 from mmengine.logging import print_log
 
-from mmdet.registry import METRICS
+from models.mmdetection.mmdet.registry import METRICS
 
 try:
     import jsonlines

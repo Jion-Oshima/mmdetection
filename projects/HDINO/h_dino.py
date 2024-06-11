@@ -5,12 +5,12 @@ import torch
 from torch import Tensor, nn
 from torch.nn.init import normal_
 
-from mmdet.models.detectors import DINO, DeformableDETR
-from mmdet.models.detectors.deformable_detr import \
+from models.mmdetection.mmdet.models.detectors import DINO, DeformableDETR
+from models.mmdetection.mmdet.models.detectors.deformable_detr import \
     MultiScaleDeformableAttention
-from mmdet.registry import MODELS
-from mmdet.structures import OptSampleList
-from mmdet.utils import OptConfigType
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import OptSampleList
+from models.mmdetection.mmdet.utils import OptConfigType
 
 
 @MODELS.register_module()

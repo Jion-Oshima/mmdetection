@@ -5,9 +5,9 @@ import pytest
 import torch
 from mmengine.config import ConfigDict
 
-from mmdet.models.layers import DropBlock
-from mmdet.registry import MODELS
-from mmdet.utils import register_all_modules
+from models.mmdetection.mmdet.models.layers import DropBlock
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import register_all_modules
 
 register_all_modules()
 
@@ -167,5 +167,5 @@ class TestMSDeformAttnPixelDecoder(unittest.TestCase):
         assert len(multi_scale_features) == 3
         multi_scale_features = multi_scale_features[::-1]
         for i in range(3):
-            assert multi_scale_features[i].shape[-2:] == feats[i +
-                                                               1].shape[-2:]
+            assert multi_scale_features[i].shape[-2:] == feats[i
+                                                               + 1].shape[-2:]

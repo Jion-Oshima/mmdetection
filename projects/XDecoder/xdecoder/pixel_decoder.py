@@ -3,7 +3,7 @@ from typing import Callable, Optional, Union
 from torch import nn
 from torch.nn import functional as F
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from .transformer_blocks import (Conv2d, PositionEmbeddingSine,
                                  TransformerEncoder, TransformerEncoderLayer,
                                  get_norm)

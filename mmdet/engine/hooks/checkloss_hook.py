@@ -5,7 +5,7 @@ import torch
 from mmengine.hooks import Hook
 from mmengine.runner import Runner
 
-from mmdet.registry import HOOKS
+from models.mmdetection.mmdet.registry import HOOKS
 
 
 @HOOKS.register_module()

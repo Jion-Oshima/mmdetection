@@ -3,9 +3,9 @@ import pytest
 import torch
 from torch.nn.modules.batchnorm import _BatchNorm
 
-from mmdet.models.necks import (FPG, FPN, FPN_CARAFE, NASFCOS_FPN, NASFPN, SSH,
-                                YOLOXPAFPN, ChannelMapper, DilatedEncoder,
-                                DyHead, SSDNeck, YOLOV3Neck)
+from models.mmdetection.mmdet.models.necks import (FPG, FPN, FPN_CARAFE, NASFCOS_FPN, NASFPN, SSH,
+                                                   YOLOXPAFPN, ChannelMapper, DilatedEncoder,
+                                                   DyHead, SSDNeck, YOLOV3Neck)
 
 
 def test_fpn():
@@ -269,7 +269,7 @@ def test_yolov3_neck():
     assert len(outs) == len(feats)
     for i in range(len(outs)):
         assert outs[i].shape == \
-               (1, out_channels[i], feat_sizes[i], feat_sizes[i])
+            (1, out_channels[i], feat_sizes[i], feat_sizes[i])
 
     # test more flexible setting
     s = 32
@@ -287,7 +287,7 @@ def test_yolov3_neck():
     assert len(outs) == len(feats)
     for i in range(len(outs)):
         assert outs[i].shape == \
-               (1, out_channels[i], feat_sizes[i], feat_sizes[i])
+            (1, out_channels[i], feat_sizes[i], feat_sizes[i])
 
 
 def test_ssd_neck():

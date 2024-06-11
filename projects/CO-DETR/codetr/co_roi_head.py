@@ -3,13 +3,13 @@ from typing import List, Tuple
 import torch
 from torch import Tensor
 
-from mmdet.models.roi_heads import StandardRoIHead
-from mmdet.models.task_modules.samplers import SamplingResult
-from mmdet.models.utils import unpack_gt_instances
-from mmdet.registry import MODELS
-from mmdet.structures import DetDataSample
-from mmdet.structures.bbox import bbox2roi
-from mmdet.utils import InstanceList
+from models.mmdetection.mmdet.models.roi_heads import StandardRoIHead
+from models.mmdetection.mmdet.models.task_modules.samplers import SamplingResult
+from models.mmdetection.mmdet.models.utils import unpack_gt_instances
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import DetDataSample
+from models.mmdetection.mmdet.structures.bbox import bbox2roi
+from models.mmdetection.mmdet.utils import InstanceList
 
 
 @MODELS.register_module()

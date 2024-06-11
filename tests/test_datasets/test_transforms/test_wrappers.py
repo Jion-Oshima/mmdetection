@@ -4,8 +4,8 @@ import unittest
 
 from mmcv.transforms import Compose
 
-from mmdet.datasets.transforms import MultiBranch, RandomOrder
-from mmdet.utils import register_all_modules
+from models.mmdetection.mmdet.datasets.transforms import MultiBranch, RandomOrder
+from models.mmdetection.mmdet.utils import register_all_modules
 from .utils import construct_toy_data
 
 register_all_modules()

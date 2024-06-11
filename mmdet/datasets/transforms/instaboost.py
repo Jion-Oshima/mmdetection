@@ -4,7 +4,7 @@ from typing import Tuple
 import numpy as np
 from mmcv.transforms import BaseTransform
 
-from mmdet.registry import TRANSFORMS
+from models.mmdetection.mmdet.registry import TRANSFORMS
 
 
 @TRANSFORMS.register_module()

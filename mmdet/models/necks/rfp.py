@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from mmengine.model import BaseModule, ModuleList, constant_init, xavier_init
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from .fpn import FPN
 
 
@@ -128,7 +128,7 @@ class RFP(FPN):
             x_new = []
             for ft_idx in range(len(x_idx)):
                 add_weight = torch.sigmoid(self.rfp_weight(x_idx[ft_idx]))
-                x_new.append(add_weight * x_idx[ft_idx] +
-                             (1 - add_weight) * x[ft_idx])
+                x_new.append(add_weight * x_idx[ft_idx]
+                             + (1 - add_weight) * x[ft_idx])
             x = x_new
         return x

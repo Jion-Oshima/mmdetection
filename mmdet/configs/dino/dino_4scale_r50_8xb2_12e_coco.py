@@ -10,15 +10,15 @@ from torch.nn.modules.batchnorm import BatchNorm2d
 from torch.nn.modules.normalization import GroupNorm
 from torch.optim.adamw import AdamW
 
-from mmdet.datasets.transforms import (LoadAnnotations, PackDetInputs,
-                                       RandomCrop, RandomFlip, Resize)
-from mmdet.models import (DINO, ChannelMapper, DetDataPreprocessor, DINOHead,
-                          ResNet)
-from mmdet.models.losses.focal_loss import FocalLoss
-from mmdet.models.losses.iou_loss import GIoULoss
-from mmdet.models.losses.smooth_l1_loss import L1Loss
-from mmdet.models.task_modules import (BBoxL1Cost, FocalLossCost,
-                                       HungarianAssigner, IoUCost)
+from models.mmdetection.mmdet.datasets.transforms import (LoadAnnotations, PackDetInputs,
+                                                          RandomCrop, RandomFlip, Resize)
+from models.mmdetection.mmdet.models import (DINO, ChannelMapper, DetDataPreprocessor, DINOHead,
+                                             ResNet)
+from models.mmdetection.mmdet.models.losses.focal_loss import FocalLoss
+from models.mmdetection.mmdet.models.losses.iou_loss import GIoULoss
+from models.mmdetection.mmdet.models.losses.smooth_l1_loss import L1Loss
+from models.mmdetection.mmdet.models.task_modules import (BBoxL1Cost, FocalLossCost,
+                                                          HungarianAssigner, IoUCost)
 
 with read_base():
     from .._base_.datasets.coco_detection import *

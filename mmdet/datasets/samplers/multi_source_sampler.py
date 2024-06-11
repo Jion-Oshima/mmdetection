@@ -8,7 +8,7 @@ from mmengine.dataset import BaseDataset
 from mmengine.dist import get_dist_info, sync_random_seed
 from torch.utils.data import Sampler
 
-from mmdet.registry import DATA_SAMPLERS
+from models.mmdetection.mmdet.registry import DATA_SAMPLERS
 
 
 @DATA_SAMPLERS.register_module()
@@ -68,7 +68,7 @@ class MultiSourceSampler(Sampler):
                  shuffle: bool = True,
                  seed: Optional[int] = None) -> None:
 
-        assert hasattr(dataset, 'cumulative_sizes'),\
+        assert hasattr(dataset, 'cumulative_sizes'), \
             f'The dataset must be ConcatDataset, but get {dataset}'
         assert isinstance(batch_size, int) and batch_size > 0, \
             'batch_size must be a positive integer value, ' \

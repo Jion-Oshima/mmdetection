@@ -5,8 +5,8 @@ from mmengine.dist import get_dist_info
 from mmengine.hooks import Hook
 from torch import nn
 
-from mmdet.registry import HOOKS
-from mmdet.utils import all_reduce_dict
+from models.mmdetection.mmdet.registry import HOOKS
+from models.mmdetection.mmdet.utils import all_reduce_dict
 
 
 def get_norm_states(module: nn.Module) -> OrderedDict:

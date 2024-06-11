@@ -9,7 +9,7 @@ from mmengine.registry import RUNNERS
 from mmengine.runner import Runner
 from mmengine.runner.checkpoint import load_checkpoint
 
-from mmdet.utils import register_all_modules
+from models.mmdetection.mmdet.utils import register_all_modules
 
 
 # TODO: support fuse_conv_bn, visualization, and format_only
@@ -90,7 +90,7 @@ def main():
 
     if args.reid:
         assert not (args.checkpoint and args.reid), \
-             'Error: checkpoint and reid checkpoint cannot both exist'
+            'Error: checkpoint and reid checkpoint cannot both exist'
         load_checkpoint(model.reid, args.reid)
 
     # start testing

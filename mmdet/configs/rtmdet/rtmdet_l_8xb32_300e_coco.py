@@ -22,26 +22,26 @@ from torch.nn import SyncBatchNorm
 from torch.nn.modules.activation import SiLU
 from torch.optim.adamw import AdamW
 
-from mmdet.datasets.transforms.formatting import PackDetInputs
-from mmdet.datasets.transforms.loading import LoadAnnotations
-from mmdet.datasets.transforms.transforms import (CachedMixUp, CachedMosaic,
-                                                  Pad, RandomCrop, RandomFlip,
-                                                  Resize, YOLOXHSVRandomAug)
-from mmdet.engine.hooks.pipeline_switch_hook import PipelineSwitchHook
-from mmdet.models.backbones.cspnext import CSPNeXt
-from mmdet.models.data_preprocessors.data_preprocessor import \
+from models.mmdetection.mmdet.datasets.transforms.formatting import PackDetInputs
+from models.mmdetection.mmdet.datasets.transforms.loading import LoadAnnotations
+from models.mmdetection.mmdet.datasets.transforms.transforms import (CachedMixUp, CachedMosaic,
+                                                                     Pad, RandomCrop, RandomFlip,
+                                                                     Resize, YOLOXHSVRandomAug)
+from models.mmdetection.mmdet.engine.hooks.pipeline_switch_hook import PipelineSwitchHook
+from models.mmdetection.mmdet.models.backbones.cspnext import CSPNeXt
+from models.mmdetection.mmdet.models.data_preprocessors.data_preprocessor import \
     DetDataPreprocessor
-from mmdet.models.dense_heads.rtmdet_head import RTMDetSepBNHead
-from mmdet.models.detectors.rtmdet import RTMDet
-from mmdet.models.layers.ema import ExpMomentumEMA
-from mmdet.models.losses.gfocal_loss import QualityFocalLoss
-from mmdet.models.losses.iou_loss import GIoULoss
-from mmdet.models.necks.cspnext_pafpn import CSPNeXtPAFPN
-from mmdet.models.task_modules.assigners.dynamic_soft_label_assigner import \
+from models.mmdetection.mmdet.models.dense_heads.rtmdet_head import RTMDetSepBNHead
+from models.mmdetection.mmdet.models.detectors.rtmdet import RTMDet
+from models.mmdetection.mmdet.models.layers.ema import ExpMomentumEMA
+from models.mmdetection.mmdet.models.losses.gfocal_loss import QualityFocalLoss
+from models.mmdetection.mmdet.models.losses.iou_loss import GIoULoss
+from models.mmdetection.mmdet.models.necks.cspnext_pafpn import CSPNeXtPAFPN
+from models.mmdetection.mmdet.models.task_modules.assigners.dynamic_soft_label_assigner import \
     DynamicSoftLabelAssigner
-from mmdet.models.task_modules.coders.distance_point_bbox_coder import \
+from models.mmdetection.mmdet.models.task_modules.coders.distance_point_bbox_coder import \
     DistancePointBBoxCoder
-from mmdet.models.task_modules.prior_generators.point_generator import \
+from models.mmdetection.mmdet.models.task_modules.prior_generators.point_generator import \
     MlvlPointGenerator
 
 model = dict(

@@ -10,8 +10,8 @@ from mmengine.evaluator import DumpResults
 from mmengine.fileio import dump
 from mmengine.runner import Runner
 
-from mmdet.engine.hooks.utils import trigger_visualization_hook
-from mmdet.registry import RUNNERS
+from models.mmdetection.mmdet.engine.hooks.utils import trigger_visualization_hook
+from models.mmdetection.mmdet.registry import RUNNERS
 from tools.analysis_tools.robustness_eval import get_results
 
 
@@ -206,8 +206,8 @@ def main():
             eval_results = runner.test()
             if args.out:
                 eval_results_filename = (
-                    osp.splitext(args.out)[0] + '_results' +
-                    osp.splitext(args.out)[1])
+                    osp.splitext(args.out)[0] + '_results'
+                    + osp.splitext(args.out)[1])
                 aggregated_results[corruption][
                     corruption_severity] = eval_results
                 dump(aggregated_results, eval_results_filename)

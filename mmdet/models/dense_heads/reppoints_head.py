@@ -10,8 +10,8 @@ from mmengine.config import ConfigDict
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.utils import ConfigType, InstanceList, MultiConfig, OptInstanceList
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList, MultiConfig, OptInstanceList
 from ..task_modules.prior_generators import MlvlPointGenerator
 from ..task_modules.samplers import PseudoSampler
 from ..utils import (filter_scores_and_topk, images_to_levels, multi_apply,
@@ -231,7 +231,7 @@ class RepPointsHead(AnchorFreeHead):
                 pts_x_mean - half_width, pts_y_mean - half_height,
                 pts_x_mean + half_width, pts_y_mean + half_height
             ],
-                             dim=1)
+                dim=1)
         else:
             raise NotImplementedError
         return bbox
@@ -250,8 +250,8 @@ class RepPointsHead(AnchorFreeHead):
         """
         b, _, h, w = reg.shape
         bxy = (previous_boxes[:, :2, ...] + previous_boxes[:, 2:, ...]) / 2.
-        bwh = (previous_boxes[:, 2:, ...] -
-               previous_boxes[:, :2, ...]).clamp(min=1e-6)
+        bwh = (previous_boxes[:, 2:, ...]
+               - previous_boxes[:, :2, ...]).clamp(min=1e-6)
         grid_topleft = bxy + bwh * reg[:, :2, ...] - 0.5 * bwh * torch.exp(
             reg[:, 2:, ...])
         grid_wh = bwh * torch.exp(reg[:, 2:, ...])
@@ -727,8 +727,8 @@ class RepPointsHead(AnchorFreeHead):
                 bbox_shift = bbox_preds_init * self.point_strides[i_lvl]
                 bbox_center = torch.cat(
                     [center[i_lvl][:, :2], center[i_lvl][:, :2]], dim=1)
-                bbox.append(bbox_center +
-                            bbox_shift[i_img].permute(1, 2, 0).reshape(-1, 4))
+                bbox.append(bbox_center
+                            + bbox_shift[i_img].permute(1, 2, 0).reshape(-1, 4))
             bbox_list.append(bbox)
         cls_reg_targets_refine = self.get_targets(
             proposals_list=bbox_list,

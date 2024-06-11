@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import unittest
 
-from mmdet.datasets import DSDLDetDataset
+from models.mmdetection.mmdet.datasets import DSDLDetDataset
 
 try:
     from dsdl.dataset import DSDLDataset

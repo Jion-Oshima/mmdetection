@@ -7,9 +7,9 @@ from mmcv.cnn import ConvModule, Scale
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.utils import (ConfigType, InstanceList, MultiConfig, OptConfigType,
-                         OptInstanceList, reduce_mean)
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import (ConfigType, InstanceList, MultiConfig, OptConfigType,
+                                            OptInstanceList, reduce_mean)
 from ..task_modules.prior_generators import anchor_inside_flags
 from ..utils import images_to_levels, multi_apply, unmap
 from .anchor_head import AnchorHead
@@ -342,8 +342,8 @@ class ATSSHead(AnchorHead):
         left_right = torch.stack([l_, r_], dim=1)
         top_bottom = torch.stack([t_, b_], dim=1)
         centerness = torch.sqrt(
-            (left_right.min(dim=-1)[0] / left_right.max(dim=-1)[0]) *
-            (top_bottom.min(dim=-1)[0] / top_bottom.max(dim=-1)[0]))
+            (left_right.min(dim=-1)[0] / left_right.max(dim=-1)[0])
+            * (top_bottom.min(dim=-1)[0] / top_bottom.max(dim=-1)[0]))
         assert not torch.isnan(centerness).any()
         return centerness
 

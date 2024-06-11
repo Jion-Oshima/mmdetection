@@ -2,8 +2,8 @@
 import pytest
 import torch
 
-from mmdet.models.layers import (LearnedPositionalEncoding,
-                                 SinePositionalEncoding)
+from models.mmdetection.mmdet.models.layers import (LearnedPositionalEncoding,
+                                                    SinePositionalEncoding)
 
 
 def test_sine_positional_encoding(num_feats=16, batch_size=2):

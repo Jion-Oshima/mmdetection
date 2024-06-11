@@ -10,8 +10,8 @@ from mmengine.model import (BaseModule, ModuleList, caffe2_xavier_init,
                             normal_init, xavier_init)
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.utils import ConfigType, OptMultiConfig
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import ConfigType, OptMultiConfig
 from ..task_modules.prior_generators import MlvlPointGenerator
 from .positional_encoding import SinePositionalEncoding
 from .transformer import Mask2FormerTransformerEncoder

@@ -4,7 +4,7 @@ from unittest import TestCase
 import numpy as np
 from mmengine.registry import init_default_scope
 
-from mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.registry import TASK_UTILS
 
 
 class TestInterpolateTracklets(TestCase):

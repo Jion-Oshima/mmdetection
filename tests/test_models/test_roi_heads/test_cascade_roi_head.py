@@ -5,9 +5,9 @@ from unittest import TestCase
 import torch
 from parameterized import parameterized
 
-from mmdet.models.roi_heads import StandardRoIHead  # noqa
-from mmdet.registry import MODELS
-from mmdet.testing import demo_mm_inputs, demo_mm_proposals, get_roi_head_cfg
+from models.mmdetection.mmdet.models.roi_heads import StandardRoIHead  # noqa
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.testing import demo_mm_inputs, demo_mm_proposals, get_roi_head_cfg
 
 
 class TestCascadeRoIHead(TestCase):

@@ -9,8 +9,8 @@ import torch
 from mmengine.registry import init_default_scope
 from mmengine.structures import BaseDataElement, InstanceData
 
-from mmdet.registry import METRICS
-from mmdet.structures import DetDataSample, TrackDataSample
+from models.mmdetection.mmdet.registry import METRICS
+from models.mmdetection.mmdet.structures import DetDataSample, TrackDataSample
 
 
 class TestYouTubeVISMetric(TestCase):

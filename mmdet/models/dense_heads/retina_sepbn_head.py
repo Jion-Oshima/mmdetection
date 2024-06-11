@@ -6,8 +6,8 @@ from mmcv.cnn import ConvModule
 from mmengine.model import bias_init_with_prob, normal_init
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.utils import OptConfigType, OptMultiConfig
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import OptConfigType, OptMultiConfig
 from .anchor_head import AnchorHead
 
 

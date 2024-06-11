@@ -6,10 +6,10 @@ import torch
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures.bbox import bbox_overlaps
-from mmdet.utils import (ConfigType, InstanceList, OptConfigType,
-                         OptInstanceList)
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures.bbox import bbox_overlaps
+from models.mmdetection.mmdet.utils import (ConfigType, InstanceList, OptConfigType,
+                                            OptInstanceList)
 from ..layers import multiclass_nms
 from ..utils import levels_to_images, multi_apply
 from . import ATSSHead
@@ -146,8 +146,8 @@ class PAAHead(ATSSHead):
                                   0).view(-1, bboxes_target[0].size(-1))
 
         pos_inds_flatten = ((labels >= 0)
-                            &
-                            (labels < self.num_classes)).nonzero().reshape(-1)
+
+                            & (labels < self.num_classes)).nonzero().reshape(-1)
 
         losses_cls = self.loss_cls(
             cls_scores,
@@ -579,8 +579,8 @@ class PAAHead(ATSSHead):
             score_factor = score_factor.permute(1, 2, 0).reshape(-1).sigmoid()
 
             if 0 < nms_pre < scores.shape[0]:
-                max_scores, _ = (scores *
-                                 score_factor[:, None]).sqrt().max(dim=1)
+                max_scores, _ = (scores
+                                 * score_factor[:, None]).sqrt().max(dim=1)
                 _, topk_inds = max_scores.topk(nms_pre)
                 priors = priors[topk_inds, :]
                 bbox_pred = bbox_pred[topk_inds, :]
@@ -715,8 +715,8 @@ class PAAHead(ATSSHead):
                 pos_ious = single_det_ious[pos_ious_mask]
                 pos_bboxes = candidate_cls_bboxes[pos_ious_mask]
                 pos_scores = candidate_cls_scores[pos_ious_mask]
-                pis = (torch.exp(-(1 - pos_ious)**2 / 0.025) *
-                       pos_scores)[:, None]
+                pis = (torch.exp(-(1 - pos_ious)**2 / 0.025)
+                       * pos_scores)[:, None]
                 voted_box = torch.sum(
                     pis * pos_bboxes, dim=0) / torch.sum(
                         pis, dim=0)

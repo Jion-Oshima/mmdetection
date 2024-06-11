@@ -7,7 +7,7 @@ from mmcv.cnn import ConvModule, DepthwiseSeparableConvModule
 from mmengine.model import BaseModule
 from torch.nn.modules.batchnorm import _BatchNorm
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from ..layers import CSPLayer
 
 
@@ -153,7 +153,7 @@ class CSPDarknet(BaseModule):
         init_cfg (dict or list[dict], optional): Initialization config dict.
             Default: None.
     Example:
-        >>> from mmdet.models import CSPDarknet
+        >>> from models.mmdetection.mmdet.models import CSPDarknet
         >>> import torch
         >>> self = CSPDarknet(depth=53)
         >>> self.eval()

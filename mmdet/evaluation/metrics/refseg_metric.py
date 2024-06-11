@@ -4,7 +4,7 @@ from typing import Sequence
 import torch
 from mmengine.evaluator import BaseMetric
 
-from mmdet.registry import METRICS
+from models.mmdetection.mmdet.registry import METRICS
 
 
 @METRICS.register_module()

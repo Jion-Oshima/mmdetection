@@ -5,7 +5,7 @@ import torch
 from mmengine.config import ConfigDict
 from mmengine.structures import InstanceData
 
-from mmdet.models.dense_heads import CenterNetHead
+from models.mmdetection.mmdet.models.dense_heads import CenterNetHead
 
 
 class TestCenterNetHead(TestCase):

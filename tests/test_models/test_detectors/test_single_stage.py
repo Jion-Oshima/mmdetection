@@ -7,9 +7,9 @@ import torch
 from mmengine.logging import MessageHub
 from parameterized import parameterized
 
-from mmdet.structures import DetDataSample
-from mmdet.testing import demo_mm_inputs, get_detector_cfg
-from mmdet.utils import register_all_modules
+from models.mmdetection.mmdet.structures import DetDataSample
+from models.mmdetection.mmdet.testing import demo_mm_inputs, get_detector_cfg
+from models.mmdetection.mmdet.utils import register_all_modules
 
 
 class TestSingleStageDetector(TestCase):
@@ -29,7 +29,7 @@ class TestSingleStageDetector(TestCase):
         model = get_detector_cfg(cfg_file)
         model.backbone.init_cfg = None
 
-        from mmdet.registry import MODELS
+        from models.mmdetection.mmdet.registry import MODELS
         detector = MODELS.build(model)
         self.assertTrue(detector.backbone)
         self.assertTrue(detector.neck)
@@ -50,7 +50,7 @@ class TestSingleStageDetector(TestCase):
         model = get_detector_cfg(cfg_file)
         model.backbone.init_cfg = None
 
-        from mmdet.registry import MODELS
+        from models.mmdetection.mmdet.registry import MODELS
         assert all([device in ['cpu', 'cuda'] for device in devices])
 
         for device in devices:
@@ -78,7 +78,7 @@ class TestSingleStageDetector(TestCase):
         model = get_detector_cfg(cfg_file)
         model.backbone.init_cfg = None
 
-        from mmdet.registry import MODELS
+        from models.mmdetection.mmdet.registry import MODELS
         assert all([device in ['cpu', 'cuda'] for device in devices])
 
         for device in devices:
@@ -109,7 +109,7 @@ class TestSingleStageDetector(TestCase):
         model = get_detector_cfg(cfg_file)
         model.backbone.init_cfg = None
 
-        from mmdet.registry import MODELS
+        from models.mmdetection.mmdet.registry import MODELS
         assert all([device in ['cpu', 'cuda'] for device in devices])
 
         for device in devices:

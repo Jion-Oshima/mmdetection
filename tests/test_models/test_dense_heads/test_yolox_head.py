@@ -8,7 +8,7 @@ from mmengine.model import bias_init_with_prob
 from mmengine.structures import InstanceData
 from mmengine.testing import assert_allclose
 
-from mmdet.models.dense_heads import YOLOXHead
+from models.mmdetection.mmdet.models.dense_heads import YOLOXHead
 
 
 class TestYOLOXHead(TestCase):

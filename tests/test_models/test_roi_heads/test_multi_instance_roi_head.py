@@ -5,9 +5,9 @@ from unittest import TestCase
 import torch
 from mmengine.config import Config
 
-from mmdet.registry import MODELS
-from mmdet.testing import demo_mm_inputs, demo_mm_proposals
-from mmdet.utils import register_all_modules
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.testing import demo_mm_inputs, demo_mm_proposals
+from models.mmdetection.mmdet.utils import register_all_modules
 
 register_all_modules()
 

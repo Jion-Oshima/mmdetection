@@ -6,9 +6,9 @@ import numpy as np
 import torch
 from mmengine.structures import InstanceData, PixelData
 
-from mmdet.evaluation import INSTANCE_OFFSET
-from mmdet.structures import DetDataSample
-from mmdet.visualization import DetLocalVisualizer, TrackLocalVisualizer
+from models.mmdetection.mmdet.evaluation import INSTANCE_OFFSET
+from models.mmdetection.mmdet.structures import DetDataSample
+from models.mmdetection.mmdet.visualization import DetLocalVisualizer, TrackLocalVisualizer
 
 
 def _rand_bboxes(num_boxes, h, w):

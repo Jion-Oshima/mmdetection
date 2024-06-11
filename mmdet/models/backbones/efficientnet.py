@@ -9,7 +9,7 @@ import torch.utils.checkpoint as cp
 from mmcv.cnn.bricks import ConvModule, DropPath
 from mmengine.model import BaseModule, Sequential
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from ..layers import InvertedResidual, SELayer
 from ..utils import make_divisible
 
@@ -131,8 +131,8 @@ def model_scaling(layer_setting, arch_setting):
                 tmp_index.append(i + 1)
         tmp_index.append(len(layer_cfg))
         for i in range(len(tmp_index) - 1):
-            split_layer_setting.append(layer_cfg[tmp_index[i]:tmp_index[i +
-                                                                        1]])
+            split_layer_setting.append(layer_cfg[tmp_index[i]:tmp_index[i
+                                                                        + 1]])
     split_layer_setting.append(new_layer_setting[-1])
 
     num_of_layers = [len(layer_cfg) for layer_cfg in split_layer_setting[1:-1]]

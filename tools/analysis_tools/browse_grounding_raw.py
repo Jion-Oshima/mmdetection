@@ -10,9 +10,9 @@ from mmengine.fileio import get
 from mmengine.structures import InstanceData
 from mmengine.utils import mkdir_or_exist
 
-from mmdet.structures import DetDataSample
-from mmdet.visualization import DetLocalVisualizer
-from mmdet.visualization.palette import _get_adaptive_scales
+from models.mmdetection.mmdet.structures import DetDataSample
+from models.mmdetection.mmdet.visualization import DetLocalVisualizer
+from models.mmdetection.mmdet.visualization.palette import _get_adaptive_scales
 
 # backend_args = dict(
 #     backend='petrel',
@@ -107,8 +107,8 @@ def main():
 
         base_name, extension = osp.splitext(item['filename'])
 
-        out_file = osp.join(args.output_dir, base_name + '_' + str(i) +
-                            extension) if args.output_dir is not None else None
+        out_file = osp.join(args.output_dir, base_name + '_' + str(i)
+                            + extension) if args.output_dir is not None else None
 
         if args.output_dir is not None:
             mkdir_or_exist(args.output_dir)

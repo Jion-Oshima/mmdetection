@@ -2,8 +2,8 @@ import numpy as np
 import pytest
 import torch
 
-from mmdet.utils import AvoidOOM
-from mmdet.utils.memory import cast_tensor_type
+from models.mmdetection.mmdet.utils import AvoidOOM
+from models.mmdetection.mmdet.utils.memory import cast_tensor_type
 
 
 def test_avoidoom():
@@ -19,8 +19,8 @@ def test_avoidoom():
                                                           tensor.transpose(
                                                               1, 0))
         assert default_result.device == result.device and \
-               default_result.dtype == result.dtype and \
-               torch.equal(default_result, result)
+            default_result.dtype == result.dtype and \
+            torch.equal(default_result, result)
 
         # calculate with fp16 and convert back to source type
         AvoidCudaOOM = AvoidOOM(test=True)
@@ -28,8 +28,8 @@ def test_avoidoom():
                                                           tensor.transpose(
                                                               1, 0))
         assert default_result.device == result.device and \
-               default_result.dtype == result.dtype and \
-               torch.allclose(default_result, result, 1e-3)
+            default_result.dtype == result.dtype and \
+            torch.allclose(default_result, result, 1e-3)
 
         # calculate on cpu and convert back to source device
         AvoidCudaOOM = AvoidOOM(test=True)
@@ -37,8 +37,8 @@ def test_avoidoom():
                                                           tensor.transpose(
                                                               1, 0))
         assert result.dtype == default_result.dtype and \
-               result.device == default_result.device and \
-               torch.allclose(default_result, result)
+            result.device == default_result.device and \
+            torch.allclose(default_result, result)
 
         # do not calculate on cpu and the outputs will be same as input
         AvoidCudaOOM = AvoidOOM(test=True, to_cpu=False)
@@ -46,7 +46,7 @@ def test_avoidoom():
                                                           tensor.transpose(
                                                               1, 0))
         assert result.dtype == default_result.dtype and \
-               result.device == default_result.device
+            result.device == default_result.device
 
     else:
         default_result = torch.mm(tensor, tensor.transpose(1, 0))
@@ -55,8 +55,8 @@ def test_avoidoom():
                                                           tensor.transpose(
                                                               1, 0))
         assert default_result.device == result.device and \
-               default_result.dtype == result.dtype and \
-               torch.equal(default_result, result)
+            default_result.dtype == result.dtype and \
+            torch.equal(default_result, result)
 
 
 def test_cast_tensor_type():
@@ -78,14 +78,14 @@ def test_cast_tensor_type():
     list_input = [inputs, inputs]
     list_outs = cast_tensor_type(list_input, dst_type=torch.half)
     assert len(list_outs) == len(list_input) and \
-           isinstance(list_outs, list)
+        isinstance(list_outs, list)
     for out in list_outs:
         assert out.dtype == torch.half
     # input is a dict
     dict_input = {'test1': inputs, 'test2': inputs}
     dict_outs = cast_tensor_type(dict_input, dst_type=torch.half)
     assert len(dict_outs) == len(dict_input) and \
-           isinstance(dict_outs, dict)
+        isinstance(dict_outs, dict)
 
     # convert the input tensor to CPU and re-convert to GPU
     if torch.cuda.is_available():

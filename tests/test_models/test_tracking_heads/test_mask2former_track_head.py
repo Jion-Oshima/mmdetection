@@ -4,9 +4,9 @@ from unittest import TestCase
 import torch
 from mmengine import Config
 
-from mmdet.models.tracking_heads import Mask2FormerTrackHead
-from mmdet.structures import DetDataSample, TrackDataSample
-from mmdet.testing import demo_track_inputs
+from models.mmdetection.mmdet.models.tracking_heads import Mask2FormerTrackHead
+from models.mmdetection.mmdet.structures import DetDataSample, TrackDataSample
+from models.mmdetection.mmdet.testing import demo_track_inputs
 
 
 class TestMask2FormerHead(TestCase):

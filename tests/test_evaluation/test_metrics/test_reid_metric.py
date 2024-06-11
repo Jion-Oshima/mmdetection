@@ -4,8 +4,8 @@ from unittest import TestCase
 import torch
 from mmengine.registry import init_default_scope
 
-from mmdet.registry import METRICS
-from mmdet.structures import ReIDDataSample
+from models.mmdetection.mmdet.registry import METRICS
+from models.mmdetection.mmdet.structures import ReIDDataSample
 
 
 class TestReIDMetrics(TestCase):

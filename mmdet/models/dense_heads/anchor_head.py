@@ -7,10 +7,10 @@ import torch.nn as nn
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.structures.bbox import BaseBoxes, cat_boxes, get_box_tensor
-from mmdet.utils import (ConfigType, InstanceList, OptConfigType,
-                         OptInstanceList, OptMultiConfig)
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.structures.bbox import BaseBoxes, cat_boxes, get_box_tensor
+from models.mmdetection.mmdet.utils import (ConfigType, InstanceList, OptConfigType,
+                                            OptInstanceList, OptMultiConfig)
 from ..task_modules.prior_generators import (AnchorGenerator,
                                              anchor_inside_flags)
 from ..task_modules.samplers import PseudoSampler

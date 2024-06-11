@@ -95,12 +95,12 @@ class AvoidOOM:
             test unit. Defaults to False.
 
     Examples:
-        >>> from mmdet.utils.memory import AvoidOOM
+        >>> from models.mmdetection.mmdet.utils.memory import AvoidOOM
         >>> AvoidCUDAOOM = AvoidOOM()
         >>> output = AvoidOOM.retry_if_cuda_oom(
         >>>     some_torch_function)(input1, input2)
         >>> # To use as a decorator
-        >>> # from mmdet.utils import AvoidCUDAOOM
+        >>> # from models.mmdetection.mmdet.utils import AvoidCUDAOOM
         >>> @AvoidCUDAOOM.retry_if_cuda_oom
         >>> def function(*args, **kwargs):
         >>>     return None

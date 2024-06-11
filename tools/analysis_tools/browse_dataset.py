@@ -6,9 +6,9 @@ from mmengine.config import Config, DictAction
 from mmengine.registry import init_default_scope
 from mmengine.utils import ProgressBar
 
-from mmdet.models.utils import mask2ndarray
-from mmdet.registry import DATASETS, VISUALIZERS
-from mmdet.structures.bbox import BaseBoxes
+from models.mmdetection.mmdet.models.utils import mask2ndarray
+from models.mmdetection.mmdet.registry import DATASETS, VISUALIZERS
+from models.mmdetection.mmdet.structures.bbox import BaseBoxes
 
 
 def parse_args():

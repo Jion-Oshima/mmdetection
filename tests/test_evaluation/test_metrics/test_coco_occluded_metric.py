@@ -5,8 +5,8 @@ from tempfile import TemporaryDirectory
 import mmengine
 import numpy as np
 
-from mmdet.datasets import CocoDataset
-from mmdet.evaluation import CocoOccludedSeparatedMetric
+from models.mmdetection.mmdet.datasets import CocoDataset
+from models.mmdetection.mmdet.evaluation import CocoOccludedSeparatedMetric
 
 
 def test_coco_occluded_separated_metric():

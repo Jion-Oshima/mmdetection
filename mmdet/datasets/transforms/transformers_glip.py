@@ -3,8 +3,8 @@ import mmcv
 import numpy as np
 from mmcv.transforms import BaseTransform
 
-from mmdet.registry import TRANSFORMS
-from mmdet.structures.bbox import HorizontalBoxes, autocast_box_type
+from models.mmdetection.mmdet.registry import TRANSFORMS
+from models.mmdetection.mmdet.structures.bbox import HorizontalBoxes, autocast_box_type
 from .transforms import RandomFlip
 
 

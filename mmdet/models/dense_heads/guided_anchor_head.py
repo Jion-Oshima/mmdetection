@@ -8,9 +8,9 @@ from mmengine.model import BaseModule
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.utils import (ConfigType, InstanceList, MultiConfig, OptConfigType,
-                         OptInstanceList)
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.utils import (ConfigType, InstanceList, MultiConfig, OptConfigType,
+                                            OptInstanceList)
 from ..layers import multiclass_nms
 from ..task_modules.prior_generators import anchor_inside_flags, calc_region
 from ..task_modules.samplers import PseudoSampler
@@ -161,10 +161,10 @@ class GuidedAnchorHead(AnchorHead):
         self.loc_filter_thr = loc_filter_thr
 
         # build approx_anchor_generator and square_anchor_generator
-        assert (approx_anchor_generator['octave_base_scale'] ==
-                square_anchor_generator['scales'][0])
-        assert (approx_anchor_generator['strides'] ==
-                square_anchor_generator['strides'])
+        assert (approx_anchor_generator['octave_base_scale']
+                == square_anchor_generator['scales'][0])
+        assert (approx_anchor_generator['strides']
+                == square_anchor_generator['strides'])
         self.approx_anchor_generator = TASK_UTILS.build(
             approx_anchor_generator)
         self.square_anchor_generator = TASK_UTILS.build(
@@ -443,8 +443,8 @@ class GuidedAnchorHead(AnchorHead):
             all_ignore_map.append(ignore_map)
         for img_id in range(img_per_gpu):
             gt_bboxes = batch_gt_instances[img_id].bboxes
-            scale = torch.sqrt((gt_bboxes[:, 2] - gt_bboxes[:, 0]) *
-                               (gt_bboxes[:, 3] - gt_bboxes[:, 1]))
+            scale = torch.sqrt((gt_bboxes[:, 2] - gt_bboxes[:, 0])
+                               * (gt_bboxes[:, 3] - gt_bboxes[:, 1]))
             min_anchor_size = scale.new_full(
                 (1, ), float(anchor_scale * anchor_strides[0]))
             # assign gt bboxes to different feature levels w.r.t. their scales

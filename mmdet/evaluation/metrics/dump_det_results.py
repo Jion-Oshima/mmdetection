@@ -5,8 +5,8 @@ from typing import Sequence
 from mmengine.evaluator import DumpResults
 from mmengine.evaluator.metric import _to_cpu
 
-from mmdet.registry import METRICS
-from mmdet.structures.mask import encode_mask_results
+from models.mmdetection.mmdet.registry import METRICS
+from models.mmdetection.mmdet.structures.mask import encode_mask_results
 
 
 @METRICS.register_module()

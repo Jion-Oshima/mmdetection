@@ -7,8 +7,8 @@ from typing import List, Union
 
 from mmengine.fileio import get_local_path
 
-from mmdet.datasets import LVISV1Dataset
-from mmdet.registry import DATASETS
+from models.mmdetection.mmdet.datasets import LVISV1Dataset
+from models.mmdetection.mmdet.registry import DATASETS
 
 
 @DATASETS.register_module()

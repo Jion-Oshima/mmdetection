@@ -8,7 +8,7 @@ from mmengine.config import Config
 from mmengine.dataset import pseudo_collate
 from mmengine.structures import InstanceData, PixelData
 
-from mmdet.utils.util_random import ensure_rng
+from models.mmdetection.mmdet.utils.util_random import ensure_rng
 from ..registry import TASK_UTILS
 from ..structures import DetDataSample, TrackDataSample
 from ..structures.bbox import HorizontalBoxes
@@ -77,12 +77,12 @@ def _rand_bboxes(rng, num_boxes, w, h):
 
 
 def _rand_masks(rng, num_boxes, bboxes, img_w, img_h):
-    from mmdet.structures.mask import BitmapMasks
+    from models.mmdetection.mmdet.structures.mask import BitmapMasks
     masks = np.zeros((num_boxes, img_h, img_w))
     for i, bbox in enumerate(bboxes):
         bbox = bbox.astype(np.int32)
-        mask = (rng.rand(1, bbox[3] - bbox[1], bbox[2] - bbox[0]) >
-                0.3).astype(np.int64)
+        mask = (rng.rand(1, bbox[3] - bbox[1], bbox[2] - bbox[0])
+                > 0.3).astype(np.int64)
         masks[i:i + 1, bbox[1]:bbox[3], bbox[0]:bbox[2]] = mask
     return BitmapMasks(masks, height=img_h, width=img_w)
 

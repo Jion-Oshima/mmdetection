@@ -5,9 +5,9 @@ import numpy as np
 import pytest
 import torch
 
-from mmdet.apis import inference_detector, init_detector
-from mmdet.structures import DetDataSample
-from mmdet.utils import register_all_modules
+from models.mmdetection.mmdet.apis import inference_detector, init_detector
+from models.mmdetection.mmdet.structures import DetDataSample
+from models.mmdetection.mmdet.utils import register_all_modules
 
 # TODO: Waiting to fix multiple call error bug
 register_all_modules()

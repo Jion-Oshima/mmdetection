@@ -3,8 +3,8 @@ import json
 
 from mmcv.transforms import BaseTransform
 
-from mmdet.registry import TRANSFORMS
-from mmdet.structures.bbox import BaseBoxes
+from models.mmdetection.mmdet.registry import TRANSFORMS
+from models.mmdetection.mmdet.structures.bbox import BaseBoxes
 
 try:
     from transformers import AutoTokenizer

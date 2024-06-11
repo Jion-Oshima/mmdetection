@@ -5,8 +5,8 @@ from unittest import TestCase
 import mmcv
 import pytest
 
-from mmdet.datasets.transforms import *  # noqa
-from mmdet.registry import TRANSFORMS
+from models.mmdetection.mmdet.datasets.transforms import *  # noqa
+from models.mmdetection.mmdet.registry import TRANSFORMS
 
 
 class TestMuitiScaleFlipAug(TestCase):
@@ -26,12 +26,12 @@ class TestMuitiScaleFlipAug(TestCase):
                 dict(type='Resize', scale=scale, keep_ratio=False)
                 for scale in [(256, 256), (512, 512), (1024, 1024)]
             ],
-                        [
-                            dict(
-                                type='mmdet.PackDetInputs',
-                                meta_keys=('img_id', 'img_path', 'ori_shape',
-                                           'img_shape', 'scale_factor'))
-                        ]])
+                [
+                dict(
+                    type='mmdet.PackDetInputs',
+                    meta_keys=('img_id', 'img_path', 'ori_shape',
+                               'img_shape', 'scale_factor'))
+            ]])
         tta_module = TRANSFORMS.build(tta_transform)
 
         results = dict()
@@ -91,12 +91,12 @@ class TestMuitiScaleFlipAug(TestCase):
             transforms=[[
                 dict(type='Resize', scale=(512, 512), keep_ratio=False)
             ],
-                        [
-                            dict(
-                                type='mmdet.PackDetInputs',
-                                meta_keys=('img_id', 'img_path', 'ori_shape',
-                                           'img_shape', 'scale_factor'))
-                        ]])
+                [
+                dict(
+                    type='mmdet.PackDetInputs',
+                    meta_keys=('img_id', 'img_path', 'ori_shape',
+                               'img_shape', 'scale_factor'))
+            ]])
         tta_module = TRANSFORMS.build(tta_transform)
         tta_results = tta_module(results.copy())
         assert [tta_results['inputs'][0].shape] == [(3, 512, 512)]
@@ -132,12 +132,12 @@ class TestMuitiScaleFlipAug(TestCase):
                 dict(type='Resize', scale_factor=r, keep_ratio=False)
                 for r in [0.5, 1.0, 2.0]
             ],
-                        [
-                            dict(
-                                type='mmdet.PackDetInputs',
-                                meta_keys=('img_id', 'img_path', 'ori_shape',
-                                           'img_shape', 'scale_factor'))
-                        ]])
+                [
+                dict(
+                    type='mmdet.PackDetInputs',
+                    meta_keys=('img_id', 'img_path', 'ori_shape',
+                               'img_shape', 'scale_factor'))
+            ]])
         tta_module = TRANSFORMS.build(tta_transform)
         tta_results = tta_module(results.copy())
         assert [img.shape for img in tta_results['inputs']] == [(3, 144, 256),

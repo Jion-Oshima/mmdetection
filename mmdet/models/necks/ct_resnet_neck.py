@@ -7,8 +7,8 @@ import torch.nn as nn
 from mmcv.cnn import ConvModule
 from mmengine.model import BaseModule
 
-from mmdet.registry import MODELS
-from mmdet.utils import OptMultiConfig
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import OptMultiConfig
 
 
 @MODELS.register_module()
@@ -83,7 +83,7 @@ class CTResNetNeck(BaseModule):
                     for j in range(w.size(3)):
                         w[0, 0, i, j] = \
                             (1 - math.fabs(i / f - c)) * (
-                                    1 - math.fabs(j / f - c))
+                            1 - math.fabs(j / f - c))
                 for c in range(1, w.size(0)):
                     w[c, 0, :, :] = w[0, 0, :, :]
             elif isinstance(m, nn.BatchNorm2d):

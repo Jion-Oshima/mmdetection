@@ -8,7 +8,7 @@ import torch.utils.checkpoint as cp
 from mmcv.cnn import build_conv_layer, build_norm_layer
 from mmengine.model import BaseModule
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from ..layers import ResLayer
 from .resnet import Bottleneck as _Bottleneck
 from .resnet import ResNetV1d
@@ -186,8 +186,8 @@ class Bottleneck(_Bottleneck):
         if groups == 1:
             width = self.planes
         else:
-            width = math.floor(self.planes *
-                               (base_width / base_channels)) * groups
+            width = math.floor(self.planes
+                               * (base_width / base_channels)) * groups
 
         self.avg_down_stride = avg_down_stride and self.conv2_stride > 1
 

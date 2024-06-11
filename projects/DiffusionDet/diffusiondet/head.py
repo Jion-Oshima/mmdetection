@@ -22,12 +22,12 @@ from mmcv.ops import batched_nms
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.structures import SampleList
-from mmdet.structures.bbox import (bbox2roi, bbox_cxcywh_to_xyxy,
-                                   bbox_xyxy_to_cxcywh, get_box_wh,
-                                   scale_boxes)
-from mmdet.utils import InstanceList
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.structures.bbox import (bbox2roi, bbox_cxcywh_to_xyxy,
+                                                      bbox_xyxy_to_cxcywh, get_box_wh,
+                                                      scale_boxes)
+from models.mmdetection.mmdet.utils import InstanceList
 
 _DEFAULT_SCALE_CLAMP = math.log(100000.0 / 16)
 
@@ -266,8 +266,8 @@ class DynamicDiffusionDetHead(nn.Module):
             'posterior_mean_coef1',
             betas * torch.sqrt(alphas_cumprod_prev) / (1. - alphas_cumprod))
         self.register_buffer('posterior_mean_coef2',
-                             (1. - alphas_cumprod_prev) * torch.sqrt(alphas) /
-                             (1. - alphas_cumprod))
+                             (1. - alphas_cumprod_prev) * torch.sqrt(alphas)
+                             / (1. - alphas_cumprod))
 
     def forward(self, features, init_bboxes, init_t, init_features=None):
         time = self.time_mlp(init_t, )
@@ -543,9 +543,9 @@ class DynamicDiffusionDetHead(nn.Module):
             alpha = self.alphas_cumprod[time]
             alpha_next = self.alphas_cumprod[time_next]
 
-            sigma = self.ddim_sampling_eta * ((1 - alpha / alpha_next) *
-                                              (1 - alpha_next) /
-                                              (1 - alpha)).sqrt()
+            sigma = self.ddim_sampling_eta * ((1 - alpha / alpha_next)
+                                              * (1 - alpha_next)
+                                              / (1 - alpha)).sqrt()
             c = (1 - alpha_next - sigma**2).sqrt()
 
             batch_noise_bboxes_list = []
@@ -572,8 +572,8 @@ class DynamicDiffusionDetHead(nn.Module):
                             dim=0)
                     else:
                         select_mask = [True] * self.num_proposals + \
-                                      [False] * (num_remain -
-                                                 self.num_proposals)
+                                      [False] * (num_remain
+                                                 - self.num_proposals)
                         random.shuffle(select_mask)
                         noise_bboxes = noise_bboxes[select_mask]
 
@@ -700,7 +700,7 @@ class DynamicDiffusionDetHead(nn.Module):
     def predict_noise_from_start(self, x_t, t, x0):
         results = (extract(
             self.sqrt_recip_alphas_cumprod, t, x_t.shape) * x_t - x0) / \
-                  extract(self.sqrt_recipm1_alphas_cumprod, t, x_t.shape)
+            extract(self.sqrt_recipm1_alphas_cumprod, t, x_t.shape)
         return results
 
     def inference(self, box_cls, box_pred, cfg, device):
@@ -768,7 +768,7 @@ class DynamicDiffusionDetHead(nn.Module):
                         zip(scores, labels, box_pred)):
                 if self.use_ensemble and self.sampling_timesteps > 1:
                     return box_pred_per_image, scores_per_image, \
-                           labels_per_image
+                        labels_per_image
 
                 if self.use_nms:
                     det_bboxes, keep_idxs = batched_nms(

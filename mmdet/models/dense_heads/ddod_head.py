@@ -8,10 +8,10 @@ from mmengine.model import bias_init_with_prob, normal_init
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.structures.bbox import bbox_overlaps
-from mmdet.utils import (ConfigType, InstanceList, OptConfigType,
-                         OptInstanceList, reduce_mean)
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.structures.bbox import bbox_overlaps
+from models.mmdetection.mmdet.utils import (ConfigType, InstanceList, OptConfigType,
+                                            OptInstanceList, reduce_mean)
 from ..task_modules.prior_generators import anchor_inside_flags
 from ..utils import images_to_levels, multi_apply, unmap
 from .anchor_head import AnchorHead
@@ -258,8 +258,8 @@ class DDODHead(AnchorHead):
         # FG cat_id: [0, num_classes -1], BG cat_id: num_classes
         bg_class_ind = self.num_classes
         pos_inds = ((labels >= 0)
-                    &
-                    (labels < bg_class_ind)).nonzero(as_tuple=False).squeeze(1)
+
+                    & (labels < bg_class_ind)).nonzero(as_tuple=False).squeeze(1)
 
         if len(pos_inds) > 0:
             pos_bbox_targets = bbox_targets[pos_inds]
@@ -294,8 +294,8 @@ class DDODHead(AnchorHead):
         # get pos samples for each level
         bg_class_ind = self.num_classes
         for ii, each_level_label in enumerate(labels_list):
-            pos_inds = ((each_level_label >= 0) &
-                        (each_level_label < bg_class_ind)).nonzero(
+            pos_inds = ((each_level_label >= 0)
+                        & (each_level_label < bg_class_ind)).nonzero(
                             as_tuple=False).squeeze(1)
             self.cls_num_pos_samples_per_level[ii] += len(pos_inds)
         # get reweight factor from 1 ~ 2 with bilinear interpolation

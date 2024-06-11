@@ -7,8 +7,8 @@ from mmcv.cnn import VGG
 from mmengine.dataset import BaseDataset
 from torch import nn
 
-from mmdet.engine.hooks import NumClassCheckHook
-from mmdet.models.roi_heads.mask_heads import FusedSemanticHead
+from models.mmdetection.mmdet.engine.hooks import NumClassCheckHook
+from models.mmdetection.mmdet.models.roi_heads.mask_heads import FusedSemanticHead
 
 
 class TestNumClassCheckHook(TestCase):

@@ -8,7 +8,7 @@ import mmengine.fileio as fileio
 import numpy as np
 from mmengine.dataset import BaseDataset, Compose
 
-from mmdet.registry import DATASETS
+from models.mmdetection.mmdet.registry import DATASETS
 
 
 @DATASETS.register_module()

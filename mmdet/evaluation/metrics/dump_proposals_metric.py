@@ -9,7 +9,7 @@ from mmengine.fileio import dump
 from mmengine.logging import MMLogger
 from mmengine.structures import InstanceData
 
-from mmdet.registry import METRICS
+from models.mmdetection.mmdet.registry import METRICS
 
 
 @METRICS.register_module()

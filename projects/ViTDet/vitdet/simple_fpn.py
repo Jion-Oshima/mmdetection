@@ -7,8 +7,8 @@ from mmcv.cnn import ConvModule, build_norm_layer
 from mmengine.model import BaseModule
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.utils import MultiConfig, OptConfigType
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import MultiConfig, OptConfigType
 
 
 @MODELS.register_module()

@@ -5,7 +5,7 @@ import torch
 from mmcv.ops import batched_nms
 from torch import Tensor, nn
 
-from mmdet.structures.bbox import bbox_cxcywh_to_xyxy
+from models.mmdetection.mmdet.structures.bbox import bbox_cxcywh_to_xyxy
 from .deformable_detr_layers import DeformableDetrTransformerDecoder
 from .utils import MLP, coordinate_to_encoding, inverse_sigmoid
 

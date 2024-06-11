@@ -5,10 +5,10 @@ import torch
 import torch.nn as nn
 from torch import Tensor
 
-from mmdet.models.detectors.base import BaseDetector
-from mmdet.registry import MODELS
-from mmdet.structures import OptSampleList, SampleList
-from mmdet.utils import InstanceList, OptConfigType, OptMultiConfig
+from models.mmdetection.mmdet.models.detectors.base import BaseDetector
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import OptSampleList, SampleList
+from models.mmdetection.mmdet.utils import InstanceList, OptConfigType, OptMultiConfig
 
 
 @MODELS.register_module()
@@ -82,11 +82,11 @@ class CoDETR(BaseDetector):
             if bbox_head[i]:
                 bbox_head[i].update(
                     train_cfg=train_cfg[i + head_idx + len(self.roi_head)] if (
-                        train_cfg and train_cfg[i + head_idx +
-                                                len(self.roi_head)] is not None
+                        train_cfg and train_cfg[i + head_idx
+                                                + len(self.roi_head)] is not None
                     ) else None)
-                bbox_head[i].update(test_cfg=test_cfg[i + head_idx +
-                                                      len(self.roi_head)])
+                bbox_head[i].update(test_cfg=test_cfg[i + head_idx
+                                                      + len(self.roi_head)])
                 self.bbox_head.append(MODELS.build(bbox_head[i]))
                 self.bbox_head[-1].init_weights()
 

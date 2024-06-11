@@ -6,8 +6,8 @@ import torch
 from mmengine import Config
 from mmengine.structures import InstanceData
 
-from mmdet.models.dense_heads import DDQDETRHead
-from mmdet.structures import DetDataSample
+from models.mmdetection.mmdet.models.dense_heads import DDQDETRHead
+from models.mmdetection.mmdet.structures import DetDataSample
 
 
 class TestDDQDETRHead(TestCase):

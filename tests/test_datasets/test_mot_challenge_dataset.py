@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import unittest
 
-from mmdet.datasets import MOTChallengeDataset
+from models.mmdetection.mmdet.datasets import MOTChallengeDataset
 
 
 class TestMOTChallengeDataset(unittest.TestCase):

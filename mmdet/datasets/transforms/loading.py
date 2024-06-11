@@ -11,10 +11,10 @@ from mmcv.transforms import LoadImageFromFile
 from mmengine.fileio import get
 from mmengine.structures import BaseDataElement
 
-from mmdet.registry import TRANSFORMS
-from mmdet.structures.bbox import get_box_type
-from mmdet.structures.bbox.box_type import autocast_box_type
-from mmdet.structures.mask import BitmapMasks, PolygonMasks
+from models.mmdetection.mmdet.registry import TRANSFORMS
+from models.mmdetection.mmdet.structures.bbox import get_box_type
+from models.mmdetection.mmdet.structures.bbox.box_type import autocast_box_type
+from models.mmdetection.mmdet.structures.mask import BitmapMasks, PolygonMasks
 
 
 @TRANSFORMS.register_module()
@@ -363,9 +363,9 @@ class LoadAnnotations(MMCV_LoadAnnotations):
                 instance['ignore_flag'] = 1
                 gt_mask = [np.zeros(6)]
             elif isinstance(gt_mask, dict) and \
-                    not (gt_mask.get('counts') is not None and
-                         gt_mask.get('size') is not None and
-                         isinstance(gt_mask['counts'], (list, str))):
+                    not (gt_mask.get('counts') is not None
+                         and gt_mask.get('size') is not None
+                         and isinstance(gt_mask['counts'], (list, str))):
                 # if gt_mask is a dict, it should include `counts` and `size`,
                 # so that `BitmapMasks` can uncompressed RLE
                 instance['ignore_flag'] = 1
@@ -414,8 +414,8 @@ class LoadAnnotations(MMCV_LoadAnnotations):
             # avoid using underflow conversion
             gt_semantic_seg[gt_semantic_seg == 0] = self.ignore_index
             gt_semantic_seg = gt_semantic_seg - 1
-            gt_semantic_seg[gt_semantic_seg == self.ignore_index -
-                            1] = self.ignore_index
+            gt_semantic_seg[gt_semantic_seg == self.ignore_index
+                            - 1] = self.ignore_index
 
         # modify if custom classes
         if results.get('label_map', None) is not None:
@@ -680,7 +680,7 @@ class LoadProposals(BaseTransform):
         proposals = results['proposals']
         # the type of proposals should be `dict` or `InstanceData`
         assert isinstance(proposals, dict) \
-               or isinstance(proposals, BaseDataElement)
+            or isinstance(proposals, BaseDataElement)
         bboxes = proposals['bboxes'].astype(np.float32)
         assert bboxes.shape[1] == 4, \
             f'Proposals should have shapes (n, 4), but found {bboxes.shape}'
@@ -706,7 +706,7 @@ class LoadProposals(BaseTransform):
 
     def __repr__(self):
         return self.__class__.__name__ + \
-               f'(num_max_proposals={self.num_max_proposals})'
+            f'(num_max_proposals={self.num_max_proposals})'
 
 
 @TRANSFORMS.register_module()
@@ -796,8 +796,8 @@ class FilterAnnotations(BaseTransform):
 
     def __repr__(self):
         return self.__class__.__name__ + \
-               f'(min_gt_bbox_wh={self.min_gt_bbox_wh}, ' \
-               f'keep_empty={self.keep_empty})'
+            f'(min_gt_bbox_wh={self.min_gt_bbox_wh}, ' \
+            f'keep_empty={self.keep_empty})'
 
 
 @TRANSFORMS.register_module()

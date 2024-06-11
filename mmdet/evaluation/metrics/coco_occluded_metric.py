@@ -8,7 +8,7 @@ from mmengine.logging import print_log
 from pycocotools import mask as coco_mask
 from terminaltables import AsciiTable
 
-from mmdet.registry import METRICS
+from models.mmdetection.mmdet.registry import METRICS
 from .coco_metric import CocoMetric
 
 

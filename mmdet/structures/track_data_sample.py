@@ -25,7 +25,7 @@ class TrackDataSample(BaseDataElement):
     Examples:
         >>> import torch
         >>> from mmengine.structures import InstanceData
-        >>> from mmdet.structures import DetDataSample, TrackDataSample
+        >>> from models.mmdetection.mmdet.structures import DetDataSample, TrackDataSample
         >>> track_data_sample = TrackDataSample()
         >>> # set the 1st frame
         >>> frame1_data_sample = DetDataSample(metainfo=dict(

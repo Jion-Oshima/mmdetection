@@ -7,8 +7,8 @@ from mmengine import Config
 from mmengine.structures import InstanceData
 
 from mmdet import *  # noqa
-from mmdet.models.dense_heads import LADHead, lad_head
-from mmdet.models.dense_heads.lad_head import levels_to_images
+from models.mmdetection.mmdet.models.dense_heads import LADHead, lad_head
+from models.mmdetection.mmdet.models.dense_heads.lad_head import levels_to_images
 
 
 class TestLADHead(TestCase):

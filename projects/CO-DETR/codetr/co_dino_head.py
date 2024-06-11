@@ -10,15 +10,15 @@ from mmcv.ops import batched_nms
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.models import DINOHead
-from mmdet.models.layers import CdnQueryGenerator
-from mmdet.models.layers.transformer import inverse_sigmoid
-from mmdet.models.utils import multi_apply
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList
-from mmdet.structures.bbox import (bbox_cxcywh_to_xyxy, bbox_overlaps,
-                                   bbox_xyxy_to_cxcywh)
-from mmdet.utils import InstanceList, reduce_mean
+from models.mmdetection.mmdet.models import DINOHead
+from models.mmdetection.mmdet.models.layers import CdnQueryGenerator
+from models.mmdetection.mmdet.models.layers.transformer import inverse_sigmoid
+from models.mmdetection.mmdet.models.utils import multi_apply
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.structures.bbox import (bbox_cxcywh_to_xyxy, bbox_overlaps,
+                                                      bbox_xyxy_to_cxcywh)
+from models.mmdetection.mmdet.utils import InstanceList, reduce_mean
 
 
 @MODELS.register_module()
@@ -509,11 +509,11 @@ class CoDINOHead(DINOHead):
                     indices = torch.randperm(
                         neg_inds.shape[0])[:padding_shape].cuda()
                     neg_inds = neg_inds[indices]
-                    padding_coord = bbox_xyxy_to_cxcywh(coords[i][neg_inds] /
-                                                        factor)
+                    padding_coord = bbox_xyxy_to_cxcywh(coords[i][neg_inds]
+                                                        / factor)
                     padding_label = labels[i][neg_inds]
-                    padding_target = bbox_xyxy_to_cxcywh(targets[i][neg_inds] /
-                                                         factor)
+                    padding_target = bbox_xyxy_to_cxcywh(targets[i][neg_inds]
+                                                         / factor)
                     padding_feat = feats[neg_inds]
                 coord = torch.cat((coord, padding_coord), dim=0)
                 label = torch.cat((label, padding_label), dim=0)

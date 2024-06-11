@@ -233,7 +233,7 @@ class BitmapMasks(BaseInstanceMasks):
         width (int): width of masks
 
     Example:
-        >>> from mmdet.data_elements.mask.structures import *  # NOQA
+        >>> from models.mmdetection.mmdet.data_elements.mask.structures import *  # NOQA
         >>> num_masks, H, W = 3, 32, 32
         >>> rng = np.random.RandomState(0)
         >>> masks = (rng.rand(num_masks, H, W) > 0.1).astype(np.int64)
@@ -431,7 +431,7 @@ class BitmapMasks(BaseInstanceMasks):
             BitmapMasks: Translated BitmapMasks.
 
         Example:
-            >>> from mmdet.data_elements.mask.structures import BitmapMasks
+            >>> from models.mmdetection.mmdet.data_elements.mask.structures import BitmapMasks
             >>> self = BitmapMasks.random(dtype=np.uint8)
             >>> out_shape = (32, 32)
             >>> offset = 4
@@ -566,12 +566,12 @@ class BitmapMasks(BaseInstanceMasks):
         """Generate random bitmap masks for demo / testing purposes.
 
         Example:
-            >>> from mmdet.data_elements.mask.structures import BitmapMasks
+            >>> from models.mmdetection.mmdet.data_elements.mask.structures import BitmapMasks
             >>> self = BitmapMasks.random()
             >>> print('self = {}'.format(self))
             self = BitmapMasks(num_masks=3, height=32, width=32)
         """
-        from mmdet.utils.util_random import ensure_rng
+        from models.mmdetection.mmdet.utils.util_random import ensure_rng
         rng = ensure_rng(rng)
         masks = (rng.rand(num_masks, height, width) > 0.1).astype(dtype)
         self = cls(masks, height=height, width=width)
@@ -611,7 +611,7 @@ class PolygonMasks(BaseInstanceMasks):
         width (int): width of masks
 
     Example:
-        >>> from mmdet.data_elements.mask.structures import *  # NOQA
+        >>> from models.mmdetection.mmdet.data_elements.mask.structures import *  # NOQA
         >>> masks = [
         >>>     [ np.array([0, 0, 10, 0, 10, 10., 0, 10, 0, 0]) ]
         >>> ]
@@ -1023,11 +1023,11 @@ class PolygonMasks(BaseInstanceMasks):
             .. [1] https://gitlab.kitware.com/computer-vision/kwimage/-/blob/928cae35ca8/kwimage/structs/polygon.py#L379  # noqa: E501
 
         Example:
-            >>> from mmdet.data_elements.mask.structures import PolygonMasks
+            >>> from models.mmdetection.mmdet.data_elements.mask.structures import PolygonMasks
             >>> self = PolygonMasks.random()
             >>> print('self = {}'.format(self))
         """
-        from mmdet.utils.util_random import ensure_rng
+        from models.mmdetection.mmdet.utils.util_random import ensure_rng
         rng = ensure_rng(rng)
 
         def _gen_polygon(n, irregularity, spikeyness):
@@ -1111,8 +1111,8 @@ class PolygonMasks(BaseInstanceMasks):
             mlng = verts.T[1].sum() / len(verts)
 
             tau = np.pi * 2
-            angle = (np.arctan2(mlat - verts.T[0], verts.T[1] - mlng) +
-                     tau) % tau
+            angle = (np.arctan2(mlat - verts.T[0], verts.T[1] - mlng)
+                     + tau) % tau
             sortx = angle.argsort()
             verts = verts.take(sortx, axis=0)
             return verts

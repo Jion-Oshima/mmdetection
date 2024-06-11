@@ -15,9 +15,9 @@ from mmengine.config import ConfigDict
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.structures.bbox import bbox_cxcywh_to_xyxy, bbox_xyxy_to_cxcywh
-from mmdet.utils import ConfigType
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.structures.bbox import bbox_cxcywh_to_xyxy, bbox_xyxy_to_cxcywh
+from models.mmdetection.mmdet.utils import ConfigType
 
 
 @TASK_UTILS.register_module()
@@ -125,8 +125,8 @@ class DiffusionDetCriterion(nn.Module):
         for idx in range(len(batch_gt_instances)):
             pred_bboxes_list.append(pred_boxes[idx, indices[idx][0]])
             image_size = batch_gt_instances[idx].image_size
-            pred_bboxes_norm_list.append(pred_boxes[idx, indices[idx][0]] /
-                                         image_size)
+            pred_bboxes_norm_list.append(pred_boxes[idx, indices[idx][0]]
+                                         / image_size)
 
         pred_boxes_cat = torch.cat(pred_bboxes_list)
         pred_boxes_norm_cat = torch.cat(pred_bboxes_norm_list)
@@ -263,8 +263,8 @@ class DiffusionDetMatcher(nn.Module):
         b_t = pred_bboxes_center_y > xy_target_gts[:, 1].unsqueeze(0)
         b_b = pred_bboxes_center_y < xy_target_gts[:, 3].unsqueeze(0)
         # (b_l.long()+b_r.long()+b_t.long()+b_b.long())==4 [300,num_gt] ,
-        is_in_boxes = ((b_l.long() + b_r.long() + b_t.long() +
-                        b_b.long()) == 4)
+        is_in_boxes = ((b_l.long() + b_r.long() + b_t.long()
+                        + b_b.long()) == 4)
         is_in_boxes_all = is_in_boxes.sum(1) > 0  # [num_query]
         # in fixed center
         center_radius = 2.5
@@ -272,24 +272,24 @@ class DiffusionDetMatcher(nn.Module):
         # on the size of the gt boxes
         # https://github.com/dulucas/UVO_Challenge/blob/main/Track1/detection/mmdet/core/bbox/assigners/rpn_sim_ota_assigner.py#L212    # noqa
         b_l = pred_bboxes_center_x > (
-            gt_bboxes[:, 0] -
-            (center_radius *
-             (xy_target_gts[:, 2] - xy_target_gts[:, 0]))).unsqueeze(0)
+            gt_bboxes[:, 0]
+            - (center_radius
+               * (xy_target_gts[:, 2] - xy_target_gts[:, 0]))).unsqueeze(0)
         b_r = pred_bboxes_center_x < (
-            gt_bboxes[:, 0] +
-            (center_radius *
-             (xy_target_gts[:, 2] - xy_target_gts[:, 0]))).unsqueeze(0)
+            gt_bboxes[:, 0]
+            + (center_radius
+               * (xy_target_gts[:, 2] - xy_target_gts[:, 0]))).unsqueeze(0)
         b_t = pred_bboxes_center_y > (
-            gt_bboxes[:, 1] -
-            (center_radius *
-             (xy_target_gts[:, 3] - xy_target_gts[:, 1]))).unsqueeze(0)
+            gt_bboxes[:, 1]
+            - (center_radius
+               * (xy_target_gts[:, 3] - xy_target_gts[:, 1]))).unsqueeze(0)
         b_b = pred_bboxes_center_y < (
-            gt_bboxes[:, 1] +
-            (center_radius *
-             (xy_target_gts[:, 3] - xy_target_gts[:, 1]))).unsqueeze(0)
+            gt_bboxes[:, 1]
+            + (center_radius *
+               (xy_target_gts[:, 3] - xy_target_gts[:, 1]))).unsqueeze(0)
 
-        is_in_centers = ((b_l.long() + b_r.long() + b_t.long() +
-                          b_b.long()) == 4)
+        is_in_centers = ((b_l.long() + b_r.long() + b_t.long()
+                          + b_b.long()) == 4)
         is_in_centers_all = is_in_centers.sum(1) > 0
 
         is_in_boxes_anchor = is_in_boxes_all | is_in_centers_all

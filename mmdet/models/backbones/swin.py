@@ -16,7 +16,7 @@ from mmengine.model.weight_init import (constant_init, trunc_normal_,
 from mmengine.runner.checkpoint import CheckpointLoader
 from mmengine.utils import to_2tuple
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from ..layers import PatchEmbed, PatchMerging
 
 

@@ -1,8 +1,8 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 from unittest import TestCase
 
-from mmdet.models.data_preprocessors import TrackDataPreprocessor
-from mmdet.testing import demo_track_inputs
+from models.mmdetection.mmdet.models.data_preprocessors import TrackDataPreprocessor
+from models.mmdetection.mmdet.testing import demo_track_inputs
 
 
 class TestTrackDataPreprocessor(TestCase):

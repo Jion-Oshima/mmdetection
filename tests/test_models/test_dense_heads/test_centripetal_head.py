@@ -4,7 +4,7 @@ from unittest import TestCase
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.models.dense_heads import CentripetalHead
+from models.mmdetection.mmdet.models.dense_heads import CentripetalHead
 
 
 class TestCentripetalHead(TestCase):

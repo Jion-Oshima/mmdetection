@@ -3,7 +3,7 @@ import math
 
 from mmcv.cnn import build_conv_layer, build_norm_layer
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from .detectors_resnet import Bottleneck as _Bottleneck
 from .detectors_resnet import DetectoRS_ResNet
 
@@ -28,8 +28,8 @@ class Bottleneck(_Bottleneck):
         if groups == 1:
             width = self.planes
         else:
-            width = math.floor(self.planes *
-                               (base_width / base_channels)) * groups
+            width = math.floor(self.planes
+                               * (base_width / base_channels)) * groups
 
         self.norm1_name, norm1 = build_norm_layer(
             self.norm_cfg, width, postfix=1)

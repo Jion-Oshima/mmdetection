@@ -7,7 +7,7 @@ from mmengine.dataset import BaseDataset
 from mmengine.dataset import ConcatDataset as MMENGINE_ConcatDataset
 from mmengine.dataset import force_full_init
 
-from mmdet.registry import DATASETS, TRANSFORMS
+from models.mmdetection.mmdet.registry import DATASETS, TRANSFORMS
 
 
 @DATASETS.register_module()

@@ -12,8 +12,8 @@ from mmengine.model import BaseModule
 from mmengine.model.weight_init import xavier_init
 from torch.nn.init import normal_
 
-from mmdet.models.layers.transformer import inverse_sigmoid
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.models.layers.transformer import inverse_sigmoid
+from models.mmdetection.mmdet.registry import MODELS
 
 try:
     from fairscale.nn.checkpoint import checkpoint_wrapper
@@ -298,8 +298,8 @@ class DeformableDetrTransformer(Transformer):
             proposals.append(proposal)
             _cur += (H * W)
         output_proposals = torch.cat(proposals, 1)
-        output_proposals_valid = ((output_proposals > 0.01) &
-                                  (output_proposals < 0.99)).all(
+        output_proposals_valid = ((output_proposals > 0.01)
+                                  & (output_proposals < 0.99)).all(
                                       -1, keepdim=True)
         output_proposals = torch.log(output_proposals / (1 - output_proposals))
         output_proposals = output_proposals.masked_fill(
@@ -539,8 +539,8 @@ class DeformableDetrTransformer(Transformer):
 
         inter_references_out = inter_references
         if self.as_two_stage:
-            return inter_states, init_reference_out,\
-                inter_references_out, enc_outputs_class,\
+            return inter_states, init_reference_out, \
+                inter_references_out, enc_outputs_class, \
                 enc_outputs_coord_unact
         return inter_states, init_reference_out, \
             inter_references_out, None, None
@@ -867,11 +867,11 @@ class CoDeformableDetrTransformer(DeformableDetrTransformer):
         inter_references_out = inter_references
         if self.as_two_stage:
             if return_encoder_output:
-                return inter_states, init_reference_out,\
-                    inter_references_out, enc_outputs_class,\
+                return inter_states, init_reference_out, \
+                    inter_references_out, enc_outputs_class, \
                     enc_outputs_coord_unact, memory
-            return inter_states, init_reference_out,\
-                inter_references_out, enc_outputs_class,\
+            return inter_states, init_reference_out, \
+                inter_references_out, enc_outputs_class, \
                 enc_outputs_coord_unact
         if return_encoder_output:
             return inter_states, init_reference_out, \

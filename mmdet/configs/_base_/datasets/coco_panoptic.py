@@ -2,12 +2,12 @@
 from mmcv.transforms.loading import LoadImageFromFile
 from mmengine.dataset.sampler import DefaultSampler
 
-from mmdet.datasets.coco_panoptic import CocoPanopticDataset
-from mmdet.datasets.samplers.batch_sampler import AspectRatioBatchSampler
-from mmdet.datasets.transforms.formatting import PackDetInputs
-from mmdet.datasets.transforms.loading import LoadPanopticAnnotations
-from mmdet.datasets.transforms.transforms import RandomFlip, Resize
-from mmdet.evaluation.metrics.coco_panoptic_metric import CocoPanopticMetric
+from models.mmdetection.mmdet.datasets.coco_panoptic import CocoPanopticDataset
+from models.mmdetection.mmdet.datasets.samplers.batch_sampler import AspectRatioBatchSampler
+from models.mmdetection.mmdet.datasets.transforms.formatting import PackDetInputs
+from models.mmdetection.mmdet.datasets.transforms.loading import LoadPanopticAnnotations
+from models.mmdetection.mmdet.datasets.transforms.transforms import RandomFlip, Resize
+from models.mmdetection.mmdet.evaluation.metrics.coco_panoptic_metric import CocoPanopticMetric
 
 # dataset settings
 dataset_type = 'CocoPanopticDataset'

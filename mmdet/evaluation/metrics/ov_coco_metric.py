@@ -10,8 +10,8 @@ from mmengine.fileio import load
 from mmengine.logging import MMLogger
 from terminaltables import AsciiTable
 
-from mmdet.datasets.api_wrappers import COCO, COCOeval, COCOevalMP
-from mmdet.registry import METRICS
+from models.mmdetection.mmdet.datasets.api_wrappers import COCO, COCOeval, COCOevalMP
+from models.mmdetection.mmdet.registry import METRICS
 from .coco_metric import CocoMetric
 
 

@@ -6,12 +6,12 @@ import torch
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.models.utils import (filter_gt_instances, rename_loss_dict,
-                                reweight_loss_dict)
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList
-from mmdet.structures.bbox import bbox2roi, bbox_project
-from mmdet.utils import ConfigType, InstanceList, OptConfigType, OptMultiConfig
+from models.mmdetection.mmdet.models.utils import (filter_gt_instances, rename_loss_dict,
+                                                   reweight_loss_dict)
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.structures.bbox import bbox2roi, bbox_project
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList, OptConfigType, OptMultiConfig
 from ..utils.misc import unpack_gt_instances
 from .semi_base import SemiBaseDetector
 
@@ -281,8 +281,8 @@ class SoftTeacher(SemiBaseDetector):
         for data_samples in reg_data_samples:
             if data_samples.gt_instances.bboxes.shape[0] > 0:
                 data_samples.gt_instances = data_samples.gt_instances[
-                    data_samples.gt_instances.reg_uncs <
-                    self.semi_train_cfg.reg_pseudo_thr]
+                    data_samples.gt_instances.reg_uncs
+                    < self.semi_train_cfg.reg_pseudo_thr]
         roi_losses = self.student.roi_head.loss(x, rpn_results_list,
                                                 reg_data_samples)
         return {'loss_bbox': roi_losses['loss_bbox']}
@@ -366,8 +366,8 @@ class SoftTeacher(SemiBaseDetector):
             aug_scale = box_scale * frac  # [n,4]
 
             offset = (
-                torch.randn(times, box.shape[0], 4, device=box.device) *
-                aug_scale[None, ...])
+                torch.randn(times, box.shape[0], 4, device=box.device)
+                * aug_scale[None, ...])
             new_box = box.clone()[None, ...].expand(times, box.shape[0],
                                                     -1) + offset
             return new_box

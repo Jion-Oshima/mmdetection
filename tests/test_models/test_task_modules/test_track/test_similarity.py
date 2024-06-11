@@ -1,6 +1,6 @@
 import torch
 
-from mmdet.models.task_modules import embed_similarity
+from models.mmdetection.mmdet.models.task_modules import embed_similarity
 
 
 def test_embed_similarity():

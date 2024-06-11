@@ -5,9 +5,9 @@ import torch
 from torch import Tensor, nn
 from torch.nn.init import normal_
 
-from mmdet.registry import MODELS
-from mmdet.structures import OptSampleList
-from mmdet.utils import OptConfigType
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import OptSampleList
+from models.mmdetection.mmdet.utils import OptConfigType
 from ..layers import (CdnQueryGenerator, DeformableDetrTransformerEncoder,
                       DinoTransformerDecoder, SinePositionalEncoding)
 from .deformable_detr import DeformableDETR, MultiScaleDeformableAttention

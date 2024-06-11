@@ -9,9 +9,9 @@ from mmengine.config import ConfigDict
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.utils import (ConfigType, InstanceList, MultiConfig, OptConfigType,
-                         OptInstanceList)
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.utils import (ConfigType, InstanceList, MultiConfig, OptConfigType,
+                                            OptInstanceList)
 from ..task_modules.samplers import PseudoSampler
 from ..utils import (filter_scores_and_topk, images_to_levels, multi_apply,
                      unmap)
@@ -109,10 +109,10 @@ class SABLRetinaHead(BaseDenseHead):
         self.num_buckets = bbox_coder['num_buckets']
         self.side_num = int(np.ceil(self.num_buckets / 2))
 
-        assert (approx_anchor_generator['octave_base_scale'] ==
-                square_anchor_generator['scales'][0])
-        assert (approx_anchor_generator['strides'] ==
-                square_anchor_generator['strides'])
+        assert (approx_anchor_generator['octave_base_scale']
+                == square_anchor_generator['scales'][0])
+        assert (approx_anchor_generator['strides']
+                == square_anchor_generator['strides'])
 
         self.approx_anchor_generator = TASK_UTILS.build(
             approx_anchor_generator)

@@ -2,7 +2,7 @@
 import os.path as osp
 from typing import Callable, List, Optional, Sequence, Union
 
-from mmdet.registry import DATASETS
+from models.mmdetection.mmdet.registry import DATASETS
 from .api_wrappers import COCOPanoptic
 from .coco import CocoDataset
 

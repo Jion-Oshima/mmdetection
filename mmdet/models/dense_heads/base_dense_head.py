@@ -11,10 +11,10 @@ from mmengine.model import BaseModule, constant_init
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.structures import SampleList
-from mmdet.structures.bbox import (cat_boxes, get_box_tensor, get_box_wh,
-                                   scale_boxes)
-from mmdet.utils import InstanceList, OptMultiConfig
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.structures.bbox import (cat_boxes, get_box_tensor, get_box_wh,
+                                                      scale_boxes)
+from models.mmdetection.mmdet.utils import InstanceList, OptMultiConfig
 from ..test_time_augs import merge_aug_results
 from ..utils import (filter_scores_and_topk, select_single_mlvl,
                      unpack_gt_instances)
@@ -537,8 +537,8 @@ class BaseDenseHead(BaseModule, metaclass=ABCMeta):
         ]
         assert ('with_nms' in get_results_args) and \
                ('with_nms' in get_results_single_sig_args), \
-               f'{self.__class__.__name__}' \
-               'does not support test-time augmentation '
+            f'{self.__class__.__name__}' \
+            'does not support test-time augmentation '
 
         num_imgs = len(aug_batch_img_metas[0])
         aug_batch_results = []

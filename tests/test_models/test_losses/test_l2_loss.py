@@ -3,7 +3,7 @@ from unittest import TestCase
 
 import torch
 
-from mmdet.models import L2Loss
+from models.mmdetection.mmdet.models import L2Loss
 
 
 class TestL2Loss(TestCase):

@@ -8,8 +8,8 @@ from mmengine.model import bias_init_with_prob, constant_init, normal_init
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.utils import ConfigType, InstanceList, OptInstanceList, reduce_mean
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList, OptInstanceList, reduce_mean
 from ..task_modules.prior_generators import anchor_inside_flags
 from ..utils import levels_to_images, multi_apply, unmap
 from .anchor_head import AnchorHead
@@ -121,8 +121,8 @@ class YOLOFHead(AnchorHead):
         # implicit objectness
         objectness = objectness.view(N, -1, 1, H, W)
         normalized_cls_score = cls_score + objectness - torch.log(
-            1. + torch.clamp(cls_score.exp(), max=INF) +
-            torch.clamp(objectness.exp(), max=INF))
+            1. + torch.clamp(cls_score.exp(), max=INF)
+            + torch.clamp(objectness.exp(), max=INF))
         normalized_cls_score = normalized_cls_score.view(N, -1, H, W)
         return normalized_cls_score, bbox_reg
 

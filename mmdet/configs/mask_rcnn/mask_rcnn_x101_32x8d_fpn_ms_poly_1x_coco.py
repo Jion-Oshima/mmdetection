@@ -12,9 +12,9 @@ with read_base():
 from mmcv.transforms import RandomChoiceResize, RandomFlip
 from mmcv.transforms.loading import LoadImageFromFile
 
-from mmdet.datasets.transforms.formatting import PackDetInputs
-from mmdet.datasets.transforms.loading import LoadAnnotations
-from mmdet.models.backbones import ResNeXt
+from models.mmdetection.mmdet.datasets.transforms.formatting import PackDetInputs
+from models.mmdetection.mmdet.datasets.transforms.loading import LoadAnnotations
+from models.mmdetection.mmdet.models.backbones import ResNeXt
 
 model = dict(
     # ResNeXt-101-32x8d model trained with Caffe2 at FB,

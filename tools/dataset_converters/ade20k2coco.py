@@ -9,7 +9,7 @@ from mmengine.utils import ProgressBar, mkdir_or_exist
 from panopticapi.utils import IdGenerator, save_json
 from PIL import Image
 
-from mmdet.datasets.ade20k import ADE20KPanopticDataset
+from models.mmdetection.mmdet.datasets.ade20k import ADE20KPanopticDataset
 
 ORIGINAL_CATEGORIES = [
     'wall', 'building', 'sky', 'floor', 'tree', 'ceiling', 'road, route',

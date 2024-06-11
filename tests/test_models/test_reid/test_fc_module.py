@@ -3,7 +3,7 @@ from unittest import TestCase
 
 import torch
 
-from mmdet.models import FcModule
+from models.mmdetection.mmdet.models import FcModule
 
 
 class TestFcModule(TestCase):

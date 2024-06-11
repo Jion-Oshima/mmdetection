@@ -12,9 +12,9 @@ from mmengine.fileio import dump, get_local_path, load
 from mmengine.logging import MMLogger
 from terminaltables import AsciiTable
 
-from mmdet.evaluation.functional import eval_recalls
-from mmdet.registry import METRICS
-from mmdet.structures.mask import encode_mask_results
+from models.mmdetection.mmdet.evaluation.functional import eval_recalls
+from models.mmdetection.mmdet.registry import METRICS
+from models.mmdetection.mmdet.structures.mask import encode_mask_results
 from .api_wrappers import COCO, COCOeval
 
 
@@ -281,8 +281,8 @@ class Coco90Metric(BaseMetric):
                 ]
 
                 annotation = dict(
-                    id=len(annotations) +
-                    1,  # coco api requires id starts with 1
+                    id=len(annotations)
+                    + 1,  # coco api requires id starts with 1
                     image_id=img_id,
                     bbox=coco_bbox,
                     iscrowd=ann.get('ignore_flag', 0),

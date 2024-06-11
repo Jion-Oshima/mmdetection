@@ -1,8 +1,8 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import numpy as np
 
-from mmdet.datasets import CocoDataset
-from mmdet.visualization import get_palette, jitter_color, palette_val
+from models.mmdetection.mmdet.datasets import CocoDataset
+from models.mmdetection.mmdet.visualization import get_palette, jitter_color, palette_val
 
 
 def test_palette():

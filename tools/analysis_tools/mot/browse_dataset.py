@@ -6,7 +6,7 @@ import mmengine
 from mmengine import Config, DictAction
 from mmengine.registry import init_default_scope
 
-from mmdet.registry import DATASETS, VISUALIZERS
+from models.mmdetection.mmdet.registry import DATASETS, VISUALIZERS
 
 
 def parse_args():

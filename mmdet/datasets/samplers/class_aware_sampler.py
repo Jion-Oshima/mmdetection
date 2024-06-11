@@ -8,7 +8,7 @@ from mmengine.dataset import BaseDataset
 from mmengine.dist import get_dist_info, sync_random_seed
 from torch.utils.data import Sampler
 
-from mmdet.registry import DATA_SAMPLERS
+from models.mmdetection.mmdet.registry import DATA_SAMPLERS
 
 
 @DATA_SAMPLERS.register_module()
@@ -111,8 +111,8 @@ class ClassAwareSampler(Sampler):
 
         # deterministically shuffle based on epoch
         num_bins = int(
-            math.ceil(self.total_size * 1.0 / self.num_classes /
-                      self.num_sample_class))
+            math.ceil(self.total_size * 1.0 / self.num_classes
+                      / self.num_sample_class))
         indices = []
         for i in range(num_bins):
             indices += gen_cat_img_inds(label_iter_list, data_iter_dict,

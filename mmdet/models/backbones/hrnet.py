@@ -6,7 +6,7 @@ from mmcv.cnn import build_conv_layer, build_norm_layer
 from mmengine.model import BaseModule, ModuleList, Sequential
 from torch.nn.modules.batchnorm import _BatchNorm
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from .resnet import BasicBlock, Bottleneck
 
 
@@ -81,8 +81,8 @@ class HRModule(BaseModule):
                     kernel_size=1,
                     stride=stride,
                     bias=False),
-                build_norm_layer(self.norm_cfg, num_channels[branch_index] *
-                                 block.expansion)[1])
+                build_norm_layer(self.norm_cfg, num_channels[branch_index]
+                                 * block.expansion)[1])
 
         layers = []
         layers.append(
@@ -237,7 +237,7 @@ class HRNet(BaseModule):
             Default: None.
 
     Example:
-        >>> from mmdet.models import HRNet
+        >>> from models.mmdetection.mmdet.models import HRNet
         >>> import torch
         >>> extra = dict(
         >>>     stage1=dict(
@@ -318,7 +318,7 @@ class HRNet(BaseModule):
         for i in range(4):
             cfg = extra[f'stage{i + 1}']
             assert len(cfg['num_blocks']) == cfg['num_branches'] and \
-                   len(cfg['num_channels']) == cfg['num_branches']
+                len(cfg['num_channels']) == cfg['num_branches']
 
         self.extra = extra
         self.conv_cfg = conv_cfg

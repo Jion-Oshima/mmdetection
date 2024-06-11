@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 
 eps = 1e-6
 
@@ -74,11 +74,11 @@ class DropBlock(nn.Module):
             float: The value of gamma.
         """
         gamma = (self.drop_prob * feat_size[0] * feat_size[1])
-        gamma /= ((feat_size[0] - self.block_size + 1) *
-                  (feat_size[1] - self.block_size + 1))
+        gamma /= ((feat_size[0] - self.block_size + 1)
+                  * (feat_size[1] - self.block_size + 1))
         gamma /= (self.block_size**2)
-        factor = (1.0 if self.iter_cnt > self.warmup_iters else self.iter_cnt /
-                  self.warmup_iters)
+        factor = (1.0 if self.iter_cnt > self.warmup_iters else self.iter_cnt
+                  / self.warmup_iters)
         return gamma * factor
 
     def extra_repr(self):

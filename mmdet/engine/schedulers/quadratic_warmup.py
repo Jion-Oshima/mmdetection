@@ -4,7 +4,7 @@ from mmengine.optim.scheduler.momentum_scheduler import MomentumSchedulerMixin
 from mmengine.optim.scheduler.param_scheduler import INF, _ParamScheduler
 from torch.optim import Optimizer
 
-from mmdet.registry import PARAM_SCHEDULERS
+from models.mmdetection.mmdet.registry import PARAM_SCHEDULERS
 
 
 @PARAM_SCHEDULERS.register_module()
@@ -85,8 +85,8 @@ class QuadraticWarmupParamScheduler(_ParamScheduler):
             ]
 
         return [
-            group[self.param_name] + base_value *
-            (2 * self.last_step + 1) / self.total_iters**2
+            group[self.param_name] + base_value
+            * (2 * self.last_step + 1) / self.total_iters**2
             for base_value, group in zip(self.base_values,
                                          self.optimizer.param_groups)
         ]

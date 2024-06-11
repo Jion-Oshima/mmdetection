@@ -7,7 +7,7 @@ from typing import Dict, List
 import mmengine
 from mmengine.dataset import BaseDataset
 
-from mmdet.registry import DATASETS
+from models.mmdetection.mmdet.registry import DATASETS
 
 
 @DATASETS.register_module()

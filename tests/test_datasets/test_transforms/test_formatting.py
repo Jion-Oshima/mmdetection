@@ -7,10 +7,10 @@ import numpy as np
 import torch
 from mmengine.structures import InstanceData, LabelData, PixelData
 
-from mmdet.datasets.transforms import (PackDetInputs, PackReIDInputs,
-                                       PackTrackInputs)
-from mmdet.structures import DetDataSample, ReIDDataSample
-from mmdet.structures.mask import BitmapMasks
+from models.mmdetection.mmdet.datasets.transforms import (PackDetInputs, PackReIDInputs,
+                                                          PackTrackInputs)
+from models.mmdetection.mmdet.structures import DetDataSample, ReIDDataSample
+from models.mmdetection.mmdet.structures.mask import BitmapMasks
 
 
 class TestPackDetInputs(unittest.TestCase):
@@ -177,10 +177,10 @@ class TestPackTrackInputs(unittest.TestCase):
         for i, data_sample in enumerate(track_data_sample):
             assert data_sample.gt_instances.bboxes.shape == (2, 4)
             assert len(data_sample.gt_instances.masks) == 2
-            assert (data_sample.gt_instances.labels.numpy() ==
-                    self.gt_bboxes_labels[i]).all()
-            assert (data_sample.gt_instances.instances_ids.numpy() ==
-                    self.gt_instances_ids[i]).all()
+            assert (data_sample.gt_instances.labels.numpy()
+                    == self.gt_bboxes_labels[i]).all()
+            assert (data_sample.gt_instances.instances_ids.numpy()
+                    == self.gt_instances_ids[i]).all()
             for key in self.meta_keys:
                 assert data_sample.metainfo[key] == getattr(self, key)[i]
 
@@ -199,10 +199,10 @@ class TestPackTrackInputs(unittest.TestCase):
             valid_len = valid_mask.sum().item()
             assert data_sample.gt_instances.bboxes.shape == (valid_len, 4)
             assert len(data_sample.gt_instances.masks) == valid_len
-            assert (data_sample.gt_instances.labels.numpy() ==
-                    self.gt_bboxes_labels[i][valid_mask]).all()
-            assert (data_sample.gt_instances.instances_ids.numpy() ==
-                    self.gt_instances_ids[i][valid_mask]).all()
+            assert (data_sample.gt_instances.labels.numpy()
+                    == self.gt_bboxes_labels[i][valid_mask]).all()
+            assert (data_sample.gt_instances.instances_ids.numpy()
+                    == self.gt_instances_ids[i][valid_mask]).all()
             for key in self.meta_keys:
                 assert data_sample.metainfo[key] == getattr(self, key)[i]
 

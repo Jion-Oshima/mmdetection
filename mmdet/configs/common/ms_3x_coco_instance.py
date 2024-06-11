@@ -17,15 +17,15 @@ from mmengine.optim.scheduler.lr_scheduler import LinearLR, MultiStepLR
 from mmengine.runner.loops import IterBasedTrainLoop, TestLoop, ValLoop
 from torch.optim import SGD
 
-from mmdet.datasets import AspectRatioBatchSampler, CocoDataset
-from mmdet.datasets.transforms.formatting import PackDetInputs
-from mmdet.datasets.transforms.loading import (FilterAnnotations,
-                                               LoadAnnotations,
-                                               LoadImageFromFile)
-from mmdet.datasets.transforms.transforms import (CachedMixUp, CachedMosaic,
-                                                  Pad, RandomCrop, RandomFlip,
-                                                  RandomResize, Resize)
-from mmdet.evaluation import CocoMetric
+from models.mmdetection.mmdet.datasets import AspectRatioBatchSampler, CocoDataset
+from models.mmdetection.mmdet.datasets.transforms.formatting import PackDetInputs
+from models.mmdetection.mmdet.datasets.transforms.loading import (FilterAnnotations,
+                                                                  LoadAnnotations,
+                                                                  LoadImageFromFile)
+from models.mmdetection.mmdet.datasets.transforms.transforms import (CachedMixUp, CachedMosaic,
+                                                                     Pad, RandomCrop, RandomFlip,
+                                                                     RandomResize, Resize)
+from models.mmdetection.mmdet.evaluation import CocoMetric
 
 # dataset settings
 dataset_type = CocoDataset

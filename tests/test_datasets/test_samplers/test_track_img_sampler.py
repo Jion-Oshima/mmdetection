@@ -5,7 +5,7 @@ from unittest import TestCase
 
 from mmengine.dataset import ClassBalancedDataset, ConcatDataset
 
-from mmdet.datasets import MOTChallengeDataset, TrackImgSampler
+from models.mmdetection.mmdet.datasets import MOTChallengeDataset, TrackImgSampler
 
 
 class TestTrackImgSampler(TestCase):

@@ -1,7 +1,7 @@
 from mmengine.config import read_base
 
 with read_base():
-    from mmdet.configs.dino.dino_5scale_swin_l_8xb2_12e_coco import *  # noqa
+    from models.mmdetection.mmdet.configs.dino.dino_5scale_swin_l_8xb2_12e_coco import *  # noqa
 
 from projects.example_largemodel import (checkpoint_check_fn,
                                          layer_auto_wrap_policy)

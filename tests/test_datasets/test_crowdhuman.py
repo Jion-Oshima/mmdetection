@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import unittest
 
-from mmdet.datasets import CrowdHumanDataset
+from models.mmdetection.mmdet.datasets import CrowdHumanDataset
 
 
 class TestCrowdHumanDataset(unittest.TestCase):

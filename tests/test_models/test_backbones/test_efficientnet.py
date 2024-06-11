@@ -1,7 +1,7 @@
 import pytest
 import torch
 
-from mmdet.models.backbones import EfficientNet
+from models.mmdetection.mmdet.models.backbones import EfficientNet
 
 
 def test_efficientnet_backbone():

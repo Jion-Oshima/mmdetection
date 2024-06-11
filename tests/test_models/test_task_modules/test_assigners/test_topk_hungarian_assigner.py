@@ -4,7 +4,7 @@ from unittest import TestCase
 import torch
 from mmengine import ConfigDict
 
-from mmdet.models.task_modules.assigners import TopkHungarianAssigner
+from models.mmdetection.mmdet.models.task_modules.assigners import TopkHungarianAssigner
 
 
 class TestTopkHungarianAssigner(TestCase):

@@ -2,8 +2,8 @@
 
 from mmcv.transforms import LoadImageFromFile
 
-from mmdet.datasets.transforms import LoadAnnotations, LoadPanopticAnnotations
-from mmdet.registry import TRANSFORMS
+from models.mmdetection.mmdet.datasets.transforms import LoadAnnotations, LoadPanopticAnnotations
+from models.mmdetection.mmdet.registry import TRANSFORMS
 
 
 def get_loading_pipeline(pipeline):

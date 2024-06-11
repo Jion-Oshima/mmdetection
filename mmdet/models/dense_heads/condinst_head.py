@@ -11,10 +11,10 @@ from mmengine.model import BaseModule, kaiming_init
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures.bbox import cat_boxes
-from mmdet.utils import (ConfigType, InstanceList, MultiConfig, OptConfigType,
-                         OptInstanceList, reduce_mean)
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures.bbox import cat_boxes
+from models.mmdetection.mmdet.utils import (ConfigType, InstanceList, MultiConfig, OptConfigType,
+                                            OptInstanceList, reduce_mean)
 from ..task_modules.prior_generators import MlvlPointGenerator
 from ..utils import (aligned_bilinear, filter_scores_and_topk, multi_apply,
                      relative_coordinate_maps, select_single_mlvl)
@@ -286,9 +286,9 @@ class CondInstBboxHead(FCOSHead):
 
         if num_gts == 0:
             return gt_labels.new_full((num_points,), self.num_classes), \
-                   gt_bboxes.new_zeros((num_points, 4)), \
-                   gt_bboxes.new_zeros((0,), dtype=torch.int64), \
-                   gt_bboxes.new_zeros((0,), dtype=torch.int64)
+                gt_bboxes.new_zeros((num_points, 4)), \
+                gt_bboxes.new_zeros((0,), dtype=torch.int64), \
+                gt_bboxes.new_zeros((0,), dtype=torch.int64)
 
         areas = (gt_bboxes[:, 2] - gt_bboxes[:, 0]) * (
             gt_bboxes[:, 3] - gt_bboxes[:, 1])
@@ -410,7 +410,7 @@ class CondInstBboxHead(FCOSHead):
         param_pred_list = []
         point_list = []
         stride_list = []
-        for cls_score_per_lvl, centerness_per_lvl, param_pred_per_lvl,\
+        for cls_score_per_lvl, centerness_per_lvl, param_pred_per_lvl, \
             point_per_lvl, stride_per_lvl in \
             zip(self._raw_positive_infos['cls_scores'],
                 self._raw_positive_infos['centernesses'],
@@ -915,8 +915,8 @@ class CondInstMaskHead(BaseMaskHead):
             if i < self.num_layers - 1:
                 weight_splits[i] = weight_splits[i].reshape(
                     num_insts * self.in_channels, -1, 1, 1)
-                bias_splits[i] = bias_splits[i].reshape(num_insts *
-                                                        self.in_channels)
+                bias_splits[i] = bias_splits[i].reshape(num_insts
+                                                        * self.in_channels)
             else:
                 # out_channels x in_channels x 1 x 1
                 weight_splits[i] = weight_splits[i].reshape(

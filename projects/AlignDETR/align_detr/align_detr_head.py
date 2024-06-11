@@ -5,11 +5,11 @@ import torch
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.models.dense_heads import DINOHead
-from mmdet.registry import MODELS
-from mmdet.structures.bbox import (bbox_cxcywh_to_xyxy, bbox_overlaps,
-                                   bbox_xyxy_to_cxcywh)
-from mmdet.utils import InstanceList
+from models.mmdetection.mmdet.models.dense_heads import DINOHead
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures.bbox import (bbox_cxcywh_to_xyxy, bbox_overlaps,
+                                                      bbox_xyxy_to_cxcywh)
+from models.mmdetection.mmdet.utils import InstanceList
 from .utils import KeysRecorder
 
 
@@ -468,8 +468,8 @@ class AlignDETRHead(DINOHead):
         #   and the IoU score, to align classification and regression scores.
         #   Shape [num_positive].
         t = (
-            cls_prob[pos_cls_score_inds]**self.alpha *
-            iou_scores**(1 - self.alpha))
+            cls_prob[pos_cls_score_inds]**self.alpha
+            * iou_scores**(1 - self.alpha))
         t = torch.clamp(t, 0.01).detach()
 
         # Calculate rank_weights for matching queries.

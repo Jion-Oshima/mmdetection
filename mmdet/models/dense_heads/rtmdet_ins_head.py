@@ -13,13 +13,13 @@ from mmengine.model import (BaseModule, bias_init_with_prob, constant_init,
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.models.layers.transformer import inverse_sigmoid
-from mmdet.models.utils import (filter_scores_and_topk, multi_apply,
-                                select_single_mlvl, sigmoid_geometric_mean)
-from mmdet.registry import MODELS
-from mmdet.structures.bbox import (cat_boxes, distance2bbox, get_box_tensor,
-                                   get_box_wh, scale_boxes)
-from mmdet.utils import ConfigType, InstanceList, OptInstanceList, reduce_mean
+from models.mmdetection.mmdet.models.layers.transformer import inverse_sigmoid
+from models.mmdetection.mmdet.models.utils import (filter_scores_and_topk, multi_apply,
+                                                   select_single_mlvl, sigmoid_geometric_mean)
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures.bbox import (cat_boxes, distance2bbox, get_box_tensor,
+                                                      get_box_wh, scale_boxes)
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList, OptInstanceList, reduce_mean
 from .rtmdet_head import RTMDetHead
 
 
@@ -531,8 +531,8 @@ class RTMDetInsHead(RTMDetHead):
             if i < n_layers - 1:
                 weight_splits[i] = weight_splits[i].reshape(
                     n_inst * self.dyconv_channels, -1, 1, 1)
-                bias_splits[i] = bias_splits[i].reshape(n_inst *
-                                                        self.dyconv_channels)
+                bias_splits[i] = bias_splits[i].reshape(n_inst
+                                                        * self.dyconv_channels)
             else:
                 weight_splits[i] = weight_splits[i].reshape(n_inst, -1, 1, 1)
                 bias_splits[i] = bias_splits[i].reshape(n_inst)
@@ -645,10 +645,10 @@ class RTMDetInsHead(RTMDetHead):
             mode='bilinear',
             align_corners=False).squeeze(0)
         # downsample gt masks
-        pos_gt_masks = pos_gt_masks[:, self.mask_loss_stride //
-                                    2::self.mask_loss_stride,
-                                    self.mask_loss_stride //
-                                    2::self.mask_loss_stride]
+        pos_gt_masks = pos_gt_masks[:, self.mask_loss_stride
+                                    // 2::self.mask_loss_stride,
+                                    self.mask_loss_stride
+                                    // 2::self.mask_loss_stride]
 
         loss_mask = self.loss_mask(
             batch_pos_mask_logits,
@@ -727,7 +727,7 @@ class RTMDetInsHead(RTMDetHead):
         (anchor_list, labels_list, label_weights_list, bbox_targets_list,
          assign_metrics_list, sampling_results_list) = cls_reg_targets
 
-        losses_cls, losses_bbox,\
+        losses_cls, losses_bbox, \
             cls_avg_factors, bbox_avg_factors = multi_apply(
                 self.loss_by_feat_single,
                 cls_scores,

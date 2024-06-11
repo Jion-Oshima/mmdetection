@@ -2,8 +2,8 @@ from typing import Sequence, Union
 
 import torch.nn as nn
 
-from mmdet.models.backbones.swin import SwinBlock
-from mmdet.models.layers.transformer.deformable_detr_layers import \
+from models.mmdetection.mmdet.models.backbones.swin import SwinBlock
+from models.mmdetection.mmdet.models.layers.transformer.deformable_detr_layers import \
     DeformableDetrTransformerEncoderLayer
 
 

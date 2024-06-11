@@ -6,8 +6,8 @@ from mmengine.evaluator import BaseMetric
 from mmengine.fileio import get_local_path
 from mmengine.logging import MMLogger
 
-from mmdet.datasets.api_wrappers import COCO
-from mmdet.registry import METRICS
+from models.mmdetection.mmdet.datasets.api_wrappers import COCO
+from models.mmdetection.mmdet.registry import METRICS
 from ..functional import bbox_overlaps
 
 

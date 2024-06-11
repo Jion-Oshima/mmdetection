@@ -6,7 +6,7 @@ import torch
 from mmengine import Config
 from mmengine.structures import InstanceData
 
-from mmdet.models.dense_heads import FSAFHead
+from models.mmdetection.mmdet.models.dense_heads import FSAFHead
 
 
 class TestFSAFHead(TestCase):

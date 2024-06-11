@@ -3,9 +3,9 @@ from typing import List, Tuple, Union
 
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures import OptSampleList, SampleList
-from mmdet.utils import ConfigType, OptConfigType, OptMultiConfig
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import OptSampleList, SampleList
+from models.mmdetection.mmdet.utils import ConfigType, OptConfigType, OptMultiConfig
 from .base import BaseDetector
 
 
@@ -54,7 +54,7 @@ class SingleStageDetector(BaseDetector):
         if len(bbox_head_keys) == 0 and len(rpn_head_keys) != 0:
             for rpn_head_key in rpn_head_keys:
                 bbox_head_key = bbox_head_prefix + \
-                                rpn_head_key[len(rpn_head_prefix):]
+                    rpn_head_key[len(rpn_head_prefix):]
                 state_dict[bbox_head_key] = state_dict.pop(rpn_head_key)
         super()._load_from_state_dict(state_dict, prefix, local_metadata,
                                       strict, missing_keys, unexpected_keys,

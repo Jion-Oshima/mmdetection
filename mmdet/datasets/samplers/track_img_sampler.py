@@ -8,7 +8,7 @@ from mmengine.dataset import ClassBalancedDataset, ConcatDataset
 from mmengine.dist import get_dist_info, sync_random_seed
 from torch.utils.data import Sampler
 
-from mmdet.registry import DATA_SAMPLERS
+from models.mmdetection.mmdet.registry import DATA_SAMPLERS
 from ..base_video_dataset import BaseVideoDataset
 
 

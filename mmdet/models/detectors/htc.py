@@ -1,5 +1,5 @@
 # Copyright (c) OpenMMLab. All rights reserved.
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from .cascade_rcnn import CascadeRCNN
 
 

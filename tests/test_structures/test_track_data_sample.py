@@ -2,7 +2,7 @@ from unittest import TestCase
 
 import pytest
 
-from mmdet.structures import DetDataSample, TrackDataSample
+from models.mmdetection.mmdet.structures import DetDataSample, TrackDataSample
 
 
 class TestDetDataSample(TestCase):

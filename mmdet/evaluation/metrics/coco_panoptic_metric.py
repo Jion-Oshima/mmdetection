@@ -12,8 +12,8 @@ from mmengine.fileio import dump, get_local_path, load
 from mmengine.logging import MMLogger, print_log
 from terminaltables import AsciiTable
 
-from mmdet.datasets.api_wrappers import COCOPanoptic
-from mmdet.registry import METRICS
+from models.mmdetection.mmdet.datasets.api_wrappers import COCOPanoptic
+from models.mmdetection.mmdet.registry import METRICS
 from ..functional import (INSTANCE_OFFSET, pq_compute_multi_core,
                           pq_compute_single_core)
 

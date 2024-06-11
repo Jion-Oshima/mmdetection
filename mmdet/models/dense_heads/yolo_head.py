@@ -13,9 +13,9 @@ from mmengine.model import bias_init_with_prob, constant_init, normal_init
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.utils import (ConfigType, InstanceList, OptConfigType,
-                         OptInstanceList)
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.utils import (ConfigType, InstanceList, OptConfigType,
+                                            OptInstanceList)
 from ..task_modules.samplers import PseudoSampler
 from ..utils import filter_scores_and_topk, images_to_levels, multi_apply
 from .base_dense_head import BaseDenseHead
@@ -458,7 +458,7 @@ class YOLOV3Head(BaseDenseHead):
 
         anchor_strides = torch.cat(anchor_strides)
         assert len(anchor_strides) == len(concat_anchors) == \
-               len(concat_responsible_flags)
+            len(concat_responsible_flags)
         pred_instances = InstanceData(
             priors=concat_anchors, responsible_flags=concat_responsible_flags)
 

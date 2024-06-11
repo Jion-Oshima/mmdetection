@@ -7,8 +7,8 @@ from mmcv.cnn.bricks import Swish, build_norm_layer
 from torch.nn import functional as F
 from torch.nn.init import _calculate_fan_in_and_fan_out, trunc_normal_
 
-from mmdet.registry import MODELS
-from mmdet.utils import OptConfigType
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import OptConfigType
 
 
 def variance_scaling_trunc(tensor, gain=1.):
@@ -36,10 +36,10 @@ class Conv2dSamePadding(nn.Conv2d):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         img_h, img_w = x.size()[-2:]
         kernel_h, kernel_w = self.weight.size()[-2:]
-        extra_w = (math.ceil(img_w / self.stride[1]) -
-                   1) * self.stride[1] - img_w + kernel_w
-        extra_h = (math.ceil(img_h / self.stride[0]) -
-                   1) * self.stride[0] - img_h + kernel_h
+        extra_w = (math.ceil(img_w / self.stride[1])
+                   - 1) * self.stride[1] - img_w + kernel_w
+        extra_h = (math.ceil(img_h / self.stride[0])
+                   - 1) * self.stride[0] - img_h + kernel_h
 
         left = extra_w // 2
         right = extra_w - left
@@ -69,10 +69,10 @@ class MaxPool2dSamePadding(nn.Module):
     def forward(self, x):
         h, w = x.shape[-2:]
 
-        extra_h = (math.ceil(w / self.stride[1]) -
-                   1) * self.stride[1] - w + self.kernel_size[1]
-        extra_v = (math.ceil(h / self.stride[0]) -
-                   1) * self.stride[0] - h + self.kernel_size[0]
+        extra_h = (math.ceil(w / self.stride[1])
+                   - 1) * self.stride[1] - w + self.kernel_size[1]
+        extra_v = (math.ceil(h / self.stride[0])
+                   - 1) * self.stride[0] - h + self.kernel_size[0]
 
         left = extra_h // 2
         right = extra_h - left

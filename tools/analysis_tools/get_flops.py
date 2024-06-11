@@ -13,7 +13,7 @@ from mmengine.registry import init_default_scope
 from mmengine.runner import Runner
 from mmengine.utils import digit_version
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 
 try:
     from mmengine.analysis import get_model_complexity_info

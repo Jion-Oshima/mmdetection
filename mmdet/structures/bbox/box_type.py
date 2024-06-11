@@ -57,8 +57,8 @@ def register_box(name: str,
             name. Defaults to False.
 
     Examples:
-        >>> from mmdet.structures.bbox import register_box
-        >>> from mmdet.structures.bbox import BaseBoxes
+        >>> from models.mmdetection.mmdet.structures.bbox import register_box
+        >>> from models.mmdetection.mmdet.structures.bbox import BaseBoxes
 
         >>> # as a decorator
         >>> @register_box('hbox')
@@ -129,7 +129,7 @@ def register_box_converter(src_type: Union[str, type],
             name. Defaults to False.
 
     Examples:
-        >>> from mmdet.structures.bbox import register_box_converter
+        >>> from models.mmdetection.mmdet.structures.bbox import register_box_converter
         >>> # as a decorator
         >>> @register_box_converter('hbox', 'rbox')
         >>> def converter_A(boxes):

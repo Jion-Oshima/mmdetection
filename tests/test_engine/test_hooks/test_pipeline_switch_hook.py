@@ -2,7 +2,7 @@
 from unittest import TestCase
 from unittest.mock import Mock
 
-from mmdet.engine.hooks import PipelineSwitchHook
+from models.mmdetection.mmdet.engine.hooks import PipelineSwitchHook
 
 
 class TestPipelineSwitchHook(TestCase):

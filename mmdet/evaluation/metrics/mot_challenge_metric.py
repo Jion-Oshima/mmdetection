@@ -18,7 +18,7 @@ from mmengine.dist import (all_gather_object, barrier, broadcast,
                            is_main_process)
 from mmengine.logging import MMLogger
 
-from mmdet.registry import METRICS, TASK_UTILS
+from models.mmdetection.mmdet.registry import METRICS, TASK_UTILS
 from .base_video_metric import BaseVideoMetric
 
 
@@ -189,10 +189,10 @@ class MOTChallengeMetric(BaseVideoMetric):
                     frame_id + 1, pred_instances['instances_id'][i].cpu(),
                     pred_instances['bboxes'][i][0].cpu(),
                     pred_instances['bboxes'][i][1].cpu(),
-                    (pred_instances['bboxes'][i][2] -
-                     pred_instances['bboxes'][i][0]).cpu(),
-                    (pred_instances['bboxes'][i][3] -
-                     pred_instances['bboxes'][i][1]).cpu(),
+                    (pred_instances['bboxes'][i][2]
+                     - pred_instances['bboxes'][i][0]).cpu(),
+                    (pred_instances['bboxes'][i][3]
+                     - pred_instances['bboxes'][i][1]).cpu(),
                     pred_instances['scores'][i].cpu()
                 ]) for i in range(len(pred_instances['instances_id']))
             ]

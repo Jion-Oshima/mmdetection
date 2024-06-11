@@ -4,8 +4,8 @@ from argparse import ArgumentParser
 import mmengine
 from mmengine.logging import print_log
 
-from mmdet.datasets import CocoDataset
-from mmdet.evaluation import CocoOccludedSeparatedMetric
+from models.mmdetection.mmdet.datasets import CocoDataset
+from models.mmdetection.mmdet.evaluation import CocoOccludedSeparatedMetric
 
 
 def main():

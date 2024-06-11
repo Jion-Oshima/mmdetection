@@ -5,11 +5,11 @@ from mmengine.config import ConfigDict
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.models.layers import multiclass_nms
-from mmdet.models.roi_heads.bbox_heads import Shared2FCBBoxHead
-from mmdet.models.utils import empty_instances
-from mmdet.registry import MODELS
-from mmdet.structures.bbox import get_box_tensor, scale_boxes
+from models.mmdetection.mmdet.models.layers import multiclass_nms
+from models.mmdetection.mmdet.models.roi_heads.bbox_heads import Shared2FCBBoxHead
+from models.mmdetection.mmdet.models.utils import empty_instances
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures.bbox import get_box_tensor, scale_boxes
 
 
 @MODELS.register_module(force=True)  # avoid bug

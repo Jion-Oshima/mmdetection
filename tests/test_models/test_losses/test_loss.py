@@ -6,16 +6,16 @@ import torch
 import torch.nn.functional as F
 from mmengine.utils import digit_version
 
-from mmdet.models.losses import (BalancedL1Loss, CrossEntropyLoss, DDQAuxLoss,
-                                 DiceLoss, DistributionFocalLoss, EQLV2Loss,
-                                 FocalLoss, GaussianFocalLoss,
-                                 KnowledgeDistillationKLDivLoss, L1Loss,
-                                 MarginL2Loss, MSELoss, QualityFocalLoss,
-                                 SeesawLoss, SmoothL1Loss, VarifocalLoss)
-from mmdet.models.losses.ghm_loss import GHMC, GHMR
-from mmdet.models.losses.iou_loss import (BoundedIoULoss, CIoULoss, DIoULoss,
-                                          EIoULoss, GIoULoss, IoULoss,
-                                          SIoULoss)
+from models.mmdetection.mmdet.models.losses import (BalancedL1Loss, CrossEntropyLoss, DDQAuxLoss,
+                                                    DiceLoss, DistributionFocalLoss, EQLV2Loss,
+                                                    FocalLoss, GaussianFocalLoss,
+                                                    KnowledgeDistillationKLDivLoss, L1Loss,
+                                                    MarginL2Loss, MSELoss, QualityFocalLoss,
+                                                    SeesawLoss, SmoothL1Loss, VarifocalLoss)
+from models.mmdetection.mmdet.models.losses.ghm_loss import GHMC, GHMR
+from models.mmdetection.mmdet.models.losses.iou_loss import (BoundedIoULoss, CIoULoss, DIoULoss,
+                                                             EIoULoss, GIoULoss, IoULoss,
+                                                             SIoULoss)
 
 
 @pytest.mark.parametrize('loss_class', [

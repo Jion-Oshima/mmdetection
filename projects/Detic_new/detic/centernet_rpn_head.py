@@ -9,13 +9,13 @@ from mmengine import ConfigDict
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.models.dense_heads import CenterNetUpdateHead
-from mmdet.models.utils import unpack_gt_instances
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList
-from mmdet.structures.bbox import bbox2distance
-from mmdet.utils import (ConfigType, InstanceList, OptConfigType,
-                         OptInstanceList, reduce_mean)
+from models.mmdetection.mmdet.models.dense_heads import CenterNetUpdateHead
+from models.mmdetection.mmdet.models.utils import unpack_gt_instances
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.structures.bbox import bbox2distance
+from models.mmdetection.mmdet.utils import (ConfigType, InstanceList, OptConfigType,
+                                            OptInstanceList, reduce_mean)
 from .iou_loss import IOULoss
 
 # from .heatmap_focal_loss import binary_heatmap_focal_loss_jit
@@ -396,7 +396,7 @@ class CenterNetRPNHead(CenterNetUpdateHead):
                 per_grids[:, 0] + bbox_pred[:, 2],
                 per_grids[:, 1] + bbox_pred[:, 3],
             ],
-                                 dim=1)  # n x 4
+                dim=1)  # n x 4
 
             # avoid invalid boxes in RoI heads
             bboxes[:, 2] = torch.max(bboxes[:, 2], bboxes[:, 0] + 0.01)
@@ -438,8 +438,8 @@ class CenterNetRPNHead(CenterNetUpdateHead):
         L = len(self.strides)
         B = len(batch_gt_instances)
         shapes_per_level = shapes_per_level.long()
-        loc_per_level = (shapes_per_level[:, 0] *
-                         shapes_per_level[:, 1]).long()  # L
+        loc_per_level = (shapes_per_level[:, 0]
+                         * shapes_per_level[:, 1]).long()  # L
         level_bases = []
         s = 0
         for i in range(L):
@@ -511,7 +511,7 @@ class CenterNetRPNHead(CenterNetUpdateHead):
                                        self.num_classes),
                                       self.num_classes,
                                       dtype=torch.float), \
-                   gt_bboxes.new_full((num_points, 4), -1)
+                gt_bboxes.new_full((num_points, 4), -1)
 
         # Calculate the regression tblr target corresponding to all points
         points = points[:, None].expand(num_points, num_gts, 2)

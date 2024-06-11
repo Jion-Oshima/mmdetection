@@ -2,7 +2,7 @@
 import os.path as osp
 from typing import List, Union
 
-from mmdet.registry import DATASETS
+from models.mmdetection.mmdet.registry import DATASETS
 from .base_video_dataset import BaseVideoDataset
 
 
@@ -53,8 +53,8 @@ class MOTChallengeDataset(BaseVideoDataset):
         for i, ann in enumerate(ann_info):
             instance = {}
 
-            if (not self.test_mode) and (ann['visibility'] <
-                                         self.visibility_thr):
+            if (not self.test_mode) and (ann['visibility']
+                                         < self.visibility_thr):
                 continue
             if ann.get('ignore', False):
                 continue

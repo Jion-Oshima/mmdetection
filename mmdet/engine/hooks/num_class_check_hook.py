@@ -3,7 +3,7 @@ from mmcv.cnn import VGG
 from mmengine.hooks import Hook
 from mmengine.runner import Runner
 
-from mmdet.registry import HOOKS
+from models.mmdetection.mmdet.registry import HOOKS
 
 
 @HOOKS.register_module()
@@ -36,7 +36,7 @@ class NumClassCheckHook(Hook):
                  f'should be a tuple of str.'
                  f'Add comma if number of classes is 1 as '
                  f'classes = ({classes},)')
-            from mmdet.models.roi_heads.mask_heads import FusedSemanticHead
+            from models.mmdetection.mmdet.models.roi_heads.mask_heads import FusedSemanticHead
             for name, module in model.named_modules():
                 if hasattr(module, 'num_classes') and not name.endswith(
                         'rpn_head') and not isinstance(

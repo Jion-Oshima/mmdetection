@@ -8,7 +8,7 @@ from mmengine import ConfigDict
 from mmengine.model import BaseModule, ModuleList
 from torch import Tensor
 
-from mmdet.utils import ConfigType, OptConfigType
+from models.mmdetection.mmdet.utils import ConfigType, OptConfigType
 
 try:
     from fairscale.nn.checkpoint import checkpoint_wrapper

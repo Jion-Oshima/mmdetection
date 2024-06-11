@@ -5,7 +5,7 @@ import torch.nn.functional as F
 from mmengine.utils import digit_version
 from torch import Tensor
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 
 MODELS.register_module('Linear', module=nn.Linear)
 
@@ -79,8 +79,8 @@ class NormedConv2d(nn.Conv2d):
         """Forward function for `NormedConv2d`."""
         if not self.norm_over_kernel:
             weight_ = self.weight / (
-                self.weight.norm(dim=1, keepdim=True).pow(self.power) +
-                self.eps)
+                self.weight.norm(dim=1, keepdim=True).pow(self.power)
+                + self.eps)
         else:
             weight_ = self.weight / (
                 self.weight.view(self.weight.size(0), -1).norm(

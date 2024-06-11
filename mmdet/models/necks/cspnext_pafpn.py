@@ -8,8 +8,8 @@ from mmcv.cnn import ConvModule, DepthwiseSeparableConvModule
 from mmengine.model import BaseModule
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.utils import ConfigType, OptMultiConfig
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import ConfigType, OptMultiConfig
 from ..layers import CSPLayer
 
 

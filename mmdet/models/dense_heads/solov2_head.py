@@ -12,9 +12,9 @@ from mmengine.model import BaseModule
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.models.utils.misc import floordiv
-from mmdet.registry import MODELS
-from mmdet.utils import ConfigType, InstanceList, MultiConfig, OptConfigType
+from models.mmdetection.mmdet.models.utils.misc import floordiv
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList, MultiConfig, OptConfigType
 from ..layers import mask_matrix_nms
 from ..utils import center_of_mass, generate_coordinate, multi_apply
 from .solo_head import SOLOHead
@@ -363,8 +363,8 @@ class SOLOV2Head(SOLOHead):
         device = gt_labels.device
 
         gt_bboxes = gt_instances.bboxes
-        gt_areas = torch.sqrt((gt_bboxes[:, 2] - gt_bboxes[:, 0]) *
-                              (gt_bboxes[:, 3] - gt_bboxes[:, 1]))
+        gt_areas = torch.sqrt((gt_bboxes[:, 2] - gt_bboxes[:, 0])
+                              * (gt_bboxes[:, 3] - gt_bboxes[:, 1]))
         gt_masks = gt_instances.masks.to_tensor(
             dtype=torch.bool, device=device)
 
@@ -384,8 +384,8 @@ class SOLOV2Head(SOLOHead):
                                    dtype=torch.bool,
                                    device=device)
 
-            gt_inds = ((gt_areas >= lower_bound) &
-                       (gt_areas <= upper_bound)).nonzero().flatten()
+            gt_inds = ((gt_areas >= lower_bound)
+                       & (gt_areas <= upper_bound)).nonzero().flatten()
             if len(gt_inds) == 0:
                 mlvl_pos_mask_targets.append(
                     torch.zeros([0, featmap_sizes[0], featmap_sizes[1]],
@@ -399,10 +399,10 @@ class SOLOV2Head(SOLOHead):
             hit_gt_labels = gt_labels[gt_inds]
             hit_gt_masks = gt_masks[gt_inds, ...]
 
-            pos_w_ranges = 0.5 * (hit_gt_bboxes[:, 2] -
-                                  hit_gt_bboxes[:, 0]) * self.pos_scale
-            pos_h_ranges = 0.5 * (hit_gt_bboxes[:, 3] -
-                                  hit_gt_bboxes[:, 1]) * self.pos_scale
+            pos_w_ranges = 0.5 * (hit_gt_bboxes[:, 2]
+                                  - hit_gt_bboxes[:, 0]) * self.pos_scale
+            pos_h_ranges = 0.5 * (hit_gt_bboxes[:, 3]
+                                  - hit_gt_bboxes[:, 1]) * self.pos_scale
 
             # Make sure hit_gt_masks has a value
             valid_mask_flags = hit_gt_masks.sum(dim=-1).sum(dim=-1) > 0
@@ -737,8 +737,8 @@ class SOLOV2Head(SOLOHead):
 
         strides[:lvl_interval[0]] *= self.strides[0]
         for lvl in range(1, self.num_levels):
-            strides[lvl_interval[lvl -
-                                 1]:lvl_interval[lvl]] *= self.strides[lvl]
+            strides[lvl_interval[lvl
+                                 - 1]:lvl_interval[lvl]] *= self.strides[lvl]
         strides = strides[inds[:, 0]]
 
         # mask encoding.

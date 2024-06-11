@@ -6,7 +6,7 @@ import numpy as np
 from mmengine.evaluator import BaseMetric
 from mmengine.logging import MMLogger
 
-from mmdet.registry import METRICS
+from models.mmdetection.mmdet.registry import METRICS
 from ..functional import bbox_overlaps
 
 

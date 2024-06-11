@@ -5,14 +5,14 @@ import torch
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.models.roi_heads import CascadeRoIHead
-from mmdet.models.task_modules.samplers import SamplingResult
-from mmdet.models.test_time_augs import merge_aug_masks
-from mmdet.models.utils import empty_instances, unpack_gt_instances
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList
-from mmdet.structures.bbox import bbox2roi, get_box_tensor
-from mmdet.utils import ConfigType, InstanceList, MultiConfig
+from models.mmdetection.mmdet.models.roi_heads import CascadeRoIHead
+from models.mmdetection.mmdet.models.task_modules.samplers import SamplingResult
+from models.mmdetection.mmdet.models.test_time_augs import merge_aug_masks
+from models.mmdetection.mmdet.models.utils import empty_instances, unpack_gt_instances
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.structures.bbox import bbox2roi, get_box_tensor
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList, MultiConfig
 
 
 @MODELS.register_module()
@@ -309,8 +309,8 @@ class DeticRoIHead(CascadeRoIHead):
                                                   batch_gt_instances)
                     for name, value in mask_results['loss_mask'].items():
                         losses[name] = (
-                            value *
-                            stage_loss_weight if 'loss' in name else value)
+                            value
+                            * stage_loss_weight if 'loss' in name else value)
 
             else:
                 # get ws_num_props pred_instances for each image

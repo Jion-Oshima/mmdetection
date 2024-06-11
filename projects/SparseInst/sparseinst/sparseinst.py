@@ -6,18 +6,18 @@ import torch.nn.functional as F
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.models import BaseDetector
-from mmdet.models.utils import unpack_gt_instances
-from mmdet.registry import MODELS
-from mmdet.structures import OptSampleList, SampleList
-from mmdet.utils import ConfigType, OptConfigType
+from models.mmdetection.mmdet.models import BaseDetector
+from models.mmdetection.mmdet.models.utils import unpack_gt_instances
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import OptSampleList, SampleList
+from models.mmdetection.mmdet.utils import ConfigType, OptConfigType
 
 
 @torch.jit.script
 def rescoring_mask(scores, mask_pred, masks):
     mask_pred_ = mask_pred.float()
-    return scores * ((masks * mask_pred_).sum([1, 2]) /
-                     (mask_pred_.sum([1, 2]) + 1e-6))
+    return scores * ((masks * mask_pred_).sum([1, 2])
+                     / (mask_pred_.sum([1, 2]) + 1e-6))
 
 
 @MODELS.register_module()

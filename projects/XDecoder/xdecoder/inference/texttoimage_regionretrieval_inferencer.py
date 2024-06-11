@@ -5,8 +5,8 @@ import torch
 from mmengine.dataset import Compose
 from rich.progress import track
 
-from mmdet.apis.det_inferencer import DetInferencer, InputsType
-from mmdet.utils import ConfigType
+from models.mmdetection.mmdet.apis.det_inferencer import DetInferencer, InputsType
+from models.mmdetection.mmdet.utils import ConfigType
 
 
 class TextToImageRegionRetrievalInferencer(DetInferencer):

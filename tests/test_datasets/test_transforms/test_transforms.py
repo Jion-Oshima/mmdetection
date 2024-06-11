@@ -9,19 +9,19 @@ import torch
 from mmcv.transforms import LoadImageFromFile
 
 # yapf:disable
-from mmdet.datasets.transforms import (CopyPaste, CutOut, Expand,
-                                       FixScaleResize, FixShapeResize,
-                                       MinIoURandomCrop, MixUp, Mosaic, Pad,
-                                       PhotoMetricDistortion, RandomAffine,
-                                       RandomCenterCropPad, RandomCrop,
-                                       RandomErasing, RandomFlip, RandomShift,
-                                       Resize, ResizeShortestEdge, SegRescale,
-                                       YOLOXHSVRandomAug)
+from models.mmdetection.mmdet.datasets.transforms import (CopyPaste, CutOut, Expand,
+                                                          FixScaleResize, FixShapeResize,
+                                                          MinIoURandomCrop, MixUp, Mosaic, Pad,
+                                                          PhotoMetricDistortion, RandomAffine,
+                                                          RandomCenterCropPad, RandomCrop,
+                                                          RandomErasing, RandomFlip, RandomShift,
+                                                          Resize, ResizeShortestEdge, SegRescale,
+                                                          YOLOXHSVRandomAug)
 # yapf:enable
-from mmdet.evaluation import bbox_overlaps
-from mmdet.registry import TRANSFORMS
-from mmdet.structures.bbox import HorizontalBoxes, bbox_project
-from mmdet.structures.mask import BitmapMasks
+from models.mmdetection.mmdet.evaluation import bbox_overlaps
+from models.mmdetection.mmdet.registry import TRANSFORMS
+from models.mmdetection.mmdet.structures.bbox import HorizontalBoxes, bbox_project
+from models.mmdetection.mmdet.structures.mask import BitmapMasks
 from .utils import construct_toy_data, create_full_masks, create_random_bboxes
 
 try:
@@ -121,7 +121,7 @@ class TestResize(unittest.TestCase):
         self.assertTrue((bbox_project(
             copy.deepcopy(data_info1['gt_bboxes'].numpy()),
             results['homography_matrix']) == results['gt_bboxes'].numpy()
-                         ).all())
+        ).all())
 
     def test_repr(self):
         transform = Resize(scale=(100, 100), keep_ratio=True)
@@ -255,7 +255,7 @@ class TestFixShapeResize(unittest.TestCase):
         self.assertTrue((bbox_project(
             copy.deepcopy(self.data_info4['gt_bboxes']),
             results['homography_matrix']) == results['gt_bboxes'].numpy()
-                         ).all())
+        ).all())
 
     def test_repr(self):
         transform = FixShapeResize(width=100, height=50, keep_ratio=True)
@@ -306,7 +306,7 @@ class TestRandomFlip(unittest.TestCase):
         self.assertTrue((bbox_project(
             bboxes,
             results_update['homography_matrix']) == results_update['gt_bboxes']
-                         ).all())
+        ).all())
         # (2) Vertical Flip
         transform = RandomFlip(1.0, direction='vertical')
         results_update = transform.transform(copy.deepcopy(self.results1))
@@ -314,7 +314,7 @@ class TestRandomFlip(unittest.TestCase):
         self.assertTrue((bbox_project(
             bboxes,
             results_update['homography_matrix']) == results_update['gt_bboxes']
-                         ).all())
+        ).all())
         # (3) Diagonal Flip
         transform = RandomFlip(1.0, direction='diagonal')
         results_update = transform.transform(copy.deepcopy(self.results1))
@@ -322,7 +322,7 @@ class TestRandomFlip(unittest.TestCase):
         self.assertTrue((bbox_project(
             bboxes,
             results_update['homography_matrix']) == results_update['gt_bboxes']
-                         ).all())
+        ).all())
 
     def test_transform_use_box_type(self):
         results1 = copy.deepcopy(self.results1)
@@ -944,8 +944,8 @@ class TestMosaic(unittest.TestCase):
         self.results['mix_results'] = [copy.deepcopy(self.results)] * 3
         results = transform(copy.deepcopy(self.results))
         self.assertTrue(results['img'].shape[:2] == (20, 24))
-        self.assertTrue(results['gt_bboxes_labels'].shape[0] ==
-                        results['gt_bboxes'].shape[0])
+        self.assertTrue(results['gt_bboxes_labels'].shape[0]
+                        == results['gt_bboxes'].shape[0])
         self.assertTrue(results['gt_bboxes_labels'].dtype == np.int64)
         self.assertTrue(results['gt_bboxes'].dtype == np.float32)
         self.assertTrue(results['gt_ignore_flags'].dtype == bool)
@@ -974,8 +974,8 @@ class TestMosaic(unittest.TestCase):
         results['mix_results'] = [results] * 3
         results = transform(results)
         self.assertTrue(results['img'].shape[:2] == (20, 24))
-        self.assertTrue(results['gt_bboxes_labels'].shape[0] ==
-                        results['gt_bboxes'].shape[0])
+        self.assertTrue(results['gt_bboxes_labels'].shape[0]
+                        == results['gt_bboxes'].shape[0])
         self.assertTrue(results['gt_bboxes_labels'].dtype == np.int64)
         self.assertTrue(results['gt_bboxes'].dtype == torch.float32)
         self.assertTrue(results['gt_ignore_flags'].dtype == bool)
@@ -1030,8 +1030,8 @@ class TestMixUp(unittest.TestCase):
         self.results['mix_results'] = [copy.deepcopy(self.results)]
         results = transform(copy.deepcopy(self.results))
         self.assertTrue(results['img'].shape[:2] == (224, 224))
-        self.assertTrue(results['gt_bboxes_labels'].shape[0] ==
-                        results['gt_bboxes'].shape[0])
+        self.assertTrue(results['gt_bboxes_labels'].shape[0]
+                        == results['gt_bboxes'].shape[0])
         self.assertTrue(results['gt_bboxes_labels'].dtype == np.int64)
         self.assertTrue(results['gt_bboxes'].dtype == np.float32)
         self.assertTrue(results['gt_ignore_flags'].dtype == bool)
@@ -1045,8 +1045,8 @@ class TestMixUp(unittest.TestCase):
         results['mix_results'] = [results]
         results = transform(results)
         self.assertTrue(results['img'].shape[:2] == (224, 224))
-        self.assertTrue(results['gt_bboxes_labels'].shape[0] ==
-                        results['gt_bboxes'].shape[0])
+        self.assertTrue(results['gt_bboxes_labels'].shape[0]
+                        == results['gt_bboxes'].shape[0])
         self.assertTrue(results['gt_bboxes_labels'].dtype == np.int64)
         self.assertTrue(results['gt_bboxes'].dtype == torch.float32)
         self.assertTrue(results['gt_ignore_flags'].dtype == bool)
@@ -1102,8 +1102,8 @@ class TestRandomAffine(unittest.TestCase):
         transform = RandomAffine()
         results = transform(copy.deepcopy(self.results))
         self.assertTrue(results['img'].shape[:2] == (224, 224))
-        self.assertTrue(results['gt_bboxes_labels'].shape[0] ==
-                        results['gt_bboxes'].shape[0])
+        self.assertTrue(results['gt_bboxes_labels'].shape[0]
+                        == results['gt_bboxes'].shape[0])
         self.assertTrue(results['gt_bboxes_labels'].dtype == np.int64)
         self.assertTrue(results['gt_bboxes'].dtype == np.float32)
         self.assertTrue(results['gt_ignore_flags'].dtype == bool)
@@ -1116,8 +1116,8 @@ class TestRandomAffine(unittest.TestCase):
         transform = RandomAffine()
         results = transform(copy.deepcopy(results))
         self.assertTrue(results['img'].shape[:2] == (224, 224))
-        self.assertTrue(results['gt_bboxes_labels'].shape[0] ==
-                        results['gt_bboxes'].shape[0])
+        self.assertTrue(results['gt_bboxes_labels'].shape[0]
+                        == results['gt_bboxes'].shape[0])
         self.assertTrue(results['gt_bboxes_labels'].dtype == np.int64)
         self.assertTrue(results['gt_bboxes'].dtype == torch.float32)
         self.assertTrue(results['gt_ignore_flags'].dtype == bool)
@@ -1165,8 +1165,8 @@ class TestYOLOXHSVRandomAug(unittest.TestCase):
         results = transform(copy.deepcopy(self.results))
         self.assertTrue(
             results['img'].shape[:2] == self.results['img'].shape[:2])
-        self.assertTrue(results['gt_bboxes_labels'].shape[0] ==
-                        results['gt_bboxes'].shape[0])
+        self.assertTrue(results['gt_bboxes_labels'].shape[0]
+                        == results['gt_bboxes'].shape[0])
         self.assertTrue(results['gt_bboxes_labels'].dtype == np.int64)
         self.assertTrue(results['gt_bboxes'].dtype == np.float32)
         self.assertTrue(results['gt_ignore_flags'].dtype == bool)
@@ -1396,20 +1396,20 @@ class TestCopyPaste(unittest.TestCase):
         # one object of destination image is totally occluded
         self.assertEqual(
             results['gt_bboxes'].shape[0],
-            self.dst_results['gt_bboxes'].shape[0] +
-            self.src_results['gt_bboxes'].shape[0] - 1)
+            self.dst_results['gt_bboxes'].shape[0]
+            + self.src_results['gt_bboxes'].shape[0] - 1)
         self.assertEqual(
             results['gt_bboxes_labels'].shape[0],
-            self.dst_results['gt_bboxes_labels'].shape[0] +
-            self.src_results['gt_bboxes_labels'].shape[0] - 1)
+            self.dst_results['gt_bboxes_labels'].shape[0]
+            + self.src_results['gt_bboxes_labels'].shape[0] - 1)
         self.assertEqual(
             results['gt_masks'].masks.shape[0],
-            self.dst_results['gt_masks'].masks.shape[0] +
-            self.src_results['gt_masks'].masks.shape[0] - 1)
+            self.dst_results['gt_masks'].masks.shape[0]
+            + self.src_results['gt_masks'].masks.shape[0] - 1)
         self.assertEqual(
             results['gt_ignore_flags'].shape[0],
-            self.dst_results['gt_ignore_flags'].shape[0] +
-            self.src_results['gt_ignore_flags'].shape[0] - 1)
+            self.dst_results['gt_ignore_flags'].shape[0]
+            + self.src_results['gt_ignore_flags'].shape[0] - 1)
 
         # the object of destination image is partially occluded
         ori_bbox = self.dst_results['gt_bboxes'][0]
@@ -1481,20 +1481,20 @@ class TestCopyPaste(unittest.TestCase):
         # one object of destination image is totally occluded
         self.assertEqual(
             results['gt_bboxes'].shape[0],
-            self.dst_results['gt_bboxes'].shape[0] +
-            self.src_results['gt_bboxes'].shape[0] - 1)
+            self.dst_results['gt_bboxes'].shape[0]
+            + self.src_results['gt_bboxes'].shape[0] - 1)
         self.assertEqual(
             results['gt_bboxes_labels'].shape[0],
-            self.dst_results['gt_bboxes_labels'].shape[0] +
-            self.src_results['gt_bboxes_labels'].shape[0] - 1)
+            self.dst_results['gt_bboxes_labels'].shape[0]
+            + self.src_results['gt_bboxes_labels'].shape[0] - 1)
         self.assertEqual(
             results['gt_masks'].masks.shape[0],
-            self.dst_results['gt_masks'].masks.shape[0] +
-            self.src_results['gt_masks'].masks.shape[0] - 1)
+            self.dst_results['gt_masks'].masks.shape[0]
+            + self.src_results['gt_masks'].masks.shape[0] - 1)
         self.assertEqual(
             results['gt_ignore_flags'].shape[0],
-            self.dst_results['gt_ignore_flags'].shape[0] +
-            self.src_results['gt_ignore_flags'].shape[0] - 1)
+            self.dst_results['gt_ignore_flags'].shape[0]
+            + self.src_results['gt_ignore_flags'].shape[0] - 1)
 
         # the object of destination image is partially occluded
         ori_bbox = dst_results['gt_bboxes'][0].numpy()

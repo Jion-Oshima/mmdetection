@@ -7,12 +7,12 @@ from mmcv.cnn.bricks import Swish, build_norm_layer
 from mmengine.model import bias_init_with_prob
 from torch import Tensor
 
-from mmdet.models.dense_heads.anchor_head import AnchorHead
-from mmdet.models.utils import images_to_levels, multi_apply
-from mmdet.registry import MODELS
-from mmdet.structures.bbox import cat_boxes, get_box_tensor
-from mmdet.utils import (InstanceList, OptConfigType, OptInstanceList,
-                         OptMultiConfig, reduce_mean)
+from models.mmdetection.mmdet.models.dense_heads.anchor_head import AnchorHead
+from models.mmdetection.mmdet.models.utils import images_to_levels, multi_apply
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures.bbox import cat_boxes, get_box_tensor
+from models.mmdetection.mmdet.utils import (InstanceList, OptConfigType, OptInstanceList,
+                                            OptMultiConfig, reduce_mean)
 from .utils import DepthWiseConvBlock
 
 

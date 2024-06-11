@@ -29,7 +29,7 @@ class DetDataSample(BaseDataElement):
          >>> import torch
          >>> import numpy as np
          >>> from mmengine.structures import InstanceData
-         >>> from mmdet.structures import DetDataSample
+         >>> from models.mmdetection.mmdet.structures import DetDataSample
 
          >>> data_sample = DetDataSample()
          >>> img_meta = dict(img_shape=(800, 1196),

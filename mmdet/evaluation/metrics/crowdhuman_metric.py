@@ -14,8 +14,8 @@ from mmengine.logging import MMLogger
 from scipy.sparse import csr_matrix
 from scipy.sparse.csgraph import maximum_bipartite_matching
 
-from mmdet.evaluation.functional.bbox_overlaps import bbox_overlaps
-from mmdet.registry import METRICS
+from models.mmdetection.mmdet.evaluation.functional.bbox_overlaps import bbox_overlaps
+from models.mmdetection.mmdet.registry import METRICS
 
 PERSON_CLASSES = ['background', 'person']
 
@@ -106,9 +106,9 @@ class CrowdHumanMetric(BaseMetric):
         assert eval_mode in [0, 1, 2], \
             "Unknown eval mode. mr_ref should be one of '0', '1', '2'."
         assert compare_matching_method is None or \
-               compare_matching_method == 'VOC', \
-               'The alternative compare_matching_method is VOC.' \
-               'This parameter defaults to CALTECH(None)'
+            compare_matching_method == 'VOC', \
+            'The alternative compare_matching_method is VOC.' \
+            'This parameter defaults to CALTECH(None)'
         assert mr_ref == 'CALTECH_-2' or mr_ref == 'CALTECH_-4', \
             "mr_ref should be one of 'CALTECH_-2', 'CALTECH_-4'."
         self.eval_mode = eval_mode
@@ -443,8 +443,8 @@ class CrowdHumanMetric(BaseMetric):
                                              gt_boxes[~gt_tag, :4])
             matched_indices = np.array([j for (_, j) in matches])
             unmatched_indices = list(
-                set(np.arange(gt_boxes[gt_tag].shape[0])) -
-                set(matched_indices))
+                set(np.arange(gt_boxes[gt_tag].shape[0]))
+                - set(matched_indices))
             num_ignore_gt = self.get_ignores(
                 gt_boxes[gt_tag][unmatched_indices], gt_boxes[~gt_tag, :4])
             # compute results

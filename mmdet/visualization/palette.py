@@ -47,15 +47,15 @@ def get_palette(palette: Union[List[tuple], str, tuple],
         np.random.set_state(state)
         dataset_palette = [tuple(c) for c in palette]
     elif palette == 'coco':
-        from mmdet.datasets import CocoDataset, CocoPanopticDataset
+        from models.mmdetection.mmdet.datasets import CocoDataset, CocoPanopticDataset
         dataset_palette = CocoDataset.METAINFO['palette']
         if len(dataset_palette) < num_classes:
             dataset_palette = CocoPanopticDataset.METAINFO['palette']
     elif palette == 'citys':
-        from mmdet.datasets import CityscapesDataset
+        from models.mmdetection.mmdet.datasets import CityscapesDataset
         dataset_palette = CityscapesDataset.METAINFO['palette']
     elif palette == 'voc':
-        from mmdet.datasets import VOCDataset
+        from models.mmdetection.mmdet.datasets import VOCDataset
         dataset_palette = VOCDataset.METAINFO['palette']
     elif is_str(palette):
         dataset_palette = [mmcv.color_val(palette)[::-1]] * num_classes

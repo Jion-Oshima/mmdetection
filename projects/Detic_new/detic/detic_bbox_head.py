@@ -8,13 +8,13 @@ from mmengine.structures import InstanceData
 from torch import Tensor
 from torch.nn import functional as F
 
-from mmdet.models.layers import multiclass_nms
-from mmdet.models.losses import accuracy
-from mmdet.models.roi_heads.bbox_heads import Shared2FCBBoxHead
-from mmdet.models.utils import empty_instances
-from mmdet.registry import MODELS
-from mmdet.structures.bbox import get_box_tensor, scale_boxes
-from mmdet.utils import ConfigType, InstanceList
+from models.mmdetection.mmdet.models.layers import multiclass_nms
+from models.mmdetection.mmdet.models.losses import accuracy
+from models.mmdetection.mmdet.models.roi_heads.bbox_heads import Shared2FCBBoxHead
+from models.mmdetection.mmdet.models.utils import empty_instances
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures.bbox import get_box_tensor, scale_boxes
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList
 
 
 def load_class_freq(path='datasets/metadata/lvis_v1_train_cat_info.json',
@@ -339,9 +339,9 @@ class DeticBBoxHead(Shared2FCBBoxHead):
         Example:
             >>> # xdoctest: +REQUIRES(module:kwarray)
             >>> import numpy as np
-            >>> from mmdet.models.task_modules.samplers.
+            >>> from models.mmdetection.mmdet.models.task_modules.samplers.
             ... sampling_result import random_boxes
-            >>> from mmdet.models.task_modules.samplers import SamplingResult
+            >>> from models.mmdetection.mmdet.models.task_modules.samplers import SamplingResult
             >>> self = BBoxHead(reg_class_agnostic=True)
             >>> n_roi = 2
             >>> n_img = 4

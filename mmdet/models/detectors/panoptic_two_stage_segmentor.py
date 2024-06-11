@@ -6,9 +6,9 @@ import torch
 from mmengine.structures import PixelData
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList
-from mmdet.utils import ConfigType, OptConfigType, OptMultiConfig
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.utils import ConfigType, OptConfigType, OptMultiConfig
 from .two_stage import TwoStageDetector
 
 

@@ -10,9 +10,9 @@ import torch.nn as nn
 from mmcv.transforms import Compose
 from mmengine.utils import track_iter_progress
 
-from mmdet.apis import init_detector
-from mmdet.registry import VISUALIZERS
-from mmdet.structures import DetDataSample
+from models.mmdetection.mmdet.apis import init_detector
+from models.mmdetection.mmdet.registry import VISUALIZERS
+from models.mmdetection.mmdet.structures import DetDataSample
 
 try:
     import ffmpegcv

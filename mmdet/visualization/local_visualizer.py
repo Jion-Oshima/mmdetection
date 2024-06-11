@@ -50,8 +50,8 @@ class DetLocalVisualizer(Visualizer):
         >>> import numpy as np
         >>> import torch
         >>> from mmengine.structures import InstanceData
-        >>> from mmdet.structures import DetDataSample
-        >>> from mmdet.visualization import DetLocalVisualizer
+        >>> from models.mmdetection.mmdet.structures import DetDataSample
+        >>> from models.mmdetection.mmdet.visualization import DetLocalVisualizer
 
         >>> det_local_visualizer = DetLocalVisualizer()
         >>> image = np.random.randint(0, 256,
@@ -194,8 +194,8 @@ class DetLocalVisualizer(Visualizer):
             self.draw_binary_masks(masks, colors=colors, alphas=self.alpha)
 
             if len(labels) > 0 and \
-                    ('bboxes' not in instances or
-                     instances.bboxes.sum() == 0):
+                    ('bboxes' not in instances
+                     or instances.bboxes.sum() == 0):
                 # instances.bboxes.sum()==0 represent dummy bboxes.
                 # A typical example of SOLO does not exist bbox branch.
                 areas = []

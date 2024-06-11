@@ -6,10 +6,10 @@ import torch.nn as nn
 from mmengine.model import bias_init_with_prob
 from torch import Tensor
 
-from mmdet.models.layers.transformer import inverse_sigmoid
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList
-from mmdet.utils import InstanceList
+from models.mmdetection.mmdet.models.layers.transformer import inverse_sigmoid
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.utils import InstanceList
 from .detr_head import DETRHead
 
 

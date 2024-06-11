@@ -15,16 +15,16 @@ from torch.nn.modules.batchnorm import BatchNorm2d
 from torch.nn.modules.normalization import GroupNorm
 from torch.optim import SGD
 
-from mmdet.engine.hooks import TrackVisualizationHook
-from mmdet.models import (QDTrack, QuasiDenseEmbedHead, QuasiDenseTracker,
-                          QuasiDenseTrackHead, SingleRoIExtractor,
-                          TrackDataPreprocessor)
-from mmdet.models.losses import (L1Loss, MarginL2Loss,
-                                 MultiPosCrossEntropyLoss, SmoothL1Loss)
-from mmdet.models.task_modules import (CombinedSampler,
-                                       InstanceBalancedPosSampler,
-                                       MaxIoUAssigner, RandomSampler)
-from mmdet.visualization import TrackLocalVisualizer
+from models.mmdetection.mmdet.engine.hooks import TrackVisualizationHook
+from models.mmdetection.mmdet.models import (QDTrack, QuasiDenseEmbedHead, QuasiDenseTracker,
+                                             QuasiDenseTrackHead, SingleRoIExtractor,
+                                             TrackDataPreprocessor)
+from models.mmdetection.mmdet.models.losses import (L1Loss, MarginL2Loss,
+                                                    MultiPosCrossEntropyLoss, SmoothL1Loss)
+from models.mmdetection.mmdet.models.task_modules import (CombinedSampler,
+                                                          InstanceBalancedPosSampler,
+                                                          MaxIoUAssigner, RandomSampler)
+from models.mmdetection.mmdet.visualization import TrackLocalVisualizer
 
 detector = model
 detector.pop('data_preprocessor')
@@ -43,7 +43,7 @@ detector.roi_head.bbox_head.update(dict(num_classes=1))
 detector.roi_head.bbox_head.bbox_coder.update(dict(clip_border=False))
 detector['init_cfg'] = dict(
     type=PretrainedInit,
-    checkpoint=  # noqa: E251
+    checkpoint=# noqa: E251
     'https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/'
     'faster_rcnn_r50_fpn_1x_coco-person/'
     'faster_rcnn_r50_fpn_1x_coco-person_20201216_175929-d022e227.pth'

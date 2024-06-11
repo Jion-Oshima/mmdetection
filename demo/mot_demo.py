@@ -8,8 +8,8 @@ import mmcv
 import mmengine
 from mmengine.registry import init_default_scope
 
-from mmdet.apis import inference_mot, init_track_model
-from mmdet.registry import VISUALIZERS
+from models.mmdetection.mmdet.apis import inference_mot, init_track_model
+from models.mmdetection.mmdet.registry import VISUALIZERS
 
 IMG_EXTENSIONS = ('.jpg', '.jpeg', '.png')
 

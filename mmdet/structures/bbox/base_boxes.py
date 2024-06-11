@@ -6,7 +6,7 @@ import numpy as np
 import torch
 from torch import BoolTensor, Tensor
 
-from mmdet.structures.mask.structures import BitmapMasks, PolygonMasks
+from models.mmdetection.mmdet.structures.mask.structures import BitmapMasks, PolygonMasks
 
 T = TypeVar('T')
 DeviceType = Union[str, torch.device]

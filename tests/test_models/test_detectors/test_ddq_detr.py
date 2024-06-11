@@ -5,10 +5,10 @@ from unittest import TestCase
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.registry import MODELS
-from mmdet.structures import DetDataSample
-from mmdet.testing import get_detector_cfg
-from mmdet.utils import register_all_modules
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import DetDataSample
+from models.mmdetection.mmdet.testing import get_detector_cfg
+from models.mmdetection.mmdet.utils import register_all_modules
 
 
 class TestDDQDETR(TestCase):
@@ -105,8 +105,8 @@ class TestDDQDETR(TestCase):
                     for image_loss in loss:
                         self.assertGreater(
                             image_loss.item(), 0,
-                            'cls loss, or box loss, or iou loss should be' +
-                            ' non-zero')
+                            'cls loss, or box loss, or iou loss should be'
+                            + ' non-zero')
 
                     continue
 

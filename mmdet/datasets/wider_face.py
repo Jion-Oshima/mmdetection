@@ -6,8 +6,8 @@ from mmengine.dist import is_main_process
 from mmengine.fileio import get_local_path, list_from_file
 from mmengine.utils import ProgressBar
 
-from mmdet.registry import DATASETS
-from mmdet.utils.typing_utils import List, Union
+from models.mmdetection.mmdet.registry import DATASETS
+from models.mmdetection.mmdet.utils.typing_utils import List, Union
 from .xml_style import XMLDataset
 
 

@@ -7,7 +7,7 @@ from mmengine.model import Sequential, constant_init, kaiming_init
 from mmengine.runner.checkpoint import load_checkpoint
 from torch.nn.modules.batchnorm import _BatchNorm
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from .resnet import BasicBlock
 from .resnet import Bottleneck as _Bottleneck
 from .resnet import ResNet

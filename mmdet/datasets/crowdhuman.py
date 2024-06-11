@@ -11,7 +11,7 @@ from mmengine.fileio import dump, get, get_text, load
 from mmengine.logging import print_log
 from mmengine.utils import ProgressBar
 
-from mmdet.registry import DATASETS
+from models.mmdetection.mmdet.registry import DATASETS
 from .base_det_dataset import BaseDetDataset
 
 

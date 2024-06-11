@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import unittest
 
-from mmdet.datasets import VOCDataset
+from models.mmdetection.mmdet.datasets import VOCDataset
 
 
 class TestVOCDataset(unittest.TestCase):

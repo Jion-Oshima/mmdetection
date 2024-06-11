@@ -5,8 +5,8 @@ import mmengine
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.models.tracking_heads import QuasiDenseEmbedHead
-from mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.models.tracking_heads import QuasiDenseEmbedHead
+from models.mmdetection.mmdet.registry import TASK_UTILS
 
 
 def _dummy_bbox_sampling(rpn_results_list, batch_gt_instances):

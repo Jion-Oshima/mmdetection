@@ -3,10 +3,10 @@ from typing import List
 import torch
 from torch import Tensor
 
-from mmdet.models.dense_heads import ATSSHead
-from mmdet.models.utils import images_to_levels, multi_apply
-from mmdet.registry import MODELS
-from mmdet.utils import InstanceList, OptInstanceList, reduce_mean
+from models.mmdetection.mmdet.models.dense_heads import ATSSHead
+from models.mmdetection.mmdet.models.utils import images_to_levels, multi_apply
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import InstanceList, OptInstanceList, reduce_mean
 
 
 @MODELS.register_module()

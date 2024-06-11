@@ -17,7 +17,7 @@ try:
 except ImportError:
     PrettyTable = None
 
-from mmdet.registry import METRICS
+from models.mmdetection.mmdet.registry import METRICS
 
 
 @METRICS.register_module()

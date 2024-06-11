@@ -6,9 +6,9 @@ import requests
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.apis import inference_detector, init_detector
-from mmdet.registry import VISUALIZERS
-from mmdet.structures import DetDataSample
+from models.mmdetection.mmdet.apis import inference_detector, init_detector
+from models.mmdetection.mmdet.registry import VISUALIZERS
+from models.mmdetection.mmdet.structures import DetDataSample
 
 
 def parse_args():

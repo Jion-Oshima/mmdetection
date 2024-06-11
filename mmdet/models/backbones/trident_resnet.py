@@ -7,8 +7,8 @@ from mmcv.cnn import build_conv_layer, build_norm_layer
 from mmengine.model import BaseModule
 from torch.nn.modules.utils import _pair
 
-from mmdet.models.backbones.resnet import Bottleneck, ResNet
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.models.backbones.resnet import Bottleneck, ResNet
+from models.mmdetection.mmdet.registry import MODELS
 
 
 class TridentConv(BaseModule):
@@ -275,8 +275,8 @@ class TridentResNet(ResNet):
         planes = self.base_channels * 2**last_stage_idx
         res_layer = make_trident_res_layer(
             TridentBottleneck,
-            inplanes=(self.block.expansion * self.base_channels *
-                      2**(last_stage_idx - 1)),
+            inplanes=(self.block.expansion * self.base_channels
+                      * 2**(last_stage_idx - 1)),
             planes=planes,
             num_blocks=self.stage_blocks[last_stage_idx],
             stride=stride,

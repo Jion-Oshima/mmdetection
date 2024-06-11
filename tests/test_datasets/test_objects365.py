@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import unittest
 
-from mmdet.datasets import Objects365V1Dataset, Objects365V2Dataset
+from models.mmdetection.mmdet.datasets import Objects365V1Dataset, Objects365V2Dataset
 
 
 class TestObjects365V1Dataset(unittest.TestCase):

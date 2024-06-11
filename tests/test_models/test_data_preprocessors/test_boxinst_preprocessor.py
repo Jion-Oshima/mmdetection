@@ -3,9 +3,9 @@ from unittest import TestCase
 
 import torch
 
-from mmdet.models.data_preprocessors import BoxInstDataPreprocessor
-from mmdet.structures import DetDataSample
-from mmdet.testing import demo_mm_inputs
+from models.mmdetection.mmdet.models.data_preprocessors import BoxInstDataPreprocessor
+from models.mmdetection.mmdet.structures import DetDataSample
+from models.mmdetection.mmdet.testing import demo_mm_inputs
 
 
 class TestBoxInstDataPreprocessor(TestCase):

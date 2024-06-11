@@ -12,10 +12,10 @@ from mmengine.model import bias_init_with_prob, normal_init
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.structures.bbox import distance2bbox
-from mmdet.utils import (ConfigType, InstanceList, OptConfigType,
-                         OptInstanceList, reduce_mean)
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.structures.bbox import distance2bbox
+from models.mmdetection.mmdet.utils import (ConfigType, InstanceList, OptConfigType,
+                                            OptInstanceList, reduce_mean)
 from ..task_modules.prior_generators import anchor_inside_flags
 from ..utils import (filter_scores_and_topk, images_to_levels, multi_apply,
                      sigmoid_geometric_mean, unmap)
@@ -782,8 +782,8 @@ class TOODHead(ATSSHead):
         class_assigned_gt_inds = torch.unique(
             sampling_result.pos_assigned_gt_inds)
         for gt_inds in class_assigned_gt_inds:
-            gt_class_inds = pos_inds[sampling_result.pos_assigned_gt_inds ==
-                                     gt_inds]
+            gt_class_inds = pos_inds[sampling_result.pos_assigned_gt_inds
+                                     == gt_inds]
             pos_alignment_metrics = assign_metrics[gt_class_inds]
             pos_ious = assign_ious[gt_class_inds]
             pos_norm_alignment_metrics = pos_alignment_metrics / (

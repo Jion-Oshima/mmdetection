@@ -10,21 +10,21 @@ from torch.nn.modules.batchnorm import BatchNorm2d
 from torch.nn.modules.normalization import GroupNorm
 from torch.optim.adamw import AdamW
 
-from mmdet.datasets.transforms.transforms import RandomCrop
-from mmdet.models import MaskFormer
-from mmdet.models.backbones import ResNet
-from mmdet.models.data_preprocessors.data_preprocessor import \
+from models.mmdetection.mmdet.datasets.transforms.transforms import RandomCrop
+from models.mmdetection.mmdet.models import MaskFormer
+from models.mmdetection.mmdet.models.backbones import ResNet
+from models.mmdetection.mmdet.models.data_preprocessors.data_preprocessor import \
     DetDataPreprocessor
-from mmdet.models.dense_heads.maskformer_head import MaskFormerHead
-from mmdet.models.layers.pixel_decoder import TransformerEncoderPixelDecoder
-from mmdet.models.losses import CrossEntropyLoss, DiceLoss, FocalLoss
-from mmdet.models.seg_heads.panoptic_fusion_heads import MaskFormerFusionHead
-from mmdet.models.task_modules.assigners.hungarian_assigner import \
+from models.mmdetection.mmdet.models.dense_heads.maskformer_head import MaskFormerHead
+from models.mmdetection.mmdet.models.layers.pixel_decoder import TransformerEncoderPixelDecoder
+from models.mmdetection.mmdet.models.losses import CrossEntropyLoss, DiceLoss, FocalLoss
+from models.mmdetection.mmdet.models.seg_heads.panoptic_fusion_heads import MaskFormerFusionHead
+from models.mmdetection.mmdet.models.task_modules.assigners.hungarian_assigner import \
     HungarianAssigner
-from mmdet.models.task_modules.assigners.match_cost import (ClassificationCost,
-                                                            DiceCost,
-                                                            FocalLossCost)
-from mmdet.models.task_modules.samplers import MaskPseudoSampler
+from models.mmdetection.mmdet.models.task_modules.assigners.match_cost import (ClassificationCost,
+                                                                               DiceCost,
+                                                                               FocalLossCost)
+from models.mmdetection.mmdet.models.task_modules.samplers import MaskPseudoSampler
 
 with read_base():
     from .._base_.datasets.coco_panoptic import *
@@ -179,26 +179,26 @@ train_pipeline = [
                 resize_type=Resize,
                 keep_ratio=True)
         ],
-                    [
-                        dict(
-                            type=RandomChoiceResize,
-                            scales=[(400, 1333), (500, 1333), (600, 1333)],
-                            resize_type=Resize,
-                            keep_ratio=True),
-                        dict(
-                            type=RandomCrop,
-                            crop_type='absolute_range',
-                            crop_size=(384, 600),
-                            allow_negative_crop=True),
-                        dict(
-                            type=RandomChoiceResize,
-                            scales=[(480, 1333), (512, 1333), (544, 1333),
-                                    (576, 1333), (608, 1333), (640, 1333),
-                                    (672, 1333), (704, 1333), (736, 1333),
-                                    (768, 1333), (800, 1333)],
-                            resize_type=Resize,
-                            keep_ratio=True)
-                    ]]),
+            [
+            dict(
+                type=RandomChoiceResize,
+                scales=[(400, 1333), (500, 1333), (600, 1333)],
+                resize_type=Resize,
+                keep_ratio=True),
+            dict(
+                type=RandomCrop,
+                crop_type='absolute_range',
+                crop_size=(384, 600),
+                allow_negative_crop=True),
+            dict(
+                type=RandomChoiceResize,
+                scales=[(480, 1333), (512, 1333), (544, 1333),
+                        (576, 1333), (608, 1333), (640, 1333),
+                        (672, 1333), (704, 1333), (736, 1333),
+                        (768, 1333), (800, 1333)],
+                resize_type=Resize,
+                keep_ratio=True)
+        ]]),
     dict(type=PackDetInputs)
 ]
 

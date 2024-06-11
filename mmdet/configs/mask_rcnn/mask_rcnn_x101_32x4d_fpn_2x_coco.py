@@ -11,7 +11,7 @@ with read_base():
 
 from mmengine.model.weight_init import PretrainedInit
 
-from mmdet.models import ResNeXt
+from models.mmdetection.mmdet.models import ResNeXt
 
 model = dict(
     backbone=dict(

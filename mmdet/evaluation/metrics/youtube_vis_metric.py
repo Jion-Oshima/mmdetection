@@ -12,8 +12,8 @@ from mmengine.dist import (all_gather_object, barrier, broadcast_object_list,
                            is_main_process)
 from mmengine.logging import MMLogger
 
-from mmdet.registry import METRICS
-from mmdet.structures.mask import encode_mask_results
+from models.mmdetection.mmdet.registry import METRICS
+from models.mmdetection.mmdet.structures.mask import encode_mask_results
 from ..functional import YTVIS, YTVISeval
 from .base_video_metric import BaseVideoMetric, collect_tracking_results
 

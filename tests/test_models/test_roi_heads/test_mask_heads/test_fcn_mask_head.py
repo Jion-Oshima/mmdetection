@@ -7,7 +7,7 @@ from mmengine.config import ConfigDict
 from mmengine.structures import InstanceData
 from parameterized import parameterized
 
-from mmdet.models.roi_heads.mask_heads import FCNMaskHead
+from models.mmdetection.mmdet.models.roi_heads.mask_heads import FCNMaskHead
 
 
 class TestFCNMaskHead(TestCase):

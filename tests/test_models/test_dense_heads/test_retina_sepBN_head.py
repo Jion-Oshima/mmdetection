@@ -6,7 +6,7 @@ from mmengine import Config
 from mmengine.structures import InstanceData
 
 from mmdet import *  # noqa
-from mmdet.models.dense_heads import RetinaSepBNHead
+from models.mmdetection.mmdet.models.dense_heads import RetinaSepBNHead
 
 
 class TestRetinaSepBNHead(TestCase):

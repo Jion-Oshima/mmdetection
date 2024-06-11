@@ -17,7 +17,7 @@ from mmengine.model.weight_init import trunc_normal_
 from mmengine.runner.checkpoint import CheckpointLoader, load_state_dict
 from torch.nn.modules.utils import _pair as to_2tuple
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from ..layers import PatchEmbed, nchw_to_nlc, nlc_to_nchw
 
 
@@ -465,7 +465,7 @@ class PyramidVisionTransformer(BaseModule):
         self.strides = strides
         self.sr_ratios = sr_ratios
         assert num_stages == len(num_layers) == len(num_heads) \
-               == len(patch_sizes) == len(strides) == len(sr_ratios)
+            == len(patch_sizes) == len(strides) == len(sr_ratios)
 
         self.out_indices = out_indices
         assert max(out_indices) < self.num_stages

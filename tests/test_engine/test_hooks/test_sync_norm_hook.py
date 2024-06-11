@@ -4,7 +4,7 @@ from unittest.mock import Mock, patch
 
 import torch.nn as nn
 
-from mmdet.engine.hooks import SyncNormHook
+from models.mmdetection.mmdet.engine.hooks import SyncNormHook
 
 
 class TestSyncNormHook(TestCase):

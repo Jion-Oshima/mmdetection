@@ -3,7 +3,7 @@ import math
 
 from mmcv.cnn import build_conv_layer, build_norm_layer
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from ..layers import ResLayer
 from .resnet import Bottleneck as _Bottleneck
 from .resnet import ResNet
@@ -29,8 +29,8 @@ class Bottleneck(_Bottleneck):
         if groups == 1:
             width = self.planes
         else:
-            width = math.floor(self.planes *
-                               (base_width / base_channels)) * groups
+            width = math.floor(self.planes
+                               * (base_width / base_channels)) * groups
 
         self.norm1_name, norm1 = build_norm_layer(
             self.norm_cfg, width, postfix=1)
@@ -85,9 +85,9 @@ class Bottleneck(_Bottleneck):
         self.add_module(self.norm3_name, norm3)
 
         if self.with_plugins:
-            self._del_block_plugins(self.after_conv1_plugin_names +
-                                    self.after_conv2_plugin_names +
-                                    self.after_conv3_plugin_names)
+            self._del_block_plugins(self.after_conv1_plugin_names
+                                    + self.after_conv2_plugin_names
+                                    + self.after_conv3_plugin_names)
             self.after_conv1_plugin_names = self.make_block_plugins(
                 width, self.after_conv1_plugins)
             self.after_conv2_plugin_names = self.make_block_plugins(

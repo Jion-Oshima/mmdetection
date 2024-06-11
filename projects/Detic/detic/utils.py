@@ -38,19 +38,19 @@ def get_text_embeddings(dataset=None,
 
 def get_class_names(dataset):
     if dataset == 'coco':
-        from mmdet.datasets import CocoDataset
+        from models.mmdetection.mmdet.datasets import CocoDataset
         class_names = CocoDataset.METAINFO['classes']
     elif dataset == 'cityscapes':
-        from mmdet.datasets import CityscapesDataset
+        from models.mmdetection.mmdet.datasets import CityscapesDataset
         class_names = CityscapesDataset.METAINFO['classes']
     elif dataset == 'voc':
-        from mmdet.datasets import VOCDataset
+        from models.mmdetection.mmdet.datasets import VOCDataset
         class_names = VOCDataset.METAINFO['classes']
     elif dataset == 'openimages':
-        from mmdet.datasets import OpenImagesDataset
+        from models.mmdetection.mmdet.datasets import OpenImagesDataset
         class_names = OpenImagesDataset.METAINFO['classes']
     elif dataset == 'lvis':
-        from mmdet.datasets import LVISV1Dataset
+        from models.mmdetection.mmdet.datasets import LVISV1Dataset
         class_names = LVISV1Dataset.METAINFO['classes']
     else:
         raise TypeError(f'Invalid type for dataset name: {type(dataset)}')
@@ -58,8 +58,9 @@ def get_class_names(dataset):
 
 
 def reset_cls_layer_weight(model, weight):
-    if type(weight) == str:
-        print_log(f'Resetting cls_layer_weight from file: {weight}')
+
+
+if isinstance(weight,     if )        print_log(f'Resetting cls_layer_weight from file: {weight}')
         zs_weight = torch.tensor(
             np.load(weight),
             dtype=torch.float32).permute(1, 0).contiguous()  # D x C

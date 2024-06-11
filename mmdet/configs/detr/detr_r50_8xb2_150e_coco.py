@@ -10,15 +10,15 @@ from torch.nn.modules.activation import ReLU
 from torch.nn.modules.batchnorm import BatchNorm2d
 from torch.optim.adamw import AdamW
 
-from mmdet.datasets.transforms import (LoadAnnotations, PackDetInputs,
-                                       RandomCrop, RandomFlip, Resize)
-from mmdet.models import (DETR, ChannelMapper, DetDataPreprocessor, DETRHead,
-                          ResNet)
-from mmdet.models.losses.cross_entropy_loss import CrossEntropyLoss
-from mmdet.models.losses.iou_loss import GIoULoss
-from mmdet.models.losses.smooth_l1_loss import L1Loss
-from mmdet.models.task_modules import (BBoxL1Cost, ClassificationCost,
-                                       HungarianAssigner, IoUCost)
+from models.mmdetection.mmdet.datasets.transforms import (LoadAnnotations, PackDetInputs,
+                                                          RandomCrop, RandomFlip, Resize)
+from models.mmdetection.mmdet.models import (DETR, ChannelMapper, DetDataPreprocessor, DETRHead,
+                                             ResNet)
+from models.mmdetection.mmdet.models.losses.cross_entropy_loss import CrossEntropyLoss
+from models.mmdetection.mmdet.models.losses.iou_loss import GIoULoss
+from models.mmdetection.mmdet.models.losses.smooth_l1_loss import L1Loss
+from models.mmdetection.mmdet.models.task_modules import (BBoxL1Cost, ClassificationCost,
+                                                          HungarianAssigner, IoUCost)
 
 with read_base():
     from .._base_.datasets.coco_detection import *
@@ -127,26 +127,26 @@ train_pipeline = [
                         (736, 1333), (768, 1333), (800, 1333)],
                 keep_ratio=True)
         ],
-                    [
-                        dict(
-                            type=RandomChoiceResize,
-                            resize_type=Resize,
-                            scales=[(400, 1333), (500, 1333), (600, 1333)],
-                            keep_ratio=True),
-                        dict(
-                            type=RandomCrop,
-                            crop_type='absolute_range',
-                            crop_size=(384, 600),
-                            allow_negative_crop=True),
-                        dict(
-                            type=RandomChoiceResize,
-                            resize_type=Resize,
-                            scales=[(480, 1333), (512, 1333), (544, 1333),
-                                    (576, 1333), (608, 1333), (640, 1333),
-                                    (672, 1333), (704, 1333), (736, 1333),
-                                    (768, 1333), (800, 1333)],
-                            keep_ratio=True)
-                    ]]),
+            [
+            dict(
+                type=RandomChoiceResize,
+                resize_type=Resize,
+                scales=[(400, 1333), (500, 1333), (600, 1333)],
+                keep_ratio=True),
+            dict(
+                type=RandomCrop,
+                crop_type='absolute_range',
+                crop_size=(384, 600),
+                allow_negative_crop=True),
+            dict(
+                type=RandomChoiceResize,
+                resize_type=Resize,
+                scales=[(480, 1333), (512, 1333), (544, 1333),
+                        (576, 1333), (608, 1333), (640, 1333),
+                        (672, 1333), (704, 1333), (736, 1333),
+                        (768, 1333), (800, 1333)],
+                keep_ratio=True)
+        ]]),
     dict(type=PackDetInputs)
 ]
 train_dataloader.update(dataset=dict(pipeline=train_pipeline))

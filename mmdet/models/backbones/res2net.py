@@ -7,7 +7,7 @@ import torch.utils.checkpoint as cp
 from mmcv.cnn import build_conv_layer, build_norm_layer
 from mmengine.model import Sequential
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from .resnet import Bottleneck as _Bottleneck
 from .resnet import ResNet
 
@@ -280,7 +280,7 @@ class Res2Net(ResNet):
             Default: None
 
     Example:
-        >>> from mmdet.models import Res2Net
+        >>> from models.mmdetection.mmdet.models import Res2Net
         >>> import torch
         >>> self = Res2Net(depth=50, scales=4, base_width=26)
         >>> self.eval()

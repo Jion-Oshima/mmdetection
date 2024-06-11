@@ -2,7 +2,7 @@
 from unittest import TestCase
 from unittest.mock import Mock, patch
 
-from mmdet.engine.hooks import YOLOXModeSwitchHook
+from models.mmdetection.mmdet.engine.hooks import YOLOXModeSwitchHook
 
 
 class TestYOLOXModeSwitchHook(TestCase):

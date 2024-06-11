@@ -6,7 +6,7 @@ from mmcv.cnn import ConvModule
 from mmengine.model import BaseModule
 from torch.utils.checkpoint import checkpoint
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 
 
 @MODELS.register_module()

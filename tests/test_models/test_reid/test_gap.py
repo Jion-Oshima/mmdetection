@@ -3,7 +3,7 @@ from unittest import TestCase
 
 import torch
 
-from mmdet.models import GlobalAveragePooling
+from models.mmdetection.mmdet.models import GlobalAveragePooling
 
 
 class TestGlobalAveragePooling(TestCase):

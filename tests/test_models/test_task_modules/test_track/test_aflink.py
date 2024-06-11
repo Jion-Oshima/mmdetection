@@ -5,7 +5,7 @@ import numpy as np
 from mmengine.registry import init_default_scope
 from torch import nn
 
-from mmdet.registry import TASK_UTILS
+from models.mmdetection.mmdet.registry import TASK_UTILS
 
 
 class TestAppearanceFreeLink(TestCase):

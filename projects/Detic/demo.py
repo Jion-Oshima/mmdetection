@@ -8,9 +8,9 @@ import torch
 from mmengine.logging import print_log
 from mmengine.utils import ProgressBar, scandir
 
-from mmdet.apis import inference_detector, init_detector
-from mmdet.registry import VISUALIZERS
-from mmdet.utils import register_all_modules
+from models.mmdetection.mmdet.apis import inference_detector, init_detector
+from models.mmdetection.mmdet.registry import VISUALIZERS
+from models.mmdetection.mmdet.utils import register_all_modules
 
 IMG_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.ppm', '.bmp', '.pgm', '.tif',
                   '.tiff', '.webp')

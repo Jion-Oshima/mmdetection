@@ -22,7 +22,7 @@ from mmengine.config import Config, ConfigDict
 from mmengine.logging import print_log
 from mmengine.utils import ProgressBar
 
-from mmdet.apis import inference_detector, init_detector
+from models.mmdetection.mmdet.apis import inference_detector, init_detector
 
 try:
     from sahi.slicing import slice_image
@@ -30,9 +30,9 @@ except ImportError:
     raise ImportError('Please run "pip install -U sahi" '
                       'to install sahi first for large image inference.')
 
-from mmdet.registry import VISUALIZERS
-from mmdet.utils.large_image import merge_results_by_nms, shift_predictions
-from mmdet.utils.misc import get_file_list
+from models.mmdetection.mmdet.registry import VISUALIZERS
+from models.mmdetection.mmdet.utils.large_image import merge_results_by_nms, shift_predictions
+from models.mmdetection.mmdet.utils.misc import get_file_list
 
 
 def parse_args():

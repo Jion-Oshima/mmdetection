@@ -2,7 +2,7 @@
 from mmengine.config import read_base
 from mmengine.model.weight_init import PretrainedInit
 
-from mmdet.models import SwinTransformer
+from models.mmdetection.mmdet.models import SwinTransformer
 
 with read_base():
     from .dino_4scale_r50_8xb2_12e_coco import *

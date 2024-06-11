@@ -10,7 +10,7 @@ Example:
          ./configs/faster_rcnn/faster-rcnn_r50-caffe_fpn_1x_coco.py \
          ./configs/retinanet/retinanet_r50-caffe_fpn_1x_coco.py \
          --checkpoints \
-         https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_caffe_fpn_1x_coco/faster_rcnn_r50_caffe_fpn_1x_coco_bbox_mAP-0.378_20200504_180032-c5925ee5.pth \  # noqa
+         https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_caffe_fpn_1x_coco/faster_rcnn_r50_caffe_fpn_1x_coco_bbox_mAP-0.378_20200504_180032-c5925ee5.pth \\  # noqa
          https://download.openmmlab.com/mmdetection/v2.0/retinanet/retinanet_r50_caffe_fpn_1x_coco/retinanet_r50_caffe_fpn_1x_coco_20200531-f11027c5.pth \
          --weights 1 2
 """
@@ -24,10 +24,10 @@ from mmengine.fileio import isdir, join_path, list_dir_or_file
 from mmengine.logging import print_log
 from mmengine.structures import InstanceData
 
-from mmdet.apis import DetInferencer
-from mmdet.models.utils import weighted_boxes_fusion
-from mmdet.registry import VISUALIZERS
-from mmdet.structures import DetDataSample
+from models.mmdetection.mmdet.apis import DetInferencer
+from models.mmdetection.mmdet.models.utils import weighted_boxes_fusion
+from models.mmdetection.mmdet.registry import VISUALIZERS
+from models.mmdetection.mmdet.structures import DetDataSample
 
 IMG_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.ppm', '.bmp', '.pgm', '.tif',
                   '.tiff', '.webp')

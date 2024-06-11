@@ -15,12 +15,12 @@ with read_base():
 from mmcv.ops import nms
 from torch.nn import GroupNorm
 
-from mmdet.models.data_preprocessors.data_preprocessor import \
+from models.mmdetection.mmdet.models.data_preprocessors.data_preprocessor import \
     DetDataPreprocessor
-from mmdet.models.detectors.panoptic_fpn import PanopticFPN
-from mmdet.models.losses.cross_entropy_loss import CrossEntropyLoss
-from mmdet.models.seg_heads.panoptic_fpn_head import PanopticFPNHead
-from mmdet.models.seg_heads.panoptic_fusion_heads import HeuristicFusionHead
+from models.mmdetection.mmdet.models.detectors.panoptic_fpn import PanopticFPN
+from models.mmdetection.mmdet.models.losses.cross_entropy_loss import CrossEntropyLoss
+from models.mmdetection.mmdet.models.seg_heads.panoptic_fpn_head import PanopticFPNHead
+from models.mmdetection.mmdet.models.seg_heads.panoptic_fusion_heads import HeuristicFusionHead
 
 model.update(
     dict(

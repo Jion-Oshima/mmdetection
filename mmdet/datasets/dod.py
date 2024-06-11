@@ -4,7 +4,7 @@ from typing import List, Optional
 
 import numpy as np
 
-from mmdet.registry import DATASETS
+from models.mmdetection.mmdet.registry import DATASETS
 from .base_det_dataset import BaseDetDataset
 
 try:

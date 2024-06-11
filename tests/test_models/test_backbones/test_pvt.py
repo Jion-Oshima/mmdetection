@@ -1,9 +1,9 @@
 import pytest
 import torch
 
-from mmdet.models.backbones.pvt import (PVTEncoderLayer,
-                                        PyramidVisionTransformer,
-                                        PyramidVisionTransformerV2)
+from models.mmdetection.mmdet.models.backbones.pvt import (PVTEncoderLayer,
+                                                           PyramidVisionTransformer,
+                                                           PyramidVisionTransformerV2)
 
 
 def test_pvt_block():

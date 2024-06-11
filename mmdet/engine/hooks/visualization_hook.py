@@ -11,11 +11,11 @@ from mmengine.runner import Runner
 from mmengine.utils import mkdir_or_exist
 from mmengine.visualization import Visualizer
 
-from mmdet.datasets.samplers import TrackImgSampler
-from mmdet.registry import HOOKS
-from mmdet.structures import DetDataSample, TrackDataSample
-from mmdet.structures.bbox import BaseBoxes
-from mmdet.visualization.palette import _get_adaptive_scales
+from models.mmdetection.mmdet.datasets.samplers import TrackImgSampler
+from models.mmdetection.mmdet.registry import HOOKS
+from models.mmdetection.mmdet.structures import DetDataSample, TrackDataSample
+from models.mmdetection.mmdet.structures.bbox import BaseBoxes
+from models.mmdetection.mmdet.visualization.palette import _get_adaptive_scales
 
 
 @HOOKS.register_module()
@@ -241,7 +241,7 @@ class TrackVisualizationHook(Hook):
                 for frame_id in range(video_length):
                     if frame_id % self.frame_interval == 0:
                         total_curr_iter = runner.iter + self.image_idx + \
-                                          frame_id
+                            frame_id
                         img_data_sample = track_data_sample[frame_id]
                         self.visualize_single_image(img_data_sample,
                                                     total_curr_iter)

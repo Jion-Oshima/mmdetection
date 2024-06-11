@@ -5,9 +5,9 @@ from unittest.mock import MagicMock
 import torch
 from parameterized import parameterized
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.testing import demo_track_inputs, get_detector_cfg, random_boxes
-from mmdet.utils import register_all_modules
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.testing import demo_track_inputs, get_detector_cfg, random_boxes
+from models.mmdetection.mmdet.utils import register_all_modules
 
 
 class TestSORTTracker(TestCase):

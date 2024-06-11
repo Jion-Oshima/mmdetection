@@ -17,8 +17,8 @@ from mmengine.fileio import get_local_path
 from mmengine.logging import MMLogger, print_log
 from terminaltables import AsciiTable
 
-from mmdet.registry import METRICS
-from mmdet.structures.mask import encode_mask_results
+from models.mmdetection.mmdet.registry import METRICS
+from models.mmdetection.mmdet.structures.mask import encode_mask_results
 from ..functional import eval_recalls
 from .coco_metric import CocoMetric
 

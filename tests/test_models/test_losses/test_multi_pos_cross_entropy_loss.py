@@ -3,7 +3,7 @@ from unittest import TestCase
 
 import torch
 
-from mmdet.models.losses import MultiPosCrossEntropyLoss
+from models.mmdetection.mmdet.models.losses import MultiPosCrossEntropyLoss
 
 
 class TestMultiPosCrossEntropyLoss(TestCase):

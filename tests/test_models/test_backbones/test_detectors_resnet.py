@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import pytest
 
-from mmdet.models.backbones import DetectoRS_ResNet
+from models.mmdetection.mmdet.models.backbones import DetectoRS_ResNet
 
 
 def test_detectorrs_resnet_backbone():

@@ -7,9 +7,9 @@ from mmcv.ops import DeformConv2d
 from mmengine.model import normal_init
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.utils import (ConfigType, InstanceList, OptInstanceList,
-                         OptMultiConfig)
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import (ConfigType, InstanceList, OptInstanceList,
+                                            OptMultiConfig)
 from ..utils import multi_apply
 from .corner_head import CornerHead
 
@@ -113,16 +113,16 @@ class CentripetalHead(CornerHead):
             self.tl_dcn_offset.append(
                 ConvModule(
                     self.guiding_shift_channels,
-                    self.feat_adaption_conv_kernel**2 *
-                    self.guiding_shift_channels,
+                    self.feat_adaption_conv_kernel**2
+                    * self.guiding_shift_channels,
                     1,
                     bias=False,
                     act_cfg=None))
             self.br_dcn_offset.append(
                 ConvModule(
                     self.guiding_shift_channels,
-                    self.feat_adaption_conv_kernel**2 *
-                    self.guiding_shift_channels,
+                    self.feat_adaption_conv_kernel**2
+                    * self.guiding_shift_channels,
                     1,
                     bias=False,
                     act_cfg=None))

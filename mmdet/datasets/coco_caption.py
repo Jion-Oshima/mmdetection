@@ -6,7 +6,7 @@ import mmengine
 from mmengine.dataset import BaseDataset
 from mmengine.fileio import get_file_backend
 
-from mmdet.registry import DATASETS
+from models.mmdetection.mmdet.registry import DATASETS
 
 
 @DATASETS.register_module()

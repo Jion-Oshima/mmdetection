@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 from mmengine.hooks import Hook
 
-from mmdet.registry import HOOKS
+from models.mmdetection.mmdet.registry import HOOKS
 
 
 @HOOKS.register_module()

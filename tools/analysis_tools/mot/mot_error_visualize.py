@@ -13,8 +13,8 @@ from mmengine.logging import print_log
 from mmengine.registry import init_default_scope
 from torch.utils.data import Dataset
 
-from mmdet.registry import DATASETS
-from mmdet.utils import imshow_mot_errors
+from models.mmdetection.mmdet.registry import DATASETS
+from models.mmdetection.mmdet.utils import imshow_mot_errors
 
 
 def parse_args():

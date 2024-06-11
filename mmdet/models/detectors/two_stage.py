@@ -6,9 +6,9 @@ from typing import List, Tuple, Union
 import torch
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList
-from mmdet.utils import ConfigType, OptConfigType, OptMultiConfig
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.utils import ConfigType, OptConfigType, OptMultiConfig
 from .base import BaseDetector
 
 
@@ -81,7 +81,7 @@ class TwoStageDetector(BaseDetector):
         if len(bbox_head_keys) != 0 and len(rpn_head_keys) == 0:
             for bbox_head_key in bbox_head_keys:
                 rpn_head_key = rpn_head_prefix + \
-                               bbox_head_key[len(bbox_head_prefix):]
+                    bbox_head_key[len(bbox_head_prefix):]
                 state_dict[rpn_head_key] = state_dict.pop(bbox_head_key)
         super()._load_from_state_dict(state_dict, prefix, local_metadata,
                                       strict, missing_keys, unexpected_keys,

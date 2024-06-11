@@ -6,7 +6,7 @@ import numpy as np
 from mmcv.transforms import BaseTransform, Compose
 from mmcv.transforms.utils import cache_random_params, cache_randomness
 
-from mmdet.registry import TRANSFORMS
+from models.mmdetection.mmdet.registry import TRANSFORMS
 
 
 @TRANSFORMS.register_module()
@@ -270,8 +270,8 @@ class ProposalBroadcaster(BaseTransform):
             dict: Updated result dict.
         """
         assert isinstance(output_scatters, list) and \
-               isinstance(output_scatters[0], dict) and \
-               len(output_scatters) == 2
+            isinstance(output_scatters[0], dict) and \
+            len(output_scatters) == 2
         outputs = output_scatters[0]
         outputs['proposals'] = output_scatters[1]['gt_bboxes']
         return outputs

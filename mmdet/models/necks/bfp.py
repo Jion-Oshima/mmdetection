@@ -7,8 +7,8 @@ from mmcv.cnn.bricks import NonLocal2d
 from mmengine.model import BaseModule
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.utils import OptConfigType, OptMultiConfig
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import OptConfigType, OptMultiConfig
 
 
 @MODELS.register_module()

@@ -7,8 +7,8 @@ from unittest import TestCase
 import torch
 from mmengine.structures import BaseDataElement, InstanceData
 
-from mmdet.evaluation import MOTChallengeMetric
-from mmdet.structures import DetDataSample, TrackDataSample
+from models.mmdetection.mmdet.evaluation import MOTChallengeMetric
+from models.mmdetection.mmdet.structures import DetDataSample, TrackDataSample
 
 
 class TestMOTChallengeMetric(TestCase):

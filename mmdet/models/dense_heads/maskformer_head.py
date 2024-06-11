@@ -9,11 +9,11 @@ from mmengine.model import caffe2_xavier_init
 from mmengine.structures import InstanceData, PixelData
 from torch import Tensor
 
-from mmdet.models.layers.pixel_decoder import PixelDecoder
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.structures import SampleList
-from mmdet.utils import (ConfigType, InstanceList, OptConfigType,
-                         OptMultiConfig, reduce_mean)
+from models.mmdetection.mmdet.models.layers.pixel_decoder import PixelDecoder
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.utils import (ConfigType, InstanceList, OptConfigType,
+                                            OptMultiConfig, reduce_mean)
 from ..layers import DetrTransformerDecoder, SinePositionalEncoding
 from ..utils import multi_apply, preprocess_panoptic_gt
 from .anchor_free_head import AnchorFreeHead
@@ -103,11 +103,12 @@ class MaskFormerHead(AnchorFreeHead):
         self.transformer_decoder = DetrTransformerDecoder(
             **transformer_decoder)
         self.decoder_embed_dims = self.transformer_decoder.embed_dims
-        if type(self.pixel_decoder) == PixelDecoder and (
-                self.decoder_embed_dims != in_channels[-1]
+
+
+if isinstance(self.pixel_decoder,         if )                self.decoder_embed_dims != in_channels[-1]
                 or enforce_decoder_input_project):
             self.decoder_input_proj = Conv2d(
-                in_channels[-1], self.decoder_embed_dims, kernel_size=1)
+                in_channels[-1], self.decoder_embed_dims, kernel_size = 1)
         else:
             self.decoder_input_proj = nn.Identity()
         self.decoder_pe = SinePositionalEncoding(**positional_encoding)

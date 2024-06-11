@@ -9,10 +9,10 @@ import torch.nn.functional as F
 from mmengine.logging import print_log
 from torch import Tensor
 
-from mmdet.datasets import LVISV1Dataset
-from mmdet.models.detectors.cascade_rcnn import CascadeRCNN
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList
+from models.mmdetection.mmdet.datasets import LVISV1Dataset
+from models.mmdetection.mmdet.models.detectors.cascade_rcnn import CascadeRCNN
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import SampleList
 
 
 class CLIPTextEncoder(nn.Module):
@@ -63,19 +63,19 @@ class CLIPTextEncoder(nn.Module):
 def get_class_weight(original_caption, prompt_prefix='a '):
     if isinstance(original_caption, str):
         if original_caption == 'coco':
-            from mmdet.datasets import CocoDataset
+            from models.mmdetection.mmdet.datasets import CocoDataset
             class_names = CocoDataset.METAINFO['classes']
         elif original_caption == 'cityscapes':
-            from mmdet.datasets import CityscapesDataset
+            from models.mmdetection.mmdet.datasets import CityscapesDataset
             class_names = CityscapesDataset.METAINFO['classes']
         elif original_caption == 'voc':
-            from mmdet.datasets import VOCDataset
+            from models.mmdetection.mmdet.datasets import VOCDataset
             class_names = VOCDataset.METAINFO['classes']
         elif original_caption == 'openimages':
-            from mmdet.datasets import OpenImagesDataset
+            from models.mmdetection.mmdet.datasets import OpenImagesDataset
             class_names = OpenImagesDataset.METAINFO['classes']
         elif original_caption == 'lvis':
-            from mmdet.datasets import LVISV1Dataset
+            from models.mmdetection.mmdet.datasets import LVISV1Dataset
             class_names = LVISV1Dataset.METAINFO['classes']
         else:
             if not original_caption.endswith('.'):
@@ -96,8 +96,9 @@ def get_class_weight(original_caption, prompt_prefix='a '):
 
 
 def reset_cls_layer_weight(roi_head, weight):
-    if type(weight) == str:
-        print_log(f'Resetting cls_layer_weight from file: {weight}')
+
+
+if isinstance(weight,     if )        print_log(f'Resetting cls_layer_weight from file: {weight}')
         zs_weight = torch.tensor(
             np.load(weight),
             dtype=torch.float32).permute(1, 0).contiguous()  # D x C

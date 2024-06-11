@@ -3,8 +3,8 @@ from typing import Sequence
 
 from torch.utils.data import BatchSampler, Sampler
 
-from mmdet.datasets.samplers.track_img_sampler import TrackImgSampler
-from mmdet.registry import DATA_SAMPLERS
+from models.mmdetection.mmdet.datasets.samplers.track_img_sampler import TrackImgSampler
+from models.mmdetection.mmdet.registry import DATA_SAMPLERS
 
 
 # TODO: maybe replace with a data_loader wrapper
@@ -188,6 +188,6 @@ class MultiDataAspectRatioBatchSampler(BatchSampler):
         else:
             lens = 0
             for i in range(self.num_datasets):
-                lens += (sizes[i] + self.batch_size[i] -
-                         1) // self.batch_size[i]
+                lens += (sizes[i] + self.batch_size[i]
+                         - 1) // self.batch_size[i]
             return lens

@@ -4,7 +4,7 @@ from argparse import ArgumentParser
 from mmengine.config import Config
 from mmengine.logging import print_log
 
-from mmdet.apis import DetInferencer
+from models.mmdetection.mmdet.apis import DetInferencer
 from projects.XDecoder.xdecoder.inference import (
     ImageCaptionInferencer, RefImageCaptionInferencer,
     TextToImageRegionRetrievalInferencer)

@@ -6,9 +6,9 @@ from mmcv.transforms import to_tensor
 from mmcv.transforms.base import BaseTransform
 from mmengine.structures import InstanceData, PixelData
 
-from mmdet.registry import TRANSFORMS
-from mmdet.structures import DetDataSample, ReIDDataSample, TrackDataSample
-from mmdet.structures.bbox import BaseBoxes
+from models.mmdetection.mmdet.registry import TRANSFORMS
+from models.mmdetection.mmdet.structures import DetDataSample, ReIDDataSample, TrackDataSample
+from models.mmdetection.mmdet.structures.bbox import BaseBoxes
 
 
 @TRANSFORMS.register_module()
@@ -484,29 +484,30 @@ class PackReIDInputs(BaseTransform):
         if _type == list:
             img = results['img']
             label = np.stack(label, axis=0)  # (N,)
-            assert all([type(v) == _type for v in results.values()]), \
-                'All items in the results must have the same type.'
+
+
+assert all([isinstance(v, assert all([)                'All items in the results must have the same type.'
         else:
-            img = [results['img']]
+            img=[results['img']]
 
-        img = np.stack(img, axis=3)  # (H, W, C, N)
-        img = img.transpose(3, 2, 0, 1)  # (N, C, H, W)
-        img = np.ascontiguousarray(img)
+        img=np.stack(img, axis=3)  # (H, W, C, N)
+        img=img.transpose(3, 2, 0, 1)  # (N, C, H, W)
+        img=np.ascontiguousarray(img)
 
-        packed_results['inputs'] = to_tensor(img)
+        packed_results['inputs']=to_tensor(img)
 
-        data_sample = ReIDDataSample()
+        data_sample=ReIDDataSample()
         data_sample.set_gt_label(label)
 
-        meta_info = dict()
+        meta_info=dict()
         for key in self.meta_keys:
-            meta_info[key] = results[key]
+            meta_info[key]=results[key]
         data_sample.set_metainfo(meta_info)
-        packed_results['data_samples'] = data_sample
+        packed_results['data_samples']=data_sample
 
         return packed_results
 
     def __repr__(self) -> str:
-        repr_str = self.__class__.__name__
+        repr_str=self.__class__.__name__
         repr_str += f'(meta_keys={self.meta_keys})'
         return repr_str

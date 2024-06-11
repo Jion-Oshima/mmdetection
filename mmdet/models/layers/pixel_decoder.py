@@ -8,8 +8,8 @@ from mmcv.cnn import Conv2d, ConvModule
 from mmengine.model import BaseModule, ModuleList, caffe2_xavier_init
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.utils import ConfigType, OptMultiConfig
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import ConfigType, OptMultiConfig
 from .positional_encoding import SinePositionalEncoding
 from .transformer import DetrTransformerEncoder
 

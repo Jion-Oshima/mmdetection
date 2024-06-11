@@ -9,8 +9,8 @@ from mmcv.ops import nms
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.utils import ConfigType, InstanceList, MultiConfig, OptInstanceList
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList, MultiConfig, OptInstanceList
 from .guided_anchor_head import GuidedAnchorHead
 
 

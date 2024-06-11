@@ -11,7 +11,7 @@ with read_base():
 
 from mmengine.model.weight_init import PretrainedInit
 
-from mmdet.models.losses import SmoothL1Loss
+from models.mmdetection.mmdet.models.losses import SmoothL1Loss
 
 model = dict(
     # use caffe img_norm

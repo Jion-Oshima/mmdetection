@@ -4,7 +4,7 @@ from mmcv.cnn import ConvModule, is_norm
 from mmengine.model import caffe2_xavier_init, constant_init, normal_init
 from torch.nn import BatchNorm2d
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 
 
 class Bottleneck(nn.Module):

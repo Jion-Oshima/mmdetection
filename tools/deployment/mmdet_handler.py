@@ -7,7 +7,7 @@ import numpy as np
 import torch
 from ts.torch_handler.base_handler import BaseHandler
 
-from mmdet.apis import inference_detector, init_detector
+from models.mmdetection.mmdet.apis import inference_detector, init_detector
 
 
 class MMdetHandler(BaseHandler):
@@ -16,8 +16,8 @@ class MMdetHandler(BaseHandler):
     def initialize(self, context):
         properties = context.system_properties
         self.map_location = 'cuda' if torch.cuda.is_available() else 'cpu'
-        self.device = torch.device(self.map_location + ':' +
-                                   str(properties.get('gpu_id')) if torch.cuda.
+        self.device = torch.device(self.map_location + ':'
+                                   + str(properties.get('gpu_id')) if torch.cuda.
                                    is_available() else self.map_location)
         self.manifest = context.manifest
 

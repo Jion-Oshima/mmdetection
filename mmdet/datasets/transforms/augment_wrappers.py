@@ -6,7 +6,7 @@ from mmcv.transforms import RandomChoice
 from mmcv.transforms.utils import cache_randomness
 from mmengine.config import ConfigDict
 
-from mmdet.registry import TRANSFORMS
+from models.mmdetection.mmdet.registry import TRANSFORMS
 
 # AutoAugment uses reinforcement learning to search for
 # some widely useful data augmentation strategies,

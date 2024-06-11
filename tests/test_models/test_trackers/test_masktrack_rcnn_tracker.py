@@ -5,8 +5,8 @@ import torch
 from mmengine.registry import init_default_scope
 from parameterized import parameterized
 
-from mmdet.registry import MODELS
-from mmdet.testing import demo_track_inputs, get_detector_cfg, random_boxes
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.testing import demo_track_inputs, get_detector_cfg, random_boxes
 
 
 class TestMaskTrackRCNNTracker(TestCase):

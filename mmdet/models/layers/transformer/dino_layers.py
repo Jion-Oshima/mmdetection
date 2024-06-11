@@ -6,9 +6,9 @@ import torch
 from mmengine.model import BaseModule
 from torch import Tensor, nn
 
-from mmdet.structures import SampleList
-from mmdet.structures.bbox import bbox_xyxy_to_cxcywh
-from mmdet.utils import OptConfigType
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.structures.bbox import bbox_xyxy_to_cxcywh
+from models.mmdetection.mmdet.utils import OptConfigType
 from .deformable_detr_layers import DeformableDetrTransformerDecoder
 from .utils import MLP, coordinate_to_encoding, inverse_sigmoid
 

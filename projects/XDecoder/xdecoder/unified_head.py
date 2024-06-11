@@ -6,8 +6,8 @@ from mmengine.structures import InstanceData, PixelData
 from torch import nn
 from torch.nn import functional as F
 
-from mmdet.evaluation.functional import INSTANCE_OFFSET
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.evaluation.functional import INSTANCE_OFFSET
+from models.mmdetection.mmdet.registry import MODELS
 from .utils import (is_lower_torch_version, retry_if_cuda_oom,
                     sem_seg_postprocess)
 
@@ -181,10 +181,10 @@ class XDecoderUnifiedhead(nn.Module):
                     mask_pred_result, \
                     img_metas, \
                     data_samples in zip(
-                                mask_cls_results,
-                                mask_pred_results,
-                                batch_img_metas,
-                                batch_data_samples):
+                        mask_cls_results,
+                        mask_pred_results,
+                        batch_img_metas,
+                        batch_data_samples):
                 height = img_metas['ori_shape'][0]
                 width = img_metas['ori_shape'][1]
                 image_size = img_metas['img_shape'][:2]
@@ -277,8 +277,8 @@ class XDecoderUnifiedhead(nn.Module):
         result.masks = (mask_pred > self.test_cfg.mask_thr).float()
 
         # calculate average mask prob
-        mask_scores_per_image = (mask_pred.flatten(1) *
-                                 result.masks.flatten(1)).sum(1) / (
+        mask_scores_per_image = (mask_pred.flatten(1)
+                                 * result.masks.flatten(1)).sum(1) / (
                                      result.masks.flatten(1).sum(1) + 1e-6)
         result.scores = scores_per_image * mask_scores_per_image
         result.labels = labels_per_image

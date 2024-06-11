@@ -8,9 +8,9 @@ from mmengine.config import Config
 from mmengine.runner import load_checkpoint
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList
-from mmdet.utils import ConfigType, OptConfigType
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.utils import ConfigType, OptConfigType
 from .single_stage import SingleStageDetector
 
 

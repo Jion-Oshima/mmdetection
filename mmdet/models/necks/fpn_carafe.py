@@ -4,7 +4,7 @@ from mmcv.cnn import ConvModule, build_upsample_layer
 from mmcv.ops.carafe import CARAFEPack
 from mmengine.model import BaseModule, ModuleList, xavier_init
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 
 
 @MODELS.register_module()
@@ -149,8 +149,8 @@ class FPN_CARAFE(BaseModule):
         if extra_out_levels >= 1:
             for i in range(extra_out_levels):
                 in_channels = (
-                    self.in_channels[self.backbone_end_level -
-                                     1] if i == 0 else out_channels)
+                    self.in_channels[self.backbone_end_level
+                                     - 1] if i == 0 else out_channels)
                 extra_l_conv = ConvModule(
                     in_channels,
                     out_channels,

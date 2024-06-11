@@ -5,9 +5,9 @@ import torch
 from mmengine.structures import InstanceData, PixelData
 from torch import Tensor
 
-from mmdet.evaluation.functional import INSTANCE_OFFSET
-from mmdet.registry import MODELS
-from mmdet.utils import InstanceList, OptConfigType, OptMultiConfig, PixelList
+from models.mmdetection.mmdet.evaluation.functional import INSTANCE_OFFSET
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import InstanceList, OptConfigType, OptMultiConfig, PixelList
 from .base_panoptic_fusion_head import BasePanopticFusionHead
 
 

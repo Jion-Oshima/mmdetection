@@ -5,7 +5,7 @@ import torch.nn as nn
 from mmcv.cnn import VGG
 from mmengine.model import BaseModule
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from ..necks import ssd_neck
 
 

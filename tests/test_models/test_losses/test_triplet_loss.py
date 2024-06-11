@@ -3,7 +3,7 @@ from unittest import TestCase
 
 import torch
 
-from mmdet.models import TripletLoss
+from models.mmdetection.mmdet.models import TripletLoss
 
 
 class TestTripletLoss(TestCase):

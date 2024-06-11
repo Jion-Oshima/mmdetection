@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-from mmdet.datasets.transforms import BaseFrameSample, UniformRefFrameSample
+from models.mmdetection.mmdet.datasets.transforms import BaseFrameSample, UniformRefFrameSample
 
 
 class TestFrameSample(unittest.TestCase):

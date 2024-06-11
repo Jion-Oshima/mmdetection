@@ -9,8 +9,8 @@ import torch
 from mmengine.fileio import dump
 from mmengine.structures import BaseDataElement, InstanceData
 
-from mmdet.evaluation import CocoVideoMetric
-from mmdet.structures import DetDataSample, TrackDataSample
+from models.mmdetection.mmdet.evaluation import CocoVideoMetric
+from models.mmdetection.mmdet.structures import DetDataSample, TrackDataSample
 
 
 class TestCocoVideoMetric(TestCase):

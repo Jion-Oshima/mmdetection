@@ -9,8 +9,8 @@ import torch
 from mmengine.dataset import Compose
 from rich.progress import track
 
-from mmdet.apis.det_inferencer import DetInferencer, InputsType, PredType
-from mmdet.utils import ConfigType
+from models.mmdetection.mmdet.apis.det_inferencer import DetInferencer, InputsType, PredType
+from models.mmdetection.mmdet.utils import ConfigType
 
 
 def get_adaptive_scale(img_shape: Tuple[int, int],

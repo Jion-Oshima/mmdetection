@@ -4,7 +4,7 @@ import torch.nn as nn
 from mmcv.cnn import ConvModule, DepthwiseSeparableConvModule
 from mmengine.model import BaseModule
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 
 
 @MODELS.register_module()
@@ -125,5 +125,5 @@ class L2Norm(nn.Module):
         # normalization layer convert to FP32 in FP16 training
         x_float = x.float()
         norm = x_float.pow(2).sum(1, keepdim=True).sqrt() + self.eps
-        return (self.weight[None, :, None, None].float().expand_as(x_float) *
-                x_float / norm).type_as(x)
+        return (self.weight[None, :, None, None].float().expand_as(x_float)
+                * x_float / norm).type_as(x)

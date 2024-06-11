@@ -2,7 +2,7 @@
 import os.path as osp
 from unittest import TestCase
 
-from mmdet.datasets import ReIDDataset
+from models.mmdetection.mmdet.datasets import ReIDDataset
 
 PREFIX = osp.join(osp.dirname(__file__), '../data')
 # This is a demo annotation file for ReIDDataset.
@@ -61,4 +61,4 @@ class TestReIDDataset(TestCase):
             for idx in range(num - 1):
                 if (idx + 1) % self.ins_per_id != 0:
                     assert results['gt_label'][idx] == \
-                           results['gt_label'][idx + 1]
+                        results['gt_label'][idx + 1]

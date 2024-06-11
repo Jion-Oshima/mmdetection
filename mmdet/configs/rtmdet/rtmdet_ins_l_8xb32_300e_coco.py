@@ -14,21 +14,21 @@ from mmcv.transforms.processing import RandomResize
 from mmengine.hooks.ema_hook import EMAHook
 from torch.nn.modules.activation import SiLU
 
-from mmdet.datasets.transforms.formatting import PackDetInputs
-from mmdet.datasets.transforms.loading import (FilterAnnotations,
-                                               LoadAnnotations)
-from mmdet.datasets.transforms.transforms import (CachedMixUp, CachedMosaic,
-                                                  Pad, RandomCrop, RandomFlip,
-                                                  Resize, YOLOXHSVRandomAug)
-from mmdet.engine.hooks.pipeline_switch_hook import PipelineSwitchHook
-from mmdet.models.dense_heads.rtmdet_ins_head import RTMDetInsSepBNHead
-from mmdet.models.layers.ema import ExpMomentumEMA
-from mmdet.models.losses.dice_loss import DiceLoss
-from mmdet.models.losses.gfocal_loss import QualityFocalLoss
-from mmdet.models.losses.iou_loss import GIoULoss
-from mmdet.models.task_modules.coders.distance_point_bbox_coder import \
+from models.mmdetection.mmdet.datasets.transforms.formatting import PackDetInputs
+from models.mmdetection.mmdet.datasets.transforms.loading import (FilterAnnotations,
+                                                                  LoadAnnotations)
+from models.mmdetection.mmdet.datasets.transforms.transforms import (CachedMixUp, CachedMosaic,
+                                                                     Pad, RandomCrop, RandomFlip,
+                                                                     Resize, YOLOXHSVRandomAug)
+from models.mmdetection.mmdet.engine.hooks.pipeline_switch_hook import PipelineSwitchHook
+from models.mmdetection.mmdet.models.dense_heads.rtmdet_ins_head import RTMDetInsSepBNHead
+from models.mmdetection.mmdet.models.layers.ema import ExpMomentumEMA
+from models.mmdetection.mmdet.models.losses.dice_loss import DiceLoss
+from models.mmdetection.mmdet.models.losses.gfocal_loss import QualityFocalLoss
+from models.mmdetection.mmdet.models.losses.iou_loss import GIoULoss
+from models.mmdetection.mmdet.models.task_modules.coders.distance_point_bbox_coder import \
     DistancePointBBoxCoder
-from mmdet.models.task_modules.prior_generators.point_generator import \
+from models.mmdetection.mmdet.models.task_modules.prior_generators.point_generator import \
     MlvlPointGenerator
 
 model.merge(

@@ -5,8 +5,8 @@ import cv2
 import mmcv
 import torch
 
-from mmdet.apis import inference_detector, init_detector
-from mmdet.registry import VISUALIZERS
+from models.mmdetection.mmdet.apis import inference_detector, init_detector
+from models.mmdetection.mmdet.registry import VISUALIZERS
 
 
 def parse_args():

@@ -5,8 +5,8 @@ import torch
 from mmcv.ops.nms import batched_nms
 from torch import Tensor
 
-from mmdet.structures.bbox import bbox_overlaps
-from mmdet.utils import ConfigType
+from models.mmdetection.mmdet.structures.bbox import bbox_overlaps
+from models.mmdetection.mmdet.utils import ConfigType
 
 
 def multiclass_nms(

@@ -5,7 +5,7 @@ import numpy as np
 import torch
 from mmengine.evaluator import BaseMetric
 
-from mmdet.registry import METRICS
+from models.mmdetection.mmdet.registry import METRICS
 
 
 @METRICS.register_module()

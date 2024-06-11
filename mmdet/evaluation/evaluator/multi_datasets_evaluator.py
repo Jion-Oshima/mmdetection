@@ -9,7 +9,7 @@ from mmengine.evaluator import BaseMetric, Evaluator
 from mmengine.evaluator.metric import _to_cpu
 from mmengine.registry import EVALUATOR
 
-from mmdet.utils import ConfigType
+from models.mmdetection.mmdet.utils import ConfigType
 
 
 @EVALUATOR.register_module()

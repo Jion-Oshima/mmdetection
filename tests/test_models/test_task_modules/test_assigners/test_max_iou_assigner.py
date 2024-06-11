@@ -4,12 +4,12 @@
 CommandLine:
     pytest  tests/test_core/test_bbox/test_assigners/test_max_iou_assigner.py
     xdoctest  tests/test_core/test_bbox/test_assigners/test_max_iou_assigner.py zero
-""" # noqa
+"""  # noqa
 import pytest
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.models.task_modules.assigners import MaxIoUAssigner
+from models.mmdetection.mmdet.models.task_modules.assigners import MaxIoUAssigner
 
 
 @pytest.mark.parametrize('neg_iou_thr', [0.5, (0, 0.5)])

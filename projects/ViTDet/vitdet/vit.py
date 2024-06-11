@@ -10,7 +10,7 @@ from mmengine.logging import MMLogger
 from mmengine.model import BaseModule
 from mmengine.runner.checkpoint import CheckpointLoader
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 
 
 @MODELS.register_module()
@@ -84,8 +84,8 @@ def get_rel_pos(q_size, k_size, rel_pos):
     # Scale the coords with short length if shapes for q and k are different.
     q_coords = torch.arange(q_size)[:, None] * max(k_size / q_size, 1.0)
     k_coords = torch.arange(k_size)[None, :] * max(q_size / k_size, 1.0)
-    relative_coords = (q_coords -
-                       k_coords) + (k_size - 1) * max(q_size / k_size, 1.0)
+    relative_coords = (q_coords
+                       - k_coords) + (k_size - 1) * max(q_size / k_size, 1.0)
 
     return rel_pos_resized[relative_coords.long()]
 
@@ -118,8 +118,8 @@ def add_decomposed_rel_pos(attn, q, rel_pos_h, rel_pos_w, q_size, k_size):
     rel_h = torch.einsum('bhwc,hkc->bhwk', r_q, Rh)
     rel_w = torch.einsum('bhwc,wkc->bhwk', r_q, Rw)
 
-    attn = (attn.view(B, q_h, q_w, k_h, k_w) + rel_h[:, :, :, :, None] +
-            rel_w[:, :, :, None, :]).view(B, q_h * q_w, k_h * k_w)
+    attn = (attn.view(B, q_h, q_w, k_h, k_w) + rel_h[:, :, :, :, None]
+            + rel_w[:, :, :, None, :]).view(B, q_h * q_w, k_h * k_w)
 
     return attn
 
@@ -379,8 +379,8 @@ class ViT(BaseModule):
         if use_abs_pos:
             num_patches = (pretrain_img_size // patch_size) * (
                 pretrain_img_size // patch_size)
-            num_positions = (num_patches +
-                             1) if pretrain_use_cls_token else num_patches
+            num_positions = (num_patches
+                             + 1) if pretrain_use_cls_token else num_patches
             self.pos_embed = nn.Parameter(
                 torch.zeros(1, num_positions, embed_dim))
         else:

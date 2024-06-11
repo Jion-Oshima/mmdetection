@@ -5,7 +5,7 @@ import numpy as np
 import torch
 from mmengine.structures import LabelData
 
-from mmdet.structures import ReIDDataSample
+from models.mmdetection.mmdet.structures import ReIDDataSample
 
 
 def _equal(a, b):

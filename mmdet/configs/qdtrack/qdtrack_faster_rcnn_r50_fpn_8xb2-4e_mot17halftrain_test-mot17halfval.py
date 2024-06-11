@@ -5,7 +5,7 @@ with read_base():
     from .._base_.datasets.mot_challenge import *
     from .qdtrack_faster_rcnn_r50_fpn_4e_base import *
 
-from mmdet.evaluation import CocoVideoMetric, MOTChallengeMetric
+from models.mmdetection.mmdet.evaluation import CocoVideoMetric, MOTChallengeMetric
 
 # evaluator
 val_evaluator = [

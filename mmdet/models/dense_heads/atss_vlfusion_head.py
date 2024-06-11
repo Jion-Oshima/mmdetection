@@ -18,9 +18,9 @@ try:
 except ImportError:
     BertConfig = None
 
-from mmdet.registry import MODELS
-from mmdet.structures.bbox import cat_boxes
-from mmdet.utils import InstanceList, OptInstanceList, reduce_mean
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures.bbox import cat_boxes
+from models.mmdetection.mmdet.utils import InstanceList, OptInstanceList, reduce_mean
 from ..utils import (BertEncoderLayer, VLFuse, filter_scores_and_topk,
                      permute_and_flatten, select_single_mlvl,
                      unpack_gt_instances)
@@ -40,10 +40,10 @@ def convert_grounding_to_cls_scores(logits: Tensor,
             # only need to compute once
             positive_map = positive_maps[0]
             for label_j in positive_map:
-                scores[:, :, label_j -
-                       1] = logits[:, :,
-                                   torch.LongTensor(positive_map[label_j]
-                                                    )].mean(-1)
+                scores[:, :, label_j
+                       - 1] = logits[:, :,
+                                     torch.LongTensor(positive_map[label_j]
+                                                      )].mean(-1)
         else:
             for i, positive_map in enumerate(positive_maps):
                 for label_j in positive_map:
@@ -336,8 +336,8 @@ class VLFusionModule(BaseModel):
             embedding = language_feats['embedded']
 
         embedding = F.normalize(embedding, p=2, dim=-1)
-        dot_product_proj_tokens = self.dot_product_projection_text(embedding /
-                                                                   2.0)
+        dot_product_proj_tokens = self.dot_product_projection_text(embedding
+                                                                   / 2.0)
         dot_product_proj_tokens_bias = torch.matmul(
             embedding, self.bias_lang) + self.bias0
 
@@ -711,8 +711,8 @@ class ATSSVLFusionHead(ATSSHead):
         left_right = torch.stack([l_, r_], dim=1)
         top_bottom = torch.stack([t_, b_], dim=1)
         centerness = torch.sqrt(
-            (left_right.min(dim=-1)[0] / left_right.max(dim=-1)[0]) *
-            (top_bottom.min(dim=-1)[0] / top_bottom.max(dim=-1)[0]))
+            (left_right.min(dim=-1)[0] / left_right.max(dim=-1)[0])
+            * (top_bottom.min(dim=-1)[0] / top_bottom.max(dim=-1)[0]))
         # assert not torch.isnan(centerness).any()
         return centerness
 

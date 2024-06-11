@@ -2,10 +2,10 @@
 from mmcv.ops import nms
 from torch.nn import BatchNorm2d
 
-from mmdet.models import (FPN, DetDataPreprocessor, FocalLoss, L1Loss, ResNet,
-                          RetinaHead, RetinaNet)
-from mmdet.models.task_modules import (AnchorGenerator, DeltaXYWHBBoxCoder,
-                                       MaxIoUAssigner, PseudoSampler)
+from models.mmdetection.mmdet.models import (FPN, DetDataPreprocessor, FocalLoss, L1Loss, ResNet,
+                                             RetinaHead, RetinaNet)
+from models.mmdetection.mmdet.models.task_modules import (AnchorGenerator, DeltaXYWHBBoxCoder,
+                                                          MaxIoUAssigner, PseudoSampler)
 
 # model settings
 model = dict(

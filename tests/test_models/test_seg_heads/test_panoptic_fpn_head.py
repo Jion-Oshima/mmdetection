@@ -4,8 +4,8 @@ import torch
 from mmengine.structures import PixelData
 from mmengine.testing import assert_allclose
 
-from mmdet.models.seg_heads import PanopticFPNHead
-from mmdet.structures import DetDataSample
+from models.mmdetection.mmdet.models.seg_heads import PanopticFPNHead
+from models.mmdetection.mmdet.structures import DetDataSample
 
 
 class TestPanopticFPNHead(unittest.TestCase):

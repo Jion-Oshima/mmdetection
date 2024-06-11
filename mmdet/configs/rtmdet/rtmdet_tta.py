@@ -2,10 +2,10 @@
 from mmcv.transforms.loading import LoadImageFromFile
 from mmcv.transforms.processing import TestTimeAug
 
-from mmdet.datasets.transforms.formatting import PackDetInputs
-from mmdet.datasets.transforms.loading import LoadAnnotations
-from mmdet.datasets.transforms.transforms import Pad, RandomFlip, Resize
-from mmdet.models.test_time_augs.det_tta import DetTTAModel
+from models.mmdetection.mmdet.datasets.transforms.formatting import PackDetInputs
+from models.mmdetection.mmdet.datasets.transforms.loading import LoadAnnotations
+from models.mmdetection.mmdet.datasets.transforms.transforms import Pad, RandomFlip, Resize
+from models.mmdetection.mmdet.models.test_time_augs.det_tta import DetTTAModel
 
 tta_model = dict(
     type=DetTTAModel,

@@ -7,7 +7,7 @@ from mmengine.dist import get_dist_info
 from mmengine.logging import MMLogger
 from mmengine.optim import DefaultOptimWrapperConstructor
 
-from mmdet.registry import OPTIM_WRAPPER_CONSTRUCTORS
+from models.mmdetection.mmdet.registry import OPTIM_WRAPPER_CONSTRUCTORS
 
 
 def get_layer_id_for_vit(var_name, max_layer_id):

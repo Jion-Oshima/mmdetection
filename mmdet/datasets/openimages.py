@@ -8,7 +8,7 @@ import numpy as np
 from mmengine.fileio import get_local_path, load
 from mmengine.utils import is_abs
 
-from mmdet.registry import DATASETS
+from models.mmdetection.mmdet.registry import DATASETS
 from .base_det_dataset import BaseDetDataset
 
 

@@ -5,11 +5,11 @@ from mmengine.config import ConfigDict
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS
-from mmdet.structures import SampleList
-from mmdet.structures.bbox import BaseBoxes
-from mmdet.structures.mask import BitmapMasks, PolygonMasks
-from mmdet.utils import ConfigType
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import SampleList
+from models.mmdetection.mmdet.structures.bbox import BaseBoxes
+from models.mmdetection.mmdet.structures.mask import BitmapMasks, PolygonMasks
+from models.mmdetection.mmdet.utils import ConfigType
 from .base import BaseDetector
 
 try:

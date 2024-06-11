@@ -2,7 +2,7 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from .language_model import LanguageEncoder
 from .transformer_blocks import (MLP, Conv2d, CrossAttentionLayer, FFNLayer,
                                  PositionEmbeddingSine, SelfAttentionLayer)
@@ -132,8 +132,8 @@ class XDecoderTransformerDecoder(nn.Module):
         for i in range(self.num_feature_levels):
             size_list.append(x[i].shape[-2:])
             pos.append(self.pe_layer(x[i], None).flatten(2))
-            src.append(self.input_proj[i](x[i]).flatten(2) +
-                       self.level_embed.weight[i][None, :, None])
+            src.append(self.input_proj[i](x[i]).flatten(2)
+                       + self.level_embed.weight[i][None, :, None])
 
             # flatten NxCxHxW to HWxNxC
             pos[-1] = pos[-1].permute(2, 0, 1)
@@ -150,15 +150,15 @@ class XDecoderTransformerDecoder(nn.Module):
         if self.task == 'ref-seg':
             self_tgt_mask = self.self_attn_mask[:, :self.num_queries, :self.
                                                 num_queries].repeat(
-                                                    output.shape[1] *
-                                                    self.num_heads, 1, 1)
+                                                    output.shape[1]
+                                                    * self.num_heads, 1, 1)
             grounding_tokens = extra['grounding_tokens']
             _grounding_tokens = grounding_tokens.detach().clone()
             # initialize with negative attention at the beginning.
             pad_tgt_mask = torch.ones(
-                (1, self.num_queries + (self.num_queries - 1) +
-                 len(grounding_tokens), self.num_queries +
-                 (self.num_queries - 1) + len(grounding_tokens)),
+                (1, self.num_queries + (self.num_queries - 1)
+                 + len(grounding_tokens), self.num_queries
+                 + (self.num_queries - 1) + len(grounding_tokens)),
                 device=self_tgt_mask.device).bool().repeat(
                     output.shape[1] * self.num_heads, 1, 1)
             pad_tgt_mask[:, :self.num_queries, :self.
@@ -172,8 +172,8 @@ class XDecoderTransformerDecoder(nn.Module):
         else:
             self_tgt_mask = self.self_attn_mask[:, :self.num_queries, :self.
                                                 num_queries].repeat(
-                                                    output.shape[1] *
-                                                    self.num_heads, 1, 1)
+                                                    output.shape[1]
+                                                    * self.num_heads, 1, 1)
 
         results = self.forward_prediction_heads(
             output, mask_features, attn_mask_target_size=size_list[0])
@@ -231,10 +231,10 @@ class XDecoderTransformerDecoder(nn.Module):
             mask_pred_results = []
             outputs_class = []
             for idx in range(mask_features.shape[0]):  # batch size
-                pred_gmasks = out['pred_masks'][idx, self.num_queries:2 *
-                                                self.num_queries - 1]
-                v_emb = predictions_class_embed[-1][idx, self.num_queries:2 *
-                                                    self.num_queries - 1]
+                pred_gmasks = out['pred_masks'][idx, self.num_queries:2
+                                                * self.num_queries - 1]
+                v_emb = predictions_class_embed[-1][idx, self.num_queries:2
+                                                    * self.num_queries - 1]
                 t_emb = extra['class_emb']
 
                 t_emb = t_emb / (t_emb.norm(dim=-1, keepdim=True) + 1e-7)
@@ -270,8 +270,8 @@ class XDecoderTransformerDecoder(nn.Module):
         for i in range(self.num_feature_levels):
             size_list.append(x[i].shape[-2:])
             pos.append(self.pe_layer(x[i], None).flatten(2))
-            src.append(self.input_proj[i](x[i]).flatten(2) +
-                       self.level_embed.weight[i][None, :, None])
+            src.append(self.input_proj[i](x[i]).flatten(2)
+                       + self.level_embed.weight[i][None, :, None])
 
             # flatten NxCxHxW to HWxNxC
             pos[-1] = pos[-1].permute(2, 0, 1)

@@ -10,7 +10,7 @@ with read_base():
     from ..common.ms_poly_3x_coco_instance import *
     from .._base_.models.mask_rcnn_r50_fpn import *
 
-from mmdet.models.backbones import ResNeXt
+from models.mmdetection.mmdet.models.backbones import ResNeXt
 
 model = dict(
     backbone=dict(

@@ -5,7 +5,7 @@ import numpy as np
 import torch.nn as nn
 from mmcv.cnn import build_conv_layer, build_norm_layer
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 from .resnet import ResNet
 from .resnext import Bottleneck
 
@@ -48,7 +48,7 @@ class RegNet(ResNet):
             Default: None
 
     Example:
-        >>> from mmdet.models import RegNet
+        >>> from models.mmdetection.mmdet.models import RegNet
         >>> import torch
         >>> self = RegNet(
                 arch=dict(

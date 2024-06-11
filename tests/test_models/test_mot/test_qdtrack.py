@@ -8,8 +8,8 @@ from mmengine.logging import MessageHub
 from mmengine.registry import init_default_scope
 from parameterized import parameterized
 
-from mmdet.registry import MODELS
-from mmdet.testing import demo_track_inputs, get_detector_cfg
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.testing import demo_track_inputs, get_detector_cfg
 
 
 class TestQDTrack(TestCase):

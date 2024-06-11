@@ -5,7 +5,7 @@ from typing import Dict, List, Optional, Union
 
 from mmcv.transforms import BaseTransform
 
-from mmdet.registry import TRANSFORMS
+from models.mmdetection.mmdet.registry import TRANSFORMS
 
 
 @TRANSFORMS.register_module()

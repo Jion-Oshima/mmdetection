@@ -7,8 +7,8 @@ from mmcv.ops import MultiScaleDeformableAttention
 from mmengine.model import ModuleList
 from torch import Tensor
 
-from mmdet.models.utils.vlfuse_helper import SingleScaleBiAttentionBlock
-from mmdet.utils import ConfigType, OptConfigType
+from models.mmdetection.mmdet.models.utils.vlfuse_helper import SingleScaleBiAttentionBlock
+from models.mmdetection.mmdet.utils import ConfigType, OptConfigType
 from .deformable_detr_layers import (DeformableDetrTransformerDecoderLayer,
                                      DeformableDetrTransformerEncoder,
                                      DeformableDetrTransformerEncoderLayer)

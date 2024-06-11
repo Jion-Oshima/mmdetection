@@ -4,7 +4,7 @@ import unittest
 
 from mmengine.fileio import dump
 
-from mmdet.datasets import CocoPanopticDataset
+from models.mmdetection.mmdet.datasets import CocoPanopticDataset
 
 
 class TestCocoPanopticDataset(unittest.TestCase):

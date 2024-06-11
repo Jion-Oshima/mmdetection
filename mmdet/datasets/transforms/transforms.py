@@ -19,10 +19,10 @@ from mmengine.dataset import BaseDataset
 from mmengine.utils import is_str
 from numpy import random
 
-from mmdet.registry import TRANSFORMS
-from mmdet.structures.bbox import HorizontalBoxes, autocast_box_type
-from mmdet.structures.mask import BitmapMasks, PolygonMasks
-from mmdet.utils import log_img_scale
+from models.mmdetection.mmdet.registry import TRANSFORMS
+from models.mmdetection.mmdet.structures.bbox import HorizontalBoxes, autocast_box_type
+from models.mmdetection.mmdet.structures.mask import BitmapMasks, PolygonMasks
+from models.mmdetection.mmdet.utils import log_img_scale
 
 try:
     from imagecorruptions import corrupt
@@ -456,8 +456,8 @@ class FixShapeResize(Resize):
         if self.keep_ratio:
             scale_factor = min(self.width / w, self.height / h)
             results['scale_factor'] = (scale_factor, scale_factor)
-            real_w, real_h = int(w * float(scale_factor) +
-                                 0.5), int(h * float(scale_factor) + 0.5)
+            real_w, real_h = int(w * float(scale_factor)
+                                 + 0.5), int(h * float(scale_factor) + 0.5)
             img, scale_factor = mmcv.imrescale(
                 results['img'], (real_w, real_h),
                 interpolation=self.interpolation,
@@ -1438,10 +1438,10 @@ class MinIoURandomCrop(BaseTransform):
                     # adjust boxes
                     def is_center_of_bboxes_in_patch(boxes, patch):
                         centers = boxes.centers.numpy()
-                        mask = ((centers[:, 0] > patch[0]) *
-                                (centers[:, 1] > patch[1]) *
-                                (centers[:, 0] < patch[2]) *
-                                (centers[:, 1] < patch[3]))
+                        mask = ((centers[:, 0] > patch[0])
+                                * (centers[:, 1] > patch[1])
+                                * (centers[:, 0] < patch[2])
+                                * (centers[:, 1] < patch[3]))
                         return mask
 
                     mask = is_center_of_bboxes_in_patch(boxes, patch)
@@ -2023,7 +2023,7 @@ class RandomCenterCropPad(BaseTransform):
             cropped_center_y - top, cropped_center_y + bottom,
             cropped_center_x - left, cropped_center_x + right
         ],
-                          dtype=np.float32)
+            dtype=np.float32)
 
         return cropped_img, border, patch
 
@@ -2463,40 +2463,40 @@ class Mosaic(BaseTransform):
         if loc == 'top_left':
             # index0 to top left part of image
             x1, y1, x2, y2 = max(center_position_xy[0] - img_shape_wh[0], 0), \
-                             max(center_position_xy[1] - img_shape_wh[1], 0), \
-                             center_position_xy[0], \
-                             center_position_xy[1]
+                max(center_position_xy[1] - img_shape_wh[1], 0), \
+                center_position_xy[0], \
+                center_position_xy[1]
             crop_coord = img_shape_wh[0] - (x2 - x1), img_shape_wh[1] - (
                 y2 - y1), img_shape_wh[0], img_shape_wh[1]
 
         elif loc == 'top_right':
             # index1 to top right part of image
             x1, y1, x2, y2 = center_position_xy[0], \
-                             max(center_position_xy[1] - img_shape_wh[1], 0), \
-                             min(center_position_xy[0] + img_shape_wh[0],
-                                 self.img_scale[0] * 2), \
-                             center_position_xy[1]
+                max(center_position_xy[1] - img_shape_wh[1], 0), \
+                min(center_position_xy[0] + img_shape_wh[0],
+                    self.img_scale[0] * 2), \
+                center_position_xy[1]
             crop_coord = 0, img_shape_wh[1] - (y2 - y1), min(
                 img_shape_wh[0], x2 - x1), img_shape_wh[1]
 
         elif loc == 'bottom_left':
             # index2 to bottom left part of image
             x1, y1, x2, y2 = max(center_position_xy[0] - img_shape_wh[0], 0), \
-                             center_position_xy[1], \
-                             center_position_xy[0], \
-                             min(self.img_scale[1] * 2, center_position_xy[1] +
-                                 img_shape_wh[1])
+                center_position_xy[1], \
+                center_position_xy[0], \
+                min(self.img_scale[1] * 2, center_position_xy[1]
+                    + img_shape_wh[1])
             crop_coord = img_shape_wh[0] - (x2 - x1), 0, img_shape_wh[0], min(
                 y2 - y1, img_shape_wh[1])
 
         else:
             # index3 to bottom right part of image
             x1, y1, x2, y2 = center_position_xy[0], \
-                             center_position_xy[1], \
-                             min(center_position_xy[0] + img_shape_wh[0],
-                                 self.img_scale[0] * 2), \
-                             min(self.img_scale[1] * 2, center_position_xy[1] +
-                                 img_shape_wh[1])
+                center_position_xy[1], \
+                min(center_position_xy[0] + img_shape_wh[0],
+                    self.img_scale[0] * 2), \
+                min(self.img_scale[1] * 2, center_position_xy[1]
+                    + img_shape_wh[1])
             crop_coord = 0, 0, min(img_shape_wh[0],
                                    x2 - x1), min(y2 - y1, img_shape_wh[1])
 
@@ -3261,13 +3261,13 @@ class RandomErasing(BaseTransform):
         n_patches = np.random.randint(self.n_patches[0], self.n_patches[1] + 1)
         for _ in range(n_patches):
             if self.squared:
-                ratio = np.random.random() * (self.ratio[1] -
-                                              self.ratio[0]) + self.ratio[0]
+                ratio = np.random.random() * (self.ratio[1]
+                                              - self.ratio[0]) + self.ratio[0]
                 ratio = (ratio, ratio)
             else:
-                ratio = (np.random.random() * (self.ratio[1] - self.ratio[0]) +
-                         self.ratio[0], np.random.random() *
-                         (self.ratio[1] - self.ratio[0]) + self.ratio[0])
+                ratio = (np.random.random() * (self.ratio[1] - self.ratio[0])
+                         + self.ratio[0], np.random.random()
+                         * (self.ratio[1] - self.ratio[0]) + self.ratio[0])
             ph, pw = int(img_shape[0] * ratio[0]), int(img_shape[1] * ratio[1])
             px1, py1 = np.random.randint(0,
                                          img_shape[1] - pw), np.random.randint(

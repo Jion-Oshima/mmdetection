@@ -5,7 +5,7 @@ import torch
 from mmengine.structures import InstanceData
 
 from mmdet import *  # noqa
-from mmdet.models.dense_heads import FreeAnchorRetinaHead
+from models.mmdetection.mmdet.models.dense_heads import FreeAnchorRetinaHead
 
 
 class TestFreeAnchorRetinaHead(TestCase):

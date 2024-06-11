@@ -5,7 +5,7 @@ import torch
 from mmcv.ops import batched_nms
 from mmengine.structures import InstanceData
 
-from mmdet.structures import DetDataSample, SampleList
+from models.mmdetection.mmdet.structures import DetDataSample, SampleList
 
 
 def shift_rbboxes(bboxes: torch.Tensor, offset: Sequence[int]):

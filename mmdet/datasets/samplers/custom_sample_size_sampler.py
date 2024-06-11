@@ -6,7 +6,7 @@ import torch
 from mmengine.dist import get_dist_info, sync_random_seed
 from torch.utils.data import Sampler
 
-from mmdet.registry import DATA_SAMPLERS
+from models.mmdetection.mmdet.registry import DATA_SAMPLERS
 from .class_aware_sampler import RandomCycleIter
 
 
@@ -89,8 +89,8 @@ class CustomSampleSizeSampler(Sampler):
 
         if self.round_up:
             indices = (
-                indices *
-                int(self.total_size / len(indices) + 1))[:self.total_size]
+                indices
+                * int(self.total_size / len(indices) + 1))[:self.total_size]
         indices = indices[self.rank:self.total_size:self.world_size]
         return iter(indices)
 

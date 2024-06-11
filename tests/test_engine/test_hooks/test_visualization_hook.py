@@ -8,9 +8,9 @@ from unittest.mock import Mock
 import torch
 from mmengine.structures import InstanceData
 
-from mmdet.engine.hooks import DetVisualizationHook, TrackVisualizationHook
-from mmdet.structures import DetDataSample, TrackDataSample
-from mmdet.visualization import DetLocalVisualizer, TrackLocalVisualizer
+from models.mmdetection.mmdet.engine.hooks import DetVisualizationHook, TrackVisualizationHook
+from models.mmdetection.mmdet.structures import DetDataSample, TrackDataSample
+from models.mmdetection.mmdet.visualization import DetLocalVisualizer, TrackLocalVisualizer
 
 
 def _rand_bboxes(num_boxes, h, w):

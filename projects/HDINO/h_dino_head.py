@@ -3,10 +3,10 @@ from typing import Dict, List
 
 from torch import Tensor
 
-from mmdet.models.dense_heads.dino_head import DINOHead
-from mmdet.models.utils import multi_apply
-from mmdet.registry import MODELS
-from mmdet.utils import InstanceList, OptInstanceList
+from models.mmdetection.mmdet.models.dense_heads.dino_head import DINOHead
+from models.mmdetection.mmdet.models.utils import multi_apply
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import InstanceList, OptInstanceList
 
 
 @MODELS.register_module()

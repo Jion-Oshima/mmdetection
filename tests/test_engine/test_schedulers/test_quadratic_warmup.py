@@ -7,9 +7,9 @@ import torch.optim as optim
 from mmengine.optim.scheduler import _ParamScheduler
 from mmengine.testing import assert_allclose
 
-from mmdet.engine.schedulers import (QuadraticWarmupLR,
-                                     QuadraticWarmupMomentum,
-                                     QuadraticWarmupParamScheduler)
+from models.mmdetection.mmdet.engine.schedulers import (QuadraticWarmupLR,
+                                                        QuadraticWarmupMomentum,
+                                                        QuadraticWarmupParamScheduler)
 
 
 class ToyModel(torch.nn.Module):

@@ -4,9 +4,9 @@ import unittest
 import numpy as np
 import torch
 
-from mmdet.datasets import OpenImagesDataset
-from mmdet.evaluation import OpenImagesMetric
-from mmdet.utils import register_all_modules
+from models.mmdetection.mmdet.datasets import OpenImagesDataset
+from models.mmdetection.mmdet.evaluation import OpenImagesMetric
+from models.mmdetection.mmdet.utils import register_all_modules
 
 
 class TestOpenImagesMetric(unittest.TestCase):

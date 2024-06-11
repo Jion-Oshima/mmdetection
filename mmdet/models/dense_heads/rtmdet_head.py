@@ -8,9 +8,9 @@ from mmengine.model import bias_init_with_prob, constant_init, normal_init
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.structures.bbox import distance2bbox
-from mmdet.utils import ConfigType, InstanceList, OptInstanceList, reduce_mean
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.structures.bbox import distance2bbox
+from models.mmdetection.mmdet.utils import ConfigType, InstanceList, OptInstanceList, reduce_mean
 from ..layers.transformer import inverse_sigmoid
 from ..task_modules import anchor_inside_flags
 from ..utils import (images_to_levels, multi_apply, sigmoid_geometric_mean,
@@ -268,7 +268,7 @@ class RTMDetHead(ATSSHead):
         (anchor_list, labels_list, label_weights_list, bbox_targets_list,
          assign_metrics_list, sampling_results_list) = cls_reg_targets
 
-        losses_cls, losses_bbox,\
+        losses_cls, losses_bbox, \
             cls_avg_factors, bbox_avg_factors = multi_apply(
                 self.loss_by_feat_single,
                 cls_scores,
@@ -470,8 +470,8 @@ class RTMDetHead(ATSSHead):
         class_assigned_gt_inds = torch.unique(
             sampling_result.pos_assigned_gt_inds)
         for gt_inds in class_assigned_gt_inds:
-            gt_class_inds = pos_inds[sampling_result.pos_assigned_gt_inds ==
-                                     gt_inds]
+            gt_class_inds = pos_inds[sampling_result.pos_assigned_gt_inds
+                                     == gt_inds]
             assign_metrics[gt_class_inds] = assign_result.max_overlaps[
                 gt_class_inds]
 

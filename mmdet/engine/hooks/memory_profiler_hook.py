@@ -4,8 +4,8 @@ from typing import Optional, Sequence
 from mmengine.hooks import Hook
 from mmengine.runner import Runner
 
-from mmdet.registry import HOOKS
-from mmdet.structures import DetDataSample
+from models.mmdetection.mmdet.registry import HOOKS
+from models.mmdetection.mmdet.structures import DetDataSample
 
 
 @HOOKS.register_module()

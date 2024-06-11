@@ -5,7 +5,7 @@ import numpy as np
 import torch
 from torch import Tensor
 
-from mmdet.structures.bbox import BaseBoxes
+from models.mmdetection.mmdet.structures.bbox import BaseBoxes
 
 
 def find_inside_bboxes(bboxes: Tensor, img_h: int, img_w: int) -> Tensor:
@@ -183,7 +183,7 @@ def distance2bbox(
         # clip bboxes with dynamic `min` and `max` for onnx
         if torch.onnx.is_in_onnx_export():
             # TODO: delete
-            from mmdet.core.export import dynamic_clip_for_onnx
+            from models.mmdetection.mmdet.core.export import dynamic_clip_for_onnx
             x1, y1, x2, y2 = dynamic_clip_for_onnx(x1, y1, x2, y2, max_shape)
             bboxes = torch.stack([x1, y1, x2, y2], dim=-1)
             return bboxes

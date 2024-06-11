@@ -8,8 +8,8 @@ from mmengine.config import Config, DictAction
 from mmengine.registry import init_default_scope
 from mmengine.utils import ProgressBar
 
-from mmdet.registry import DATASETS, VISUALIZERS
-from mmdet.structures.bbox import BaseBoxes
+from models.mmdetection.mmdet.registry import DATASETS, VISUALIZERS
+from models.mmdetection.mmdet.structures.bbox import BaseBoxes
 
 
 def parse_args():
@@ -103,8 +103,8 @@ def main():
         base_name = osp.basename(item['data_samples'].img_path)
         name, extension = osp.splitext(base_name)
 
-        out_file = osp.join(args.output_dir, name + '_' + str(i) +
-                            extension) if args.output_dir is not None else None
+        out_file = osp.join(args.output_dir, name + '_' + str(i)
+                            + extension) if args.output_dir is not None else None
 
         img = img[..., [2, 1, 0]]  # bgr to rgb
         gt_bboxes = gt_instances.get('bboxes', None)

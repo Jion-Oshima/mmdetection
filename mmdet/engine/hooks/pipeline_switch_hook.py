@@ -2,7 +2,7 @@
 from mmcv.transforms import Compose
 from mmengine.hooks import Hook
 
-from mmdet.registry import HOOKS
+from models.mmdetection.mmdet.registry import HOOKS
 
 
 @HOOKS.register_module()

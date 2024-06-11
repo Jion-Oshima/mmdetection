@@ -1,8 +1,8 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 from unittest import TestCase
 
-from mmdet.models.data_preprocessors import BatchResize, DetDataPreprocessor
-from mmdet.testing import demo_mm_inputs
+from models.mmdetection.mmdet.models.data_preprocessors import BatchResize, DetDataPreprocessor
+from models.mmdetection.mmdet.testing import demo_mm_inputs
 
 
 class TestDetDataPreprocessor(TestCase):

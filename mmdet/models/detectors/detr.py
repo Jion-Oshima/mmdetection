@@ -5,8 +5,8 @@ import torch
 import torch.nn.functional as F
 from torch import Tensor, nn
 
-from mmdet.registry import MODELS
-from mmdet.structures import OptSampleList
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.structures import OptSampleList
 from ..layers import (DetrTransformerDecoder, DetrTransformerEncoder,
                       SinePositionalEncoding)
 from .base_detr import DetectionTransformer

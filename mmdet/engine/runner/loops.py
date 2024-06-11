@@ -2,7 +2,7 @@
 from mmengine.model import is_model_wrapper
 from mmengine.runner import ValLoop
 
-from mmdet.registry import LOOPS
+from models.mmdetection.mmdet.registry import LOOPS
 
 
 @LOOPS.register_module()

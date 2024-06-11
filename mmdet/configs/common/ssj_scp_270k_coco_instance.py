@@ -9,8 +9,8 @@ from mmengine.config import read_base
 with read_base():
     from .ssj_270_coco_instance import *
 
-from mmdet.datasets import MultiImageMixDataset
-from mmdet.datasets.transforms import CopyPaste
+from models.mmdetection.mmdet.datasets import MultiImageMixDataset
+from models.mmdetection.mmdet.datasets.transforms import CopyPaste
 
 # dataset settings
 dataset_type = CocoDataset

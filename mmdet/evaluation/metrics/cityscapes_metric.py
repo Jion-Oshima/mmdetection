@@ -12,13 +12,13 @@ from mmengine.dist import is_main_process
 from mmengine.evaluator import BaseMetric
 from mmengine.logging import MMLogger
 
-from mmdet.registry import METRICS
+from models.mmdetection.mmdet.registry import METRICS
 
 try:
     import cityscapesscripts.evaluation.evalInstanceLevelSemanticLabeling as CSEval  # noqa: E501
     import cityscapesscripts.helpers.labels as CSLabels
 
-    from mmdet.evaluation.functional import evaluateImgLists
+    from models.mmdetection.mmdet.evaluation.functional import evaluateImgLists
     HAS_CITYSCAPESAPI = True
 except ImportError:
     HAS_CITYSCAPESAPI = False

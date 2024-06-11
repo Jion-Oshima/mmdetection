@@ -12,8 +12,8 @@ from mmengine.model import BaseModule, ModuleList
 from mmengine.utils import to_2tuple
 from torch import Tensor, nn
 
-from mmdet.registry import MODELS
-from mmdet.utils import OptConfigType, OptMultiConfig
+from models.mmdetection.mmdet.registry import MODELS
+from models.mmdetection.mmdet.utils import OptConfigType, OptMultiConfig
 
 
 def nlc_to_nchw(x: Tensor, hw_shape: Sequence[int]) -> Tensor:
@@ -166,10 +166,10 @@ class AdaptivePadding(nn.Module):
         stride_h, stride_w = self.stride
         output_h = math.ceil(input_h / stride_h)
         output_w = math.ceil(input_w / stride_w)
-        pad_h = max((output_h - 1) * stride_h +
-                    (kernel_h - 1) * self.dilation[0] + 1 - input_h, 0)
-        pad_w = max((output_w - 1) * stride_w +
-                    (kernel_w - 1) * self.dilation[1] + 1 - input_w, 0)
+        pad_h = max((output_h - 1) * stride_h
+                    + (kernel_h - 1) * self.dilation[0] + 1 - input_h, 0)
+        pad_w = max((output_w - 1) * stride_w
+                    + (kernel_w - 1) * self.dilation[1] + 1 - input_w, 0)
         return pad_h, pad_w
 
     def forward(self, x):
@@ -276,10 +276,10 @@ class PatchEmbed(BaseModule):
                 input_size = (input_h, input_w)
 
             # https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html
-            h_out = (input_size[0] + 2 * padding[0] - dilation[0] *
-                     (kernel_size[0] - 1) - 1) // stride[0] + 1
-            w_out = (input_size[1] + 2 * padding[1] - dilation[1] *
-                     (kernel_size[1] - 1) - 1) // stride[1] + 1
+            h_out = (input_size[0] + 2 * padding[0] - dilation[0]
+                     * (kernel_size[0] - 1) - 1) // stride[0] + 1
+            w_out = (input_size[1] + 2 * padding[1] - dilation[1]
+                     * (kernel_size[1] - 1) - 1) // stride[1] + 1
             self.init_out_size = (h_out, w_out)
         else:
             self.init_input_size = None
@@ -424,12 +424,12 @@ class PatchMerging(BaseModule):
         x = self.sampler(x)
         # if kernel_size=2 and stride=2, x should has shape (B, 4*C, H/2*W/2)
 
-        out_h = (H + 2 * self.sampler.padding[0] - self.sampler.dilation[0] *
-                 (self.sampler.kernel_size[0] - 1) -
-                 1) // self.sampler.stride[0] + 1
-        out_w = (W + 2 * self.sampler.padding[1] - self.sampler.dilation[1] *
-                 (self.sampler.kernel_size[1] - 1) -
-                 1) // self.sampler.stride[1] + 1
+        out_h = (H + 2 * self.sampler.padding[0] - self.sampler.dilation[0]
+                 * (self.sampler.kernel_size[0] - 1)
+                 - 1) // self.sampler.stride[0] + 1
+        out_w = (W + 2 * self.sampler.padding[1] - self.sampler.dilation[1]
+                 * (self.sampler.kernel_size[1] - 1)
+                 - 1) // self.sampler.stride[1] + 1
 
         output_size = (out_h, out_w)
         x = x.transpose(1, 2)  # B, H/2*W/2, 4*C
@@ -553,11 +553,11 @@ class ConditionalAttention(BaseModule):
 
         if attn_mask is not None:
             assert attn_mask.dtype == torch.float32 or \
-                   attn_mask.dtype == torch.float64 or \
-                   attn_mask.dtype == torch.float16 or \
-                   attn_mask.dtype == torch.uint8 or \
-                   attn_mask.dtype == torch.bool, \
-                   'Only float, byte, and bool types are supported for \
+                attn_mask.dtype == torch.float64 or \
+                attn_mask.dtype == torch.float16 or \
+                attn_mask.dtype == torch.uint8 or \
+                attn_mask.dtype == torch.bool, \
+                'Only float, byte, and bool types are supported for \
                     attn_mask'
 
             if attn_mask.dtype == torch.uint8:
@@ -623,8 +623,8 @@ class ConditionalAttention(BaseModule):
                 bs * self.num_heads, tgt_len, src_len)
 
         attn_output_weights = F.softmax(
-            attn_output_weights -
-            attn_output_weights.max(dim=-1, keepdim=True)[0],
+            attn_output_weights
+            - attn_output_weights.max(dim=-1, keepdim=True)[0],
             dim=-1)
         attn_output_weights = self.attn_drop(attn_output_weights)
 
@@ -896,8 +896,8 @@ def get_text_sine_pos_embed(
     scale = 2 * math.pi
     dim_t = torch.arange(
         num_pos_feats, dtype=torch.float32, device=pos_tensor.device)
-    dim_t = temperature**(2 * torch.div(dim_t, 2, rounding_mode='floor') /
-                          num_pos_feats)
+    dim_t = temperature**(2 * torch.div(dim_t, 2, rounding_mode='floor')
+                          / num_pos_feats)
 
     def sine_func(x: torch.Tensor):
         sin_x = x * scale / dim_t

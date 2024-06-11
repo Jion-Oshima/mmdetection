@@ -12,10 +12,10 @@ from mmengine.model import bias_init_with_prob
 from mmengine.structures import InstanceData
 from torch import Tensor
 
-from mmdet.registry import MODELS, TASK_UTILS
-from mmdet.structures.bbox import bbox_xyxy_to_cxcywh
-from mmdet.utils import (ConfigType, OptConfigType, OptInstanceList,
-                         OptMultiConfig, reduce_mean)
+from models.mmdetection.mmdet.registry import MODELS, TASK_UTILS
+from models.mmdetection.mmdet.structures.bbox import bbox_xyxy_to_cxcywh
+from models.mmdetection.mmdet.utils import (ConfigType, OptConfigType, OptInstanceList,
+                                            OptMultiConfig, reduce_mean)
 from ..task_modules.prior_generators import MlvlPointGenerator
 from ..task_modules.samplers import PseudoSampler
 from ..utils import multi_apply
@@ -309,8 +309,8 @@ class YOLOXHead(BaseDenseHead):
                 img_id] * max_scores >= cfg.score_thr
             results = InstanceData(
                 bboxes=flatten_bboxes[img_id][valid_mask],
-                scores=max_scores[valid_mask] *
-                flatten_objectness[img_id][valid_mask],
+                scores=max_scores[valid_mask]
+                * flatten_objectness[img_id][valid_mask],
                 labels=labels[valid_mask])
 
             result_list.append(

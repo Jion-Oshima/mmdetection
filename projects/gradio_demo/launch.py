@@ -3,7 +3,7 @@ import gradio as gr
 import torch
 from mmengine.logging import MMLogger
 
-from mmdet.apis import DetInferencer
+from models.mmdetection.mmdet.apis import DetInferencer
 from projects.XDecoder.xdecoder.inference import (
     ImageCaptionInferencer, RefImageCaptionInferencer,
     TextToImageRegionRetrievalInferencer)

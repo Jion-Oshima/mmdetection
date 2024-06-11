@@ -2,7 +2,7 @@ import unittest
 
 import torch
 
-from mmdet.models.losses import GaussianFocalLoss
+from models.mmdetection.mmdet.models.losses import GaussianFocalLoss
 
 
 class TestGaussianFocalLoss(unittest.TestCase):

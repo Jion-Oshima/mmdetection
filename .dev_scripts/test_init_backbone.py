@@ -9,7 +9,7 @@ from mmengine.config import Config
 from mmengine.runner import CheckpointLoader
 from mmengine.utils import ProgressBar
 
-from mmdet.registry import MODELS
+from models.mmdetection.mmdet.registry import MODELS
 
 
 def _get_config_directory():
@@ -135,13 +135,13 @@ def _check_backbone(config, print_cfg=True):
                 assert value.equal(state_dict[name])
 
         if print_cfg:
-            print('-' * 10 + 'Successfully load checkpoint' + '-' * 10 +
-                  '\n', )
+            print('-' * 10 + 'Successfully load checkpoint' + '-' * 10
+                  + '\n', )
             return None
     else:
         if print_cfg:
-            print(config + '\n' + '-' * 10 +
-                  'config file do not have init_cfg' + '-' * 10 + '\n')
+            print(config + '\n' + '-' * 10
+                  + 'config file do not have init_cfg' + '-' * 10 + '\n')
             return config
 
 
